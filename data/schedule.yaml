@@ -1,0 +1,69 @@
+lessons:
+  - title: '<span class="fake-header-table">Biostatistical computing with R</span>'
+    header: True
+
+  - title: '**Introduction to R and RStudio**'
+    date: "August 25"
+    # # reading: "01-reading"
+    # assignment: "01-problem-set"
+    # class: "01-class"
+
+  - title: '**R preliminaries**'
+    # date: "August 30"
+    # # reading: "02-reading"
+    # assignment: "02-problem-set"
+    # class: "02-class"
+
+  - title: '**R base graphics, statistical functions**'
+    # date: "September 1, 8"
+    # # reading: "03-reading"
+    # assignment: "03-problem-set"
+    # class: "03-class"
+
+  - title: '**R in command line, Unix, text manupulation with regular expressions**'
+    # date: "September 1, 8"
+    # # reading: "03-reading"
+    # assignment: "03-problem-set"
+    # class: "03-class"
+
+  - title: '**Literate programming with RMarkdown/KnitR, BibTex, Reproducible presentations**'
+    # date: "September 13"
+    # # reading: "04-reading"
+    # assignment: "04-problem-set"
+    # class: "04-class"
+
+  - title: "**Data management/code best practices**"
+    # date: "September 15"
+    # # reading: "05-reading"
+    # assignment: "05-problem-set"
+    # class: "05-class"
+
+  - title: "**Packages, CRAN, Bioconductor**"
+    # date: "September 20"
+    # # reading: "05-reading"
+    # assignment: "06-problem-set"
+    # class: "06-class"
+
+  - title: "**Tidyverse, dplyr, data manipulation**"
+    # date: "September 22"
+    # # reading: "05-reading"
+    # assignment: "07-problem-set"
+    # class: "07-class"
+
+  - title: "**Tidyverse, ggplot2, data visualization**"
+    # date: "September 27"
+    # # reading: "05-reading"
+    # assignment: "08-problem-set"
+    # class: "08-class"
+
+  - title: "**Version control using Git/GitHub**"
+    # date: "September 29"
+    # # reading: "05-reading"
+    # assignment: "09-problem-set"
+    # class: "05-class"
+
+  - title: "**Interactive web apps with Shiny**"
+    # date: "October 22"
+    # # reading: "05-reading"
+    # assignment: "10-problem-set"
+    # class: "10-class"
