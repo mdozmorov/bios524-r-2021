@@ -1,13 +1,13 @@
 ---
 title: "Assignment 1. Introduction to R and RStudio"
-date: "2020-09-22"
-due_date: "2020-09-29"
+date: "2021-08-25"
+due_date: "2021-09-01"
 due_time: "5:00 PM"
-# menu:
-#   assignment:
-#     parent: Assignments
-#     weight: 1
-# type: docs
+menu:
+  assignment:
+    parent: Assignments
+    weight: 1
+type: docs
 # weight: 1
 output:
   blogdown::html_page:
@@ -16,6 +16,7 @@ editor_options:
   chunk_output_type: console
 ---
 
+<!--
 # To do yourself
 
 - Join [Slack #bios524 channel](https://dozmorovlab.slack.com/archives/C01AZANCZR9), invite to be sent
@@ -43,3 +44,4 @@ editor_options:
     - Copy-paste selected output and describe your observations
 
 3) Submit your homework as a text or Word document. Files should be named, e.g., `LASTNAME-FIRSTNAME-HW01`.
+-->

@@ -26,6 +26,12 @@ lessons:
     # assignment: "03-problem-set"
     # class: "03-class"
 
+  - title: "**Functions, Packages, CRAN, Bioconductor**"
+    # date: "September 20"
+    # # reading: "05-reading"
+    # assignment: "06-problem-set"
+    # class: "06-class"
+
   - title: '**Literate programming with RMarkdown/KnitR, BibTex, Reproducible presentations**'
     # date: "September 13"
     # # reading: "04-reading"
@@ -37,12 +43,6 @@ lessons:
     # # reading: "05-reading"
     # assignment: "05-problem-set"
     # class: "05-class"
-
-  - title: "**Packages, CRAN, Bioconductor**"
-    # date: "September 20"
-    # # reading: "05-reading"
-    # assignment: "06-problem-set"
-    # class: "06-class"
 
   - title: "**Tidyverse, dplyr, data manipulation**"
     # date: "September 22"

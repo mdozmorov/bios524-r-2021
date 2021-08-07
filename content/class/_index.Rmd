@@ -1,9 +1,9 @@
 ---
 title: Class details
-menu:
-  class:
-    parent: Class details
-    weight: 1
+# menu:
+#   class:
+#     parent: Class details
+#     weight: 1
 type: docs
 weight: 1
 ---
