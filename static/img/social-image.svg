@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0 (4035a4f, 2020-05-01)"
+   sodipodi:docname="social-image.svg"
+   inkscape:export-filename="/Users/mdozmorov/Documents/Work/Teaching/BIOS524_biostatistical_computing/static/img/social-image.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.70000001"
+     inkscape:cx="146.91321"
+     inkscape:cy="384.62779"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1536"
+     inkscape:window-height="960"
+     inkscape:window-x="1735"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#3a6555;fill-opacity:1;stroke:#ffffff;stroke-width:0.256579;stroke-miterlimit:1"
+       d="M 55.089966,61.670325 V 32.337488 h 51.449374 51.44939 v 29.332837 29.33283 H 106.53934 55.089966 Z"
+       id="path48"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="66.346123"
+       y="50.902477"
+       id="text14"><tspan
+         sodipodi:role="line"
+         x="66.346123"
+         y="50.902477"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Georgia;-inkscape-font-specification:'Georgia Bold';fill:#ffffff;stroke-width:0.264583"
+         id="tspan16">Biostatistical computing</tspan><tspan
+         sodipodi:role="line"
+         x="66.346123"
+         y="59.793259"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Georgia;-inkscape-font-specification:'Georgia Bold';fill:#ffffff;stroke-width:0.264583"
+         id="tspan27">with R</tspan></text>
+    <text
+       inkscape:export-ydpi="300"
+       inkscape:export-xdpi="300"
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.52778px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="66.613388"
+       y="69.589851"
+       id="text20"><tspan
+         sodipodi:role="line"
+         x="66.613388"
+         y="69.589851"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Helvetica;-inkscape-font-specification:Helvetica;fill:#ffffff;stroke-width:0.264583"
+         id="tspan22">Fall 2021</tspan><tspan
+         sodipodi:role="line"
+         x="66.613388"
+         y="74.098198"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Helvetica;-inkscape-font-specification:Helvetica;fill:#ffffff;stroke-width:0.264583"
+         id="tspan26">Biostatistics BIOS524</tspan><tspan
+         sodipodi:role="line"
+         x="66.613388"
+         y="78.606552"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Helvetica;-inkscape-font-specification:Helvetica;fill:#ffffff;stroke-width:0.264583"
+         id="tspan28">Virginia Commonwealth University</tspan></text>
+  </g>
+</svg>

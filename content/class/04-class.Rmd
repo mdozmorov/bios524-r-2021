@@ -1,0 +1,30 @@
+---
+title: "Lecture 4. Reproducible reports with Markdown, knitr"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2020-10-01"
+class_date: "2020-10-01"
+output:
+  blogdown::html_page:
+    toc: false
+# menu:
+#   class:
+#     parent: Class sessions
+#     weight: 4
+# type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+## Slides
+
+### Reproducible reports with Markdown, knitr
+
+<a href="../../slides/41_RMarkdown.html#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/41_RMarkdown.html#1')
+```
+

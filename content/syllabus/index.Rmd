@@ -1,0 +1,143 @@
+---
+title: Syllabus
+slug: syllabus
+citeproc: true
+output:
+  blogdown::html_page:
+    toc: true
+    fig_caption: false
+---
+
+`r blogdown::shortcode("courseinfo")`
+
+## Course Description
+
+This is a first-year graduate level course in biostatistical computing. This course is an introduction to R programming. It covers R fundamentals and statistical functions, R packages, data management/manipulation and plotting using Tidyverse, reproducible research with GitHub, interactive apps with Shiny. No knowledge of calculus/algebra is required although some statistical operations will be discussed. 
+
+## Topics
+
+- R/RStudio
+- Vector/matrix operations
+- Probability distributions and random number generation
+- Statistical functions
+- RMarkdown, GitHub
+- Functions, Packages
+- Data management, tidyverse
+- R graphics, data visualization
+- Interactive web apps with Shiny
+
+## Prerequisites
+
+- No formal course requirements, but basic knowledge of the following will help
+    - Basic linear algebra: vectors, matrices, determinants
+    - Simple calculus: derivatives, integrals, gradients
+    - Some probability theory: probability, random variables, distributions
+    - Basic statistics knowledge: descriptive statistics, estimators.
+    - (Linear) modeling
+- Hardware
+    - A laptop, Mac or Linux OSs are recommended. 
+
+## Learning Objectives
+
+1.  **Learn** advanced R programming and reproducible research practices  
+2.  **Understand** principles and tools for R data analysis and visualization  
+3.  **Implement** reproducible analysis reports and presentations
+
+## About the class
+
+This course is a part of the 3-credit hour course. The class will be conducted in person and include lecture and coding parts. Course material will be publicly available. The syllabus is subject to change. 
+
+- Course Website:  https://bios524-r-2021.netlify.com
+
+- Office Hours: contact the Instructor with questions and on-demand (Zoom) meeting requests
+
+## Attendance
+
+Attendance is not checked, but students are responsible for all assignments and announcements made in class.
+
+### Homework
+
+Homework will consist of problem sets for material covered. Files should be named, e.g., `LASTNAME-FIRSTNAME-HW01.Rmd`. Homework due date is one week after the lecture. Late homework will NOT be accepted unless permission was given by the instructor. Assignments that are not well organized/documented will receive no credit. Working in groups of two is allowed. However, you must do the final writing-up of solutions entirely by yourself. Any two assignments which are word-for-word exactly the same or highly similar in coding style will both receive zero credit. There will be no extra credit projects available.
+
+### Final project
+
+- A take-home final project  
+- Final project should be submitted as a fully reproducible GitHub repository
+- The due date is to be announced. <!--[Final project page](../assignment/11-problem-set)-->
+
+<!--
+### Class evaluation
+
+Please, evaluate the course Friday afternoon, June 12, 2020. All evaluations are anonymous
+
+- [Student Course evaluation](https://courseeval.vcu.edu/Blue/svg.aspx?pid=05df79ed-c934-48ae-aa39-72d70fdfd940&sid=62affb957f6d70bbd79f9c2865d00a8bf1e232837e630381dc1095289ecfcd37&tid=f796bf54e5287c0376fde9485d74a0d8&uid=e9c5910f23ceae63a3abaa9bc1f1b34b96eebb7ae0b9c163efc27fccff992a1d&regl=en-us)
+- [Guest Course evaluation](https://docs.google.com/forms/d/1aiSdoZoDKki6N5J0bvjI7duG-WAG7C1Oq-X4WoKyDTs/prefill) 
+-->
+
+### Grading Policy
+
+- Each homework and the final project will be graded on the scale 0-10, 10 points being the best
+- Total homework grade possible - 100 points
+  - Missed deadline - minus 3 points for each missed date
+  - Missed deadline and not submitted later - 0 points
+
+Homework and final project grades will be averaged and scaled to the 0-100 range.
+
+Standard A-F grading system will be applied:
+
+- A: 90-100
+- B: 80-89
+- C: 70-79
+- D: 60-69
+- F: 0-59
+
+
+## Copyright
+
+Every reasonable effort has been made to protect the copyright requirements of materials used in this course by referring to the original sources. 
+
+## Diversity and inclusivity
+
+A primary goal of this course is to be inclusive and of value to the largest number of contributors, with the most varied and diverse backgrounds possible. All participants in this course are encouraged to help to provide a friendly, safe and welcoming environment for all, regardless of age, gender, gender identity or expression, culture, ethnicity, language, national origin, political beliefs, profession, race, religion, sexual orientation, socioeconomic status, and technical ability.
+
+## Policies and resources
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/n198LbGnflc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Students should visit [http://go.vcu.edu/syllabus](http://go.vcu.edu/syllabus) and review all syllabus statement information. The full university syllabus statement includes information on safety, registration, the VCU Honor Code, student conduct, withdrawal and more
+
+[VCU Honor System](https://conduct.students.vcu.edu/vcu-honor-system/)
+
+Observe the [VCU Honor Pledge](https://students.vcu.edu/studentconduct/vcu-honor-system/academic-misconduct-/honor-pledge/) in any class- and homework activities
+
+[Student Code of Conduct](https://conduct.students.vcu.edu/student-code-of-conduct/)
+
+[Guidelines for a productive return to VCU](https://together.vcu.edu/)
+
+[The Office of Graduate Education](https://medschool.vcu.edu/about/deans-office/graduate/)
+
+[Keep on Teaching](https://altlab.vcu.edu/rapid-response/) and [Keep on Learning](https://keeplearning.vcu.edu/)
+
+For emergencies, contact VCU Police 804-828-1234
+
+<!--
+### Late Policy
+
+Students get 1 free assignment to submit late without penalties. Please email us through Sakai that you need more time. If you need accommodation, please email us so we can figure out a way to help you.
+
+Graduate Studies in the OHSU School of Medicine is committed to providing grades to students in a timely manner. Course instructors will provide students with information in writing at the beginning of each course that describes the grading policies and procedures, including but not limited to evaluation criteria, expected time needed to grade individual student examinations and type of feedback they will provide.
+
+Class grades are due to the Registrar by the Friday following the week of finals. However, on those occasions when a grade has not been submitted by the deadline, the following procedure shall be followed:
+
+1)  The Department/Program Coordinator will immediately contact the Instructor requesting the missing grade, with a copy to the Program Director and Registrar.
+
+2)  If the grade is still overdue by the end of next week, the Department/Program Coordinator will email the Department Chair directly, with a copy to the Instructor and Program Director requesting resolution of the missing grade.
+
+3)  If, after an additional week the grade is still outstanding, the student or Department/Program Coordinator may petition the Office of Graduate students for final resolution.
+
+1.  *For courses that are run by a specific department.*
+
+2.  *For the conjoined courses (course number is preceded by CON\_ that
+    are run by Graduate Studies.*
+
+-->

@@ -1,0 +1,80 @@
+---
+title: "Final Project"
+date: "2020-10-22"
+due_date: "2020-11-22"
+due_time: "05:00 PM"
+# menu:
+#   assignment:
+#     parent: Assignments
+#     weight: 11
+# type: docs
+# weight: 1
+output:
+  blogdown::html_page:
+    toc: false
+editor_options: 
+  chunk_output_type: console
+---
+
+This exam is worth 100 points. It has two plotting questions and three function-writing questions.
+
+Display your function code and output in an Rmarkdown document. 
+
+Make a package that includes your code for the three functions. Your package should be installable from Github. Document your functions properly when making the package.
+
+## Plotting 1: Scatterplots with ggplot 
+
+Use the ChickWeight dataset provided as default in R. The data describes the weight of chicks in four different diet groups over a number of days. Generate $4$ plots in ggplot shown in a $2×2$ layout of weight versus time of the chicks in each diet group. Also, in one long string of pipes, determine the average weight of chicks by diet group on the $20^{th}$ day of the study. Give your plots informative titles and labels. 
+
+
+## Plotting 2: Histograms with ggplot 
+
+Use the CO2 dataset provided as default in R. The data describes carbon dioxide concentration and uptake values for a certain type of grass species. 
+
+Create a $1$ row by $2$ column set of ggplots. On the left panel, include only data from plants from Quebec; on the right, only from Mississippi. In each plot, show a boxplot of carbon dioxide uptake rates for each of the two treatments: Chilled and Non-Chilled. Fill in the boxplot with colors: one color for Non-Chilled, for both origins, another color for Chilled, for both origins. Give your plots informative titles and labels. 
+
+
+## Function 1: Mixture Normal Distribution. 
+
+Write an R function to do the following. Generate n observations from a mixture of two normal distributions, i.e., generate U from a Bernoulli($p$) distribution and if $U=1$, then draw $Y$ from a normal distribution with mean $\mu_1$ and standard deviation $\sigma_1$, or if $U=0$, draw Y from the other normal distribution with mean $\mu_2$ and standard deviation $\sigma_2$. 
+
+In this context, there is a probability ($p$) that $Y$ is drawn from a normal distribution $N(\mu_1,\sigma_1)$, and there is a probability $1−p$ that $Y$ is drawn from the other normal distribution $N(\mu_2,\sigma_2)$. Note that the density of $Y$ is the sum of weighted density of two normal distributions. 
+
+Write a function with five arguments $(p,\mu_1,\mu_2,\sigma_1,\sigma_2)$ to sample $Y$ from the mixture normal distribution.
+
+Draw $1000$ samples from mixture normal $(0.5,−2,3,2,1.5)$ and store in vector $Y1$ and draw $1000$ samples from mixture normal $(0.2,−2,3,2,1.5)$ and store in vector $Y2$. Set a seed for reproducibility.
+
+Generate a two-panel plot in ggplot with the left panel containing the histogram and a fitted density for $Y1$ and the right panel containing the same for $Y2$.
+
+<!--
+## Function 2: Poker Simulation. 
+
+Write an R function to create a simplified three-player poker game. In poker, all players receive five cards and bet money on their ‘hand’, the cards they have been dealt. We will not bet money in this function, though. Consider the ace to be the high card for purposes of this exercise. Specifically, write a function to do the following tasks:
+
+- Sample from a standard deck of $52$ playing cards – no Joker card - such that each player receives 5 cards, a full hand. Make it equally likely that any card is drawn. (Do not make it possible for the same card to be dealt to two players, though!) 
+- Determine what the ‘rank’ is of each player’s hand, using ranks 1-9 from this link (https://en.wikipedia.org/wiki/List_of_poker_hands#Hand-ranking_categories). Record the highest (best) rank for each player.
+- Let the function print out, in an organized manner, the cards of each player, the ‘rank’ of each player’s hand, and a sentence/phrase indicating which player wins the hand. Run this function three times, printing the output each time. 
+-->
+
+## Function 2: Weather Simulation. 
+
+Write a function to simulate the weather forecast in Richmond. Assume there are two states of weather in Richmond: sunny and rainy. If a day is sunny, the probability that the next day is sunny is $0.85$. If a day is rainy, the probability that the next day is rainy is $0.35$. If a day is rainy, the amount of rainfall accumulation in the city is governed by an $\text{Exponential}(\lambda = 2)$ distribution, where the value from that distribution is the rainfall in inches. If a day is sunny, there can be no rain. 
+
+Specifically, given an initial day’s weather conditions, simulate the following $10$ days of weather and calculate the projected rainfall accumulation in inches.
+
+- Write a function describing this process.
+- First, assume sunny conditions on the initial day. Output the number of projected sunny days in the next $10$ days, as well as the projected rainfall accumulation. Repeat this $1000$ times and return the average of all these simulations. 
+- Now, assume rainy conditions on the initial day. Output the number of projected sunny days in the next $10$ days, as well as the projected rainfall accumulation. Repeat this $1000$ times and return the average of all these simulations.
+
+# Grading
+
+A general rubric is below, in terms of points:
+
+__Plotting 1__: 10 points  
+__Plotting 2__: 15 points  
+__Function 1__: 30 points  
+<!--__Function 2__: 20 points  -->
+__Function 2__: 30 points  
+__Package on Github__: 10 points  
+__Code is clear and commented__: 5 points  
+__Total__: 100 Points  

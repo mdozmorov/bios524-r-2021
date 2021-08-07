@@ -1,0 +1,55 @@
+---
+title: "Assignment 7: Tidyverse, data manipulation"
+date: "2020-10-13"
+due_date: "2020-10-20"
+due_time: "05:00 PM"
+# menu:
+#   assignment:
+#     parent: Assignments
+#     weight: 7
+# type: docs
+# weight: 1
+output:
+  blogdown::html_page:
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# To do yourself
+
+- [Dive into dplyr (tutorial)](https://www.kaggle.com/jessemostipak/dive-into-dplyr-tutorial)
+
+- [Data Manipulation Using R (& dplyr)](https://ramnarasimhan.files.wordpress.com/2014/10/data-manipulation-using-r_acm2014.pdf) by Ram	Narasimhan, PDF slides
+
+- [Data Manipulation with dplyr](http://datascienceplus.com/data-manipulation-with-dplyr/) brief tutorial
+
+- [Aggregating and analyzing data with dplyr](http://www.datacarpentry.org/R-genomics/04-dplyr.html) tutorial by Data Carpentry
+
+- [Introduction to dplyr for Faster Data Manipulation in R](https://rpubs.com/justmarkham/dplyr-tutorial) tutorial and a 40 min video [Hands-on dplyr tutorial for faster data manipulation in R](https://www.youtube.com/watch?v=jWjqLW-u3hc)
+
+- [Animations of tidyverse verbs using R, the tidyverse, and gganimate](https://github.com/gadenbuie/tidy-animated-verbs) - visual explanation of dplyr operations
+
+- [Pivoting, reformatting data into long/wide formats](https://tidyr.tidyverse.org/dev/articles/pivot.html)
+
+- [A graphical introduction to tidyr's pivot](https://speakerdeck.com/yutannihilation/a-graphical-introduction-to-tidyrs-pivot-star)
+
+- [Reusing Tidyverse code](https://speakerdeck.com/lionelhenry/reusing-tidyverse-code) - dplyr/tidyverse data manipulation lecture slides
+
+# To submit on blackboard, due 10-20-2020, 5:00pm
+
+- What is the difference between `read_xls()` and `read_xlsx()` functions? What message do you get if reading an `.xlsx` file using `read_xls()` function?
+- What does the skip argument do?
+- Do we need to refer to a sheet within an excel file as a number, or can we refer to it as the sheet name instead?
+- What does the guess_max argument do?
+- What happens if columns in the Excel worksheet are of different length?
+
+- Use the `starwars` dataset that is loaded with the tidyverse. Accomplish the following in one long string of pipes. 
+  - Keep only observations with weight and height recorded.
+  - Create a variable called `bmi` that calculates the character's BMI. 
+  - Summarize the BMI variable, grouping observations by homeworld. 
+  - Print this summary in decreasing order of average BMI. 
+  
+ - Read in the following data into R. This data is from the American Community Survey and references the population of three cities in Virginia between 2009 and 2012.
+ `cities <- data.frame(name = rep(c("richmond", "norfolk", "charlottesville")), pop2009 = c(1202494,236071,191515), pop2010 = c(1235565,242143,197279), pop2011 = c(1248271,241943,199675), pop2012 = c(1260202,243056,210909))`
+   In one long string of pipes, convert the data from wide (2009 to 2012 population values) to long format, naming the new column of populations `pop`, group by city, create a summary variable that is the ratio of the largest population value to smallest population value for the city, and arrange by this ratio value in decreasing order. 

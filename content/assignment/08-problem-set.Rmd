@@ -1,0 +1,46 @@
+---
+title: "Assignment 8: Tidyverse, data visualization"
+date: "2020-10-15"
+due_date: "2020-10-22"
+due_time: "05:00 PM"
+# menu:
+#   assignment:
+#     parent: Assignments
+#     weight: 8
+# type: docs
+# weight: 1
+output:
+  blogdown::html_page:
+    toc: false
+editor_options: 
+  chunk_output_type: console
+---
+
+# To do yourself
+
+- O'Donoghue, Sen I., Benedetta Frida Baldi, Susan J. Clark, Aaron E. Darling, James M. Hogan, Sandeep Kaur, Lena Maier-Hein, et al. "[Visualization of Biomedical Data](https://doi.org/10.1146/annurev-biodatasci-080917-013424)." Annual Review of Biomedical Data Science 1, no. 1 (July 20, 2018) - Visualization best practices (the use of length, area, color etc.)
+
+- [RStudio Webinars](https://github.com/rstudio/webinars) - Code and slides for RStudio webinars
+
+- [Data visualization in R](http://www.datacarpentry.org/R-genomics/05-data-visualization.html) by Data Carpentry
+
+- [ggplot2 tutorial/slides/code examples/references](https://github.com/jennybc/ggplot2-tutorial) by Jenny Bryan 
+
+- [Interactive plots in R](https://davetang.org/muse/2018/05/18/interactive-plots-in-r/) by Dave Tang
+
+- [The R Graph Gallery, all graphs](http://www.r-graph-gallery.com/all-graphs/) with code
+
+- [Collection of ggplot2 materials](https://github.com/Z3tt/ggplot-courses)
+
+- [Plotting/reporting best practices](https://geanders.github.io/RProgrammingForResearch/reporting-data-results-1.html) 
+
+- [Plotly](https://geanders.github.io/RProgrammingForResearch/reporting-data-results-3.html#htmlwidgets)
+
+
+# To submit on blackboard, due 10-22-2020, 5:00pm
+
+- We will start with a very basic ggplot. Read in the `mtcars` dataset that comes with R. Produce a histogram of the MPG variable for each value of the cylinders variable (there are 3) in a 1 row by 3 column grid. You may notice that the plots appear 'sideways'. If so, correct it using a ggplot command. Give the plot an informative title.
+
+- Read in the `diamonds` dataset in R. In one long string of pipe operations, keep only those observations with `price` less than the 80th percentile of the `price` variable, group observations by `Clarity` type, and create a summary dataframe that summarizes the median `price` in one column and summarizes the median `x` value in another column. Using this dataset, create a ggplot scatterplot with `x` on the x-axis and `price` on the y-axis. Label the plot with values of Clarity and adjust the labels slightly so that they do not overlap the points.
+
+- Again using the `diamonds` dataset, starting from the full dataset. First remove all diamonds with an 'Ideal' cut. Then make a ggplot of the data that displays the density estimate of price for each of the (now 4) values of cut, separately, arranged in a 4 row by 1 column grid. Fill in the area below the density curve in each plot with some color. Give the plot a title. 

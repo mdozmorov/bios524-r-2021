@@ -1,0 +1,34 @@
+---
+title: "Assignment 10: Interactive web apps with Shiny"
+date: "2020-10-22"
+due_date: "2020-10-29"
+due_time: "5:00 PM"
+# menu:
+#   assignment:
+#     parent: Assignments
+#     weight: 11
+# type: docs
+# weight: 1
+output:
+  blogdown::html_page:
+    toc: false
+editor_options: 
+  chunk_output_type: console
+---
+
+# To do yourself
+
+- [Mastering Shiny](https://mastering-shiny.org/) book by Hadley Wickham. [GitHub](https://github.com/jcheng5/shiny-book)
+
+- [awesome-rshiny](https://github.com/grabear/awesome-rshiny) - a list of resources to learn R Shiny
+
+- [How to Deploy R Shiny App for Free on Shinyapps.io](https://www.r-bloggers.com/2020/10/how-to-deploy-r-shiny-app-for-free-on-shinyapps-io-video/) 14 min video and links
+
+# To submit on Blackboard, before 5:00pm on 2020-10-29
+
+- Open [r-shiny.Rmd](../../slides/r-shiny.Rmd) in RStudio. Review the code chunks and create an `app.R` file from them. Ensure the app runs. Submit the file.
+
+- Create a very small and limited Shiny app, using some default dataset in R. The only requirements are that the app:
+  - Has a descriptive title
+  - Explores/visualizes one aspect of the dataset
+  - Runs without errors.

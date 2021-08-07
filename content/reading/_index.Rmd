@@ -1,0 +1,208 @@
+---
+title: References
+menu:
+  reading:
+    parent: Reading details
+    weight: 1
+type: docs
+weight: 1
+---
+
+- Class-specific reading assignments will be posted under the [Assignments](/assignment/) section following each class session
+
+- See ["Data science in R notes"](https://github.com/mdozmorov/R_notes) GitHub repository for more resources
+
+## R
+
+- [A very short R introduction](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf)
+
+- [Big Book of R](https://bigbookofr.netlify.app/), by Oscar Baruffa. A bookdown bookmarking links to everything R for data science, from basics, visualization, tidyverse to distributed computing, spatial data science, machine learning, and more. [GitHub](https://github.com/oscarbaruffa/BigBookofR)
+
+- [A Complete Tutorial to learn Data Science in R from Scratch](http://www.analyticsvidhya.com/blog/2016/02/complete-tutorial-learn-data-science-scratch/) - Basics of R, with short and conscise examples
+
+- [teach-r](https://github.com/coatless/teach-r) - List of Resources for Teaching R
+
+- [List of courses teaching R](https://github.com/rstudio-education/rstats-ed)
+
+- [The learnr tutorials in RStudio Cloud primers](https://github.com/rstudio-education/primers), avaliable on [RStudio Cloud](https://rstudio.cloud/projects)
+
+- [swirl](http://swirlstats.com/) - R package for interactive R leaning
+
+- [FasteR](https://github.com/matloff/fasteR) - Fast Lane to Learning R, learn R language in R console by following examples, by Norm Matloff
+
+- [Hands-On Programming with R](https://rstudio-education.github.io/hopr) - introductory book how to program in R, with hands-on examples, by Garrett Grolemund
+
+- [R for Data Science](https://r4ds.had.co.nz/) - a Tidyverse-oriented introduction to R online book, by Garrett Grolemund and Hadley Wickham
+
+- [Advanced R](https://adv-r.hadley.nz/) and [Advanced R Solutions](https://advanced-r-solutions.rbind.io) - Advanced R programming, book and solutions, by Hadley Wickham and others
+
+- [R Cookbook, 2nd Edition](https://rc2e.com) - statistics-oriented R introduction, by James Long and Paul Teetor
+
+- [Efficient R programming](https://bookdown.org/csgillespie/efficientR/) - advanced concepts for efficient (R) programming, by Colin Gillespie & Robin Lovelace
+
+- [RMarkdown from RStudio](https://rmarkdown.rstudio.com/lesson-1.html) - illustrated guide to RMarkdown 
+
+- [Rmarkdown for Scientists](https://rmd4sci.njtierney.com/) book by Nicholas Tierney. [GitHub](https://github.com/njtierney/rmd4sci)
+
+- [Mastering Shiny](https://mastering-shiny.org/) book by Hadley Wickham. [GitHub](https://github.com/jcheng5/shiny-book)
+
+- [Yet another ‘R for Data Science’ study guide](https://brshallo.github.io/r4ds_solutions/), by Bryan Shalloway. Tidyverse-oriented introduction to R
+
+- [One Page R](https://togaware.com/onepager/) book "Data Science Quick Start: Knowledge Discovery Through R" by Togaware, includes pdf slides and R code templates for various machine learning tasks
+
+- [Data Analysis and Prediction Algorithms with R](https://rafalab.github.io/dsbook/) book by Rafael Irizarry. Data science, statistics topics in R. [GitHub](https://github.com/rafalab/dsbook). [Old version](https://genomicsclass.github.io/book/), [Labs](https://github.com/genomicsclass/labs), and [Videos](http://lorainelab.org/statistics-and-r-for-the-life-sciences/)
+
+- [R & Bioconductor Manual](http://manuals.bioinformatics.ucr.edu/home/R_BioCondManual) - One of the best R manual to brush up all major steps in data analysis/visualization. And links to other resources there. By Thomas Girke, UC Riverside
+
+- [RProgrammingForResearch](https://github.com/geanders/RProgrammingForResearch) - course notes for R Programming for Research. R learning from ground up to tidyverse, with lectures, homeworks, data, source files
+
+- [biostat561](https://github.com/adw96/biostat561) - Computational Skills for Biostatistics, from version control, R programming, ggplot, shiny, to Unix, LaTeX, Markdown, Python. By Amy Willis
+
+- [THRIV datasci 2018](https://thriv.github.io/biodatasci2018/) - THRIV Data Science course by Stephen Turner. Comprehensive coverage from R/RStudio introduction, RMarkdown, dplyr, ggplot2, shiny to all practical and statistical aspects of data cleaning, visualization, predictive modeling, survival analysis. [Workshops](https://stephenturner.github.io/workshops/index.html)
+
+- [Introduction to Data Science](https://datasciencelabs.github.io/) by Rafael Irizarry and Stephanie Hicks. The GitHub repo https://github.com/datasciencelabs/2020 has the latest course material, previous material for the course is available by changing the year number, e.g. https://github.com/datasciencelabs/2019. [Data for the course](https://github.com/datasciencelabs/data)
+
+- [R Programming for Data Science](https://leanpub.com/rprogramming) by Roger Peng. Fundamentals of R programming and data science. [GitHub](https://github.com/rdpeng/rprogdatascience/)
+
+- [Mastering Software Development in R](https://bookdown.org/rdpeng/RProgDA/), book by Roger D. Peng, Sean Kross, and Brooke Anderson. From R basics to package development
+
+- [Statistical Computing](https://rdpeng.github.io/Biostat776/) - Biostatistics 140.776 course by Roger Peng. [Youtube Playlists](https://www.youtube.com/c/RogerPeng/playlists)
+
+- [DataScienceSpecialization](https://github.com/DataScienceSpecialization/courses) - Course materials for the Data Science Specialization from JHU folks. Detailed lectures on each topic
+
+- [ds4stats](https://github.com/rafalab/ds4stats) - Data Science for Statisticians Workshop. Tidyverse, Data wrangling, visualization, ggplot2, machine learning. Rmds, lab exercises, links to ready-to-view lectures. 
+
+- [master-the-tidyverse](https://github.com/rstudio-education/master-the-tidyverse/) - the Master the Tidyverse Workshop, `tidyverse`-oriented tutorials. [Instructor material](https://github.com/rstudio-education/master-the-tidyverse-instructors)
+
+- [Statistical Inference via Data Science, A ModernDive into R and the Tidyverse](https://moderndive.com/)  - bookdown, statistics and data science using tidyverse. [GitHub](https://github.com/moderndive/moderndive_book)
+
+- [Statistical Thinking for the 21st Century](https://statsthinking21.org/) - bookdown, statistics theory illustrated with R. [GitHub material](https://github.com/statsthinking21)
+
+- [R (BGU course)](http://www.john-ros.com/Rcourse/) by Jonathan D. Rosenblatt. From R basics to regression, machine learning, graphics, shiny, advanced computing. [GitHub](https://github.com/johnros/RAMR-R-Course)
+
+- [online-courses](https://github.com/rsquaredacademy-education/online-courses/) - Free courses by RSquareAcademy. From data import to tidyverse, web scraping, regex, databases. Videos, slides, code, data. 
+
+- [SISBID](https://github.com/SISBID) - several modules covering various aspects of data science. Summer Institute in Statistics for Big Data. Lectures, exercises, data. [Module 1, Big Data](https://github.com/SISBID/Module1), [Module 2, Visualization of Biomedical Big Data](https://github.com/SISBID/Module2), [Module 3, Reproducible research](https://github.com/SISBID/Module3), [Module 4](https://github.com/SISBID/Module4), [Module 5](https://github.com/SISBID/Module5)
+
+- [Ted Laderas](https://laderast.github.io/) and his [Ready for R](https://ready4r.netlify.app/) course, the accompanying [Ready for R: Notebook Reference](https://ready4r.netlify.app/labbook/) bookdown, and the [R Bootcamp](https://r-bootcamp.netlify.app) tidyverse exercises
+
+- [R Programming For Research](https://geanders.github.io/RProgrammingForResearch/index.html) course by Brooke Anderson, Rachel Severson, and Nicholas Good, Colorado State University. Basic, intermediate, and advanced data analysis in R. [GitHub](https://github.com/geanders/RProgrammingForResearch), [Youtube playlist](https://www.youtube.com/playlist?list=PLuGPtwgRXxqK1d-3V2MKCad24h-v75k8P) with short videos on R-related topics
+
+## RStudio
+
+- [rstudio.cloud](https://rstudio.cloud) - a web-based instance of R/RStudio. [RStudio cloud cheatsheet and notes](https://docs.google.com/presentation/d/1Lc0_hLgLUh0KSS5DIEZBUfE4KzeU8kH25nGY4w2kE1o/edit#slide=id.g606317e658_0_167), from [Twitter](https://twitter.com/lobrowR/status/1295114281428684806?s=20) source. [RStudio Cloud for education - Mel Gregory](https://youtu.be/PviVimazpz8) - 24 min video with all the essense of using RStudio cloud for education
+
+- [Tips how to configure RStudio](https://drdoane.com/my-rstudio-configuration/)
+
+## Datasets in R
+
+- `library(help = "datasets")` - shows built-in R datasets
+
+- A list of over 1,000 datasets available in R packages, curated by @VincentAB. https://vincentarelbundock.github.io/Rdatasets/datasets.html
+
+
+
+<!--
+- [Turn scripts into reproducible reports](http://kbroman.org/steps2rr/pages/reports.html) by Karl Broman 
+
+- [R Markdown](http://kbroman.org/knitr_knutshell/pages/markdown.html) and [Knitr with R Markdown](http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html) tutorials by Karl Broman
+
+- [R Markdown - Dynamic Documents for R](https://support.rstudio.com/hc/en-us/articles/205368677-R-Markdown-Dynamic-Documents-for-R) from RStudio
+
+- [R markdown cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) and [R Markdown Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) from RStudio
+
+- [RMarkdown from RStudio](https://rmarkdown.rstudio.com/lesson-1.html) - illustrated guide to RMarkdown 
+
+- [Rmarkdown for Scientists](https://rmd4sci.njtierney.com/) book by Nicholas Tierney. [GitHub](https://github.com/njtierney/rmd4sci)
+
+- [R Markdown: The Bigger Picture](https://github.com/garrettgman/rmarkdown-the-bigger-picture) slides for a talk at rstudio::conf 2019, by Garrett Grolemund. [Video](https://rstudio.com/resources/rstudioconf-2019/r-markdown-the-bigger-picture/), 19 min
+
+- [Create beautiful and semantically meaningful articles with pandoc](https://pandoc-scholar.github.io), how to xreate scholar articles
+
+- [Templates and tools for making a Résumé/CV, vitae R package](https://ropenscilabs.github.io/vitae/)
+- [YAAC: Another Awesome CV is a template using Font Awesome and Adobe Source Font, LaTeX](https://github.com/darwiin/yaac-another-awesome-cv)
+- RMarkdown CV built using the [pagedown](https://pagedown.rbind.io/) R package:
+    - [Guangchuang Yu's CV](https://github.com/GuangchuangYu/cv)
+    - [Nick Strayer's CV](https://github.com/nstrayer/cv)
+
+- [Manubot](https://manubot.org/) - collaborative manuscripts in Markdown, flexible citations, Pandoc backend, Travis CI. https://manubot.org/
+    - Himmelstein, Daniel S., Vincent Rubinetti, David R. Slochower, Dongbo Hu, Venkat S. Malladi, Casey S. Greene, and Anthony Gitter. “[Open Collaborative Writing with Manubot](https://doi.org/10.1371/journal.pcbi.1007128).” PLoS Computational Biology 15, no. 6 (June 24, 2019)
+-->
+
+<!--
+### Functions
+
+- Resources by Karl Broman: [Transform repeated code into functions](http://kbroman.org/steps2rr/pages/functions.html), [Package functions for reuse](http://kbroman.org/steps2rr/pages/packages.html), [R package primer](http://kbroman.org/pkg_primer/)
+
+
+### R packages
+
+- [R package development - the Leek group way!](https://github.com/jtleek/rpackages) - Jeff Leek on developing R packages, links to resources
+
+- [Writing an R package from scratch](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) tutorial by Hillary Parker
+
+- [R packages](http://r-pkgs.had.co.nz/) book by Hadley Wickham
+
+- [How to create an R package" example and links](https://github.com/isteves/r-pkg-intro) - R package example and links to resources
+
+- [sinew](https://github.com/yonicd/sinew) - an R package for generating roxygen2 skeletons populated with information scraped from the function script
+
+- [pRojects](https://github.com/lockedata/pRojects) - R package for making project templates
+
+- [Package Development tutorial for useR! 2019 Toulouse](https://github.com/jennybc/pkg-dev-tutorial) by Jenny Bryant
+
+- [Create A Package](https://kayla-morrell.github.io/CreateAPackage/) - Bioconductor 2020 workshop by Kayla Interdonato, Lori Shepherd
+
+- [R package workshop](https://combine-australia.github.io/r-pkg-dev/) by COMBINE, an association for Australian students in bioinformatics,
+-->
+
+
+<!--
+- [Manipulating, analyzing and exporting data with tidyverse](https://datacarpentry.org/R-ecology-lesson/03-dplyr.html) by Data Carpentry
+
+- [Data Manipulation with dplyr](http://datascienceplus.com/data-manipulation-with-dplyr/) - a short blog post demonstrating dplyr's functionality, by Teja Kodali
+
+- [Introduction to dplyr for Faster Data Manipulation in R] (https://rpubs.com/justmarkham/dplyr-tutorial) - another dplyr tutorial, with a 40 min [video](https://youtu.be/jWjqLW-u3hc)
+-->
+
+<!--
+- [Visualisation of biomolecular data](https://lgatto.github.io/VisualisingBiomolecularData/index.html) by Laurent Gatto
+
+- O'Donoghue, Sen I., Benedetta Frida Baldi, Susan J. Clark, Aaron E. Darling, James M. Hogan, Sandeep Kaur, Lena Maier-Hein, et al. "[Visualization of Biomedical Data](https://doi.org/10.1146/annurev-biodatasci-080917-013424)." Annual Review of Biomedical Data Science 1, no. 1 (July 20, 2018) - Visualization best practices (the use of length, area, color etc.)
+
+- [Data visualization in R](https://datacarpentry.org/R-genomics/05-data-visualization.html) by Data Carpentry
+
+- [Teaching materials for the R package ggplot2](https://github.com/jennybc/ggplot2-tutorial) by Jenny Bryant
+
+- [Interactive plots in R](https://davetang.org/muse/2018/05/18/interactive-plots-in-r/) by Dave Tang
+
+- [The R Graph Gallery, all graphs](http://www.r-graph-gallery.com/all-graphs/), visuals with code examples
+
+- [Beautiful plotting in R: A ggplot2 cheatsheet](http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/) - illustrated ggplot2 modifications
+-->
+
+<!--
+## Best practices
+
+- [Tips for organizing projects](http://kbroman.org/steps2rr/pages/organize.html), [Organizing data in spreadsheets](http://kbroman.org/dataorg/) by Karl Broman
+
+- [Data Organization in Spreadsheets, common mistakes](http://www.datacarpentry.org/spreadsheet-ecology-lesson/02-common-mistakes/)
+
+- [Software Carpentry reading material on software engineering and scientific computing](http://software-carpentry.org/reading/) 
+
+- [Software development skills for data scientists](http://treycausey.com/software_dev_skills.html) by Trey Causey
+
+- [ProjectTemplate](http://projecttemplate.net/) - an R package for advanced project management, [GitHub](https://github.com/johnmyleswhite/ProjectTemplate)
+
+- Seemann, Torsten. “[Ten Recommendations for Creating Usable Bioinformatics Command Line Software](https://doi.org/10.1186/2047-217X-2-15).” GigaScience 2, no. 1 (December 2013)
+
+- List, Markus, Peter Ebert, and Felipe Albrecht. “[Ten Simple Rules for Developing Usable Software in Computational Biology](https://doi.org/10.1371/journal.pcbi.1005265).” PLoS Computational Biology 13, no. 1 (January 2017)
+
+- Taschuk, Morgan, and Greg Wilson. “[Ten Simple Rules for Making Research Software More Robust](https://doi.org/10.1371/journal.pcbi.1005412).” PLOS Computational Biology 13, no. 4 (April 13, 2017). [GitHub](https://github.com/oicr-gsi/robust-paper) 
+
+- [Code and Data for the Social Sciences: A Practitioner’s Guide](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf) book by Matthew Gentzkow and Jesse Shapiro, PDF
+
+- Wilson, Greg, D. A. Aruliah, C. Titus Brown, Neil P. Chue Hong, Matt Davis, Richard T. Guy, Steven H. D. Haddock, et al. "[Best Practices for Scientific Computing](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745) ." PLoS Biology 2014
+
+- Noble, William Stafford. “[A Quick Guide to Organizing Computational Biology Projects](https://doi.org/10.1371/journal.pcbi.1000424).” PLoS Computational Biology 5, no. 7 (July 2009) - Computational projects organization, folder structure, command line scripts, version control
+-->

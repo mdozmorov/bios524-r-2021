@@ -1,0 +1,30 @@
+---
+title: "Lecture 3. R base graphics, statistical functions"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2020-09-29"
+class_date: "2020-09-29"
+output:
+  blogdown::html_page:
+    toc: false
+# menu:
+#   class:
+#     parent: Class sessions
+#     weight: 3
+# type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+## Slides
+
+### R base graphics, statistical functions
+
+<a href="../../slides/31_R_graphics_stats.html#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/31_R_graphics_stats.html#1')
+```
+

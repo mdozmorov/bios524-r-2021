@@ -1,0 +1,85 @@
+---
+title: "Assignment 5: Data management/code best practices"
+date: "2020-10-06"
+due_date: "2020-10-13"
+due_time: "5:00 PM"
+# menu:
+#   assignment:
+#     parent: Assignments
+#     weight: 5
+# type: docs
+# weight: 1
+output:
+  blogdown::html_page:
+    toc: false
+editor_options: 
+  chunk_output_type: console
+---
+
+# To do yourself
+
+- Read the [vignette for DataExplorer](https://cran.r-project.org/web/packages/DataExplorer/vignettes/dataexplorer-intro.html) R package, to know what it is capable of
+
+- Read the [vignette for doParaller](https://cran.r-project.org/web/packages/doParallel/vignettes/gettingstartedParallel.pdf) R package, go through code examples there
+
+- [Parallelization in R](https://www.r-bloggers.com/speed-boosting-in-r-writing-efficient-code-parallel-programming/)
+
+# To submit on Blackboard
+
+### Question One
+#### Spreadsheets, Summarization, and Naming Conventions
+
+##### Part A
+
+- Create an Excel spreadsheet with 4 columns and 10 rows, following proper spreadsheet conventions discussed in class.
+    - Let the first column be an ID number. 
+    - Let the second column be a set of integers between 20 and 30, denoting the number of teeth someone has.
+    - Let the third column be a set of real numbers between 1.0 and 4.0, denoting GPA in school. 
+    - Let the fourth column be a mix of "H" and "T" character values, denoting the tosses of a coin.
+
+- Read it into R. What is the class of this object?
+- Create a new object with the same content, but with the class `list`
+- Address the fourth element of the list object. Address the content of the fourth element
+ 
+##### Part B
+
+- In one line of code, calculate the mean of the second column and the third column. Do the same for the list object.
+- Print out the frequency distribution of the fourth column. 
+
+##### Part C
+
+- Rename the columns into something descriptive using R code. What variable naming convention are you using (refer to Code Organization Best Practices slides)? 
+- Save the data into .csv format and submit along with the code file
+
+### Question Two
+#### Summarizing Quickly
+
+Load the ChickWeight dataset that comes with R. Install the skimr package. 
+Use this package to summarize the dataset in one line of code.
+
+Explore at least one of the following functions. Compare it with the skimr functionality, which one would you prefer?
+
+- describe, from the Hmisc package
+- stat.desc from pastecs
+- describe from psych
+- descr and dfSummary from summarytools
+
+### Question Three 
+#### File Save Naming Conventions
+
+Type a list of 5 files with good naming conventions (they could have an R file extension, a SAS file extension, etc.)
+
+Let the files represent tasks in some project. Explain why your naming conventions are good and helpful to future you.
+
+
+### Question Four
+#### Efficiency and Timing
+
+Make an empty vector of length 10 million. Set a seed for reproducibility. Populate the vector in two ways and compare:
+
+- Use a for loop to enter a randomly-generated Exponential variable with rate parameter 3 in each position in the vector. 
+- Use a more efficient method, possibly writing a function, to populate the vector with randomly-generated numbers from the same distribution. 
+- Try parallelization approaches.
+
+Time all methods, and make a conclusion. 
+

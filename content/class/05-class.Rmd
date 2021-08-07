@@ -1,0 +1,45 @@
+---
+title: "Lecture 5: Data management/code best practices"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2020-10-06"
+class_date: "2020-10-06"
+output:
+  blogdown::html_page:
+    toc: false
+# menu:
+#   class:
+#     parent: Class sessions
+#     weight: 5
+# type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+## Slides
+
+### Data organization best practices
+
+<a href="../../slides/51_Data_best_practices#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/51_Data_best_practices.html#1')
+```
+
+### Code organization best practices
+
+<a href="../../slides/52_Code_best_practices#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/52_Code_best_practices.html#1')
+```
+
+### Code optimization best practices
+
+<a href="../../slides/53_Optimization_best_practices#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/53_Optimization_best_practices.html#1')
+```

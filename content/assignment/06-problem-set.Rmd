@@ -1,0 +1,50 @@
+---
+title: "Assignment 6: Packages"
+date: "2020-10-08"
+due_date: "2020-10-15"
+due_time: "5:00 PM"
+# menu:
+#   assignment:
+#     parent: Assignments
+#     weight: 6
+# type: docs
+# weight: 1
+output:
+  blogdown::html_page:
+    toc: false
+editor_options: 
+  chunk_output_type: console
+---
+
+# To do yourself
+
+- [Writing R packages](http://www.danieldsjoberg.com/writing-R-packages/#1) lecture slides by Daniel Sjoberg. [GitHub source](https://github.com/ddsjoberg/writing-R-packages)
+
+- [How to create an R package](https://isteves.github.io/r-pkg-intro/Presentation.html#/) lecture slides by Irene Steves, Mitchell Maier. [GitHub source](https://github.com/isteves/r-pkg-intro)
+
+- Short notes by Karl Broman: [How-to package functions](http://kbroman.org/steps2rr/pages/packages.html), [Transform repeated code into functions](http://kbroman.org/steps2rr/pages/functions.html), [R package primer](http://kbroman.org/pkg_primer/), and [Package tutorial by Hillary Parker](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) 
+
+- [R packages](https://geanders.github.io/RProgrammingForResearch/reproducible-research-3.html) by Brooke Anderson
+
+- [R packages](http://r-pkgs.had.co.nz/) book by Hadley Wickham
+
+- [Package Development tutorial for useR! 2019 Toulouse](https://github.com/jennybc/pkg-dev-tutorial), by Jenny Bryant, slides, exercises
+
+# To submit on blackboard, due 10-15-2020, 5:00pm
+
+## Functions
+All of your functions should be written clearly, with commented code, readable spacing, and be as non-repetitive as possible 
+
+### Question One: Confidence Intervals
+Set a seed for reproducibility. Generate a random sample of size $50$ from a standard normal distribution and compute the usual $95\%$ confidence interval using the t-distribution. Write your own function to generate a random sample of size $n$ from a normal distribution with mean equal to $\mu$ and standard deviation equal to $\sigma$ and compute the usual $100(1−\alpha)\%$ t confidence interval. Compare your results to that from t.test.
+
+### Question Two: Making a Package: Pythagorean Theorem and Trimmed Mean
+Create an R package that includes functions to perform the following tasks.
+
+- The Pythagorean theorem states that the square of the hypotenuse (the side opposite the right angle) is equal to the sum of the squares of the other two side: $c^2=a^2+b^2$. Write a function that, given the lengths of two sides of the triangle, calculates the length of the third side.
+
+Note: This function should be flexible - that is, the function works if I give it values for $a$ and $b$, or $b$ and $c$, or $a$ and $c$. If the user only provides the length of one side, the function should throw an error. Likewise, if the user provides the lengths of all three sides, the function should throw an error. If the user provides any values other than numeric values, the function should throw an error.
+
+- Write your own trimmed mean function that calculates the mean of a numeric vector $x$, ignoring the $s$ smallest and $l$ largest values (this is a trimmed mean). For example, if $x=c(1,7,3,2,5,0.5,9,10)$, $s=1$, and $l=2$, your function would return the mean of $c(1,7,3,2,5)$ (this is $x$ with the $1$ smallest value and the $2$ largest values removed). Note: Your function should check if $x$ has at least $s+l+1$ values. If not, return some error message with stop().
+
+Document your functions in the package using Roxygen2 syntax. Submit your package as a ZIP archive containing all subfolders and code.

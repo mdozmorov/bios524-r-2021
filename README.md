@@ -6,7 +6,7 @@ Work in progress development of the course material for the BIOS524 "Biostatisti
 
 Title: "Biostatistical Computing with R"  
 Course web site: https://bios524-r-2021.netlify.app/ 
-Time: Monday, Wednesday, August 25-October 13, 2021, 10:30am-12:00pm    
+Time: Monday, Wednesday, August 25-October 13, 2021, 10:30am-11:50am    
 Location: 5001, One Capitol Square
 Equipment Required:  A computer with Internet access  
 Registrant Limit: 25    

@@ -1,0 +1,63 @@
+---
+title: "Assignment 9: Git/GitHub"
+date: "2020-10-20"
+due_date: "2020-10-27"
+due_time: "5:00 PM"
+# menu:
+#   assignment:
+#     parent: Assignments
+#     weight: 9
+# type: docs
+# weight: 1
+output:
+  blogdown::html_page:
+    toc: false
+editor_options: 
+  chunk_output_type: console
+---
+# To do yourself
+
+- [New to Git and GitHub? This Essential Beginners Guide is for you](https://www.analyticsvidhya.com/blog/2020/05/git-github-essential-guide-beginners/)
+
+- [One-pager simple Git guide](https://rogerdudler.github.io/git-guide/) 
+
+- [One-pager of git commands](https://github.com/kbroman/Tools4RR/blob/master/04_Git/GitCommands/git_notes.md) 
+
+- [Resources to learn Git](https://try.github.io/) - Git handbook, cheatsheets, interactive tutorials
+
+- [Git and GitHub guide](http://kbroman.org/github_tutorial/), by Karl Broman
+
+- [Software Carpentry course on git](https://swcarpentry.github.io/git-novice/) 
+
+- Blischak, John D., Emily R. Davenport, and Greg Wilson. “[A Quick Introduction to Version Control with Git and GitHub](https://doi.org/10.1371/journal.pcbi.1004668).” Edited by Francis Ouellette. PLOS Computational Biology 12, no. 1 (January 19, 2016) - An excellent explanation of Git and GitHub. Definitions (Box 1), tutorial
+
+- Bryan, Jennifer. “[Excuse Me, Do You Have a Moment to Talk about Version Control?](https://doi.org/10.7287/peerj.preprints.3159v2)”
+
+- [Happy Git and GitHub for the useR](http://happygitwithr.com/) by Jenny Bryan
+
+- [How to create pull requests on GitHub](https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/) 
+
+- [Git and GitHub videos for beginners](http://www.dataschool.io/git-and-github-videos-for-beginners/) 
+
+- [GitHub training videos](https://www.youtube.com/user/GitHubGuides/videos) 
+
+- [Git and GitHub for Beginners](https://www.youtube.com/watch?v=RGOj5yH7evk) - 1-hour video course by Gwen Faraday
+
+- [Hadley Wickham's introduction to Git](https://r-pkgs.org/git.html)
+
+- [General Github terms and practices](https://guides.github.com/activities/hello-world/)
+
+# To submit on blackboard, due 10-27-2020, 5:00pm
+
+- Install Git, and create a Github account. Update your Github profile to include some relevant information about yourself, such as your program and/or interests. Submit the link to your profile
+
+- Create a repository out of the R package you created in Homework 6. Add all your files, push to GitHub. Make sure your package can be installed from GitHub (Hint: `devtools::install_github()`). Submit the link to your repository
+
+- In command line, go to the hidden `.git` folder, list all files/folders. Document your observations. 
+
+- What do the words 'minimal' (aka `atomic') and 'complete' mean in the context of Git commits? 
+    
+- Fork this repository (https://github.com/mdozmorov/R_notes) to your account, so that you will have references for this course. This is for your information only
+
+
+Document your responses to these questions appropriately.

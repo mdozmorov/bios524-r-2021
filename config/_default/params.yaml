@@ -106,7 +106,7 @@ course:
   number: "BIOS 524"
   semester: "Fall 2021"
   days: "Monday, Wednesday"
-  time: "10:30am – 12:00pm"
+  time: "10:30am – 11:50am"
   location: "Online"
   dates: "August 25 – October 13, 2021"
   github: "mdozmorov/BIOS524_biostatistical_computing_R"
