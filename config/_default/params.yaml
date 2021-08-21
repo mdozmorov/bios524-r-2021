@@ -97,7 +97,7 @@ instructor:
   url: "https://dozmorovlab.github.io"
   twitter: mikhaildozmorov
   github: mdozmorov
-  office: "One Capitol Square 738"
+  office: "One Capitol Square 709"
   contact_policy: >-
     E-mail is preferred. I will try to respond to all course-related e-mails within 1 business day.
 #  appointment_url: https://calendly.com/andrewheiss/meeting/
@@ -107,7 +107,7 @@ course:
   semester: "Fall 2021"
   days: "Monday, Wednesday"
   time: "10:30am – 11:50am"
-  location: "Online"
+  location: "One Capitol Square, Room 5001"
   dates: "August 25 – October 13, 2021"
   github: "mdozmorov/BIOS524_biostatistical_computing_R"
   copyrightYear: "2021"
