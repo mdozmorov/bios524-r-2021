@@ -18,9 +18,17 @@ editor_options:
   chunk_output_type: console
 ---
 
-<!--
 ## Slides
 
+### Introduction
+
+<a href="../../slides/00_Getting_started.html#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/00_Getting_started.html#1')
+```
+
+<!--
 ### Introduction
 
 <a href="../../slides/10_Introduction.html#1" target="_blank">Lecture slides in HTML format</a>
