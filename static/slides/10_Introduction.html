@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Introduction to R</title>
+    <title>Introduction to BIOS524</title>
     <meta charset="utf-8" />
     <meta name="author" content="Mikhail Dozmorov" />
     <script src="libs/header-attrs-2.9/header-attrs.js"></script>
@@ -12,209 +12,89 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Introduction to R
+# Introduction to BIOS524
 ### Mikhail Dozmorov
 ### Virginia Commonwealth University
-### 08-19-2021
+### 08-25-2021
 
 ---
 
 
 
 
-# Why programming
+class: center, middle
 
-- Programming will make your academic journey better
-
-- Instead of remembering what button you clicked, you write scripts with exact commands that makes steps in your analysis clear and allow others to understand/reproduce it (or, spot mistakes)
-
-- Programming forces you to have a deeper understanding of what you are doing, and facilitates your learning and comprehension of the methods you use
+# Welcome
 
 ---
-## Why R?
+## Logistics
 
-- R is a programming language designed for data analysis and statistics
-    - Free, open-source and cross-platform
+- A two-part course:
+    - August 25 - October 13, 2021: R programming
+    - October 18 - December 8, 2021: SAS
 
-- An extremely powerful language for statistical modeling, machine learning, data manipulation, and visualization
-    - Efficient data analysis on data of all shapes and sizes (big data including)
-    - Optimized operations on vectors, matrices lists
-    - Very sophisticated graphs and data displays
+- **Nitai Mukhopadhyay**, Ph.D., Associate professor, Department of Biostatistics, VCU
+    - Bayesian inference, Graphical models, Image analysis, Adaptive Clinical trial designs, Statistical Computing, Markov chain Montecarlo sampling, Multivariate quantile
+    
+- **Mikhail Dozmorov**, PhD, Associate professor, Department of Biostatistics, VCU
+    - Bioinformatics, Genomics, Data Science
 
-- Not just scripts, but fully reproducible reports, papers, presentations, web applications
+.small[ https://medschool.vcu.edu/expertise/detail.html?ID=1180
 
-.small[ https://www.r-project.org/ ]
-
----
-## Why R?
-
-- Thousands of packages that add extra functionality. Covering virtually all scientific disciplines and analytical frameworks.
-    - Image analysis, geospatial, epidemiology, genetics, bioinformatics, and a lot more
-
-- R can connect to spreadsheets, databases, and many other data formats, on your computer or on the web.
-
-- Large and welcoming user community
-
-.small[ https://www.r-project.org/
-
-[18,000 CRAN packages, tweet by Dirk Eddelbuettel, 2021-08-11](https://twitter.com/eddelbuettel/status/1425425651092410369?s=20) ]
+https://medschool.vcu.edu/expertise/detail.html?id=mdozmorov ]
 
 ---
-## RStudio
+## Biostatistical Computing with R
 
-- RStudio is an interface IDE, integrated development environment) to work with R, with many features and functionalities for efficient work
+- Learning through practice - this means you will always do something hands-on
 
-- Free and open source
+- While doing, you will need to google for help - you will learn a lot from other resources
 
-- Integrates file navigation, visualization, documentation, version control and project management
-
-- You write the same R code in RStudio as you would elsewhere, and it executes the same way. RStudio helps by keeping things nicely organized
-
-.small[ https://www.rstudio.com/products/rstudio/download/ ]
+- Let's maintain a welcoming and supportive environment
+    - Ask as many questions during the class as necessary! Worst case - I'll address them later, if not covered during the class
+    - Respect each other
 
 ---
-## Why RStudio
+## Learning Objectives
 
-- Project-centric work - scripts and data are organized in one folder (project), easily accessible 
+By the end of this course, you will be able to:
 
-- Single workspace with four (rearrangeable, zoomable) panels
+- Understand and utilize R/RStudio
 
-- Work on multiple projects simultaneously in several instances of RStudio
+- Share your code on GitHub
 
-- Work on multiple (types of) scripts
+- Understand basic data types and data structures in R
 
-- See all variables in R environment, easily visualize them
+- Execute and interpret some basic statistics in R
 
-- Easy access to help, plots, packages
+- Load data files (Excel, Comma Separated Value files) into R/Rstudio, with tips on formatting and data organization
 
-- Simple integration with Git version control system
+- Filter and format data in R for use with various routines
 
-- **After you install R and RStudio, you only need to run RStudio**
-
----
-## RStudio interface
-
-.center[&lt;img src="https://uclouvain-cbio.github.io/WSBIM1207/figs/rstudio-screenshot.png" height=600 &gt;]
+- Visualize datasets using ggplot2 and understand how to build basic plots using ggplot2 syntax
 
 ---
-## RStudio interface
+## Rules for interaction
 
-RStudio is divided into 4 panes, by default:
+- Join [vcubiostat.slack.com](https://vcubiostat.slack.com/) channel. See [Slack 101](https://slack.com/resources/slack-101)
+    - Contact via direct messages, or add others for group conversations
+    - Omit formalities, but be respectful and polite
+    - I'll try to answer your questions asap, typically, within 24 hours
 
-- **Source** for scripts and documents (top-left)
-- **Environment/History** (top-right),
-- **Files/Plots/Packages/Help/Viewer** (bottom-right)
-- **R Console** (bottom-left)
-
-Additional goodies:
-
-- Autocompletion
-- Highlightning
-- Keyboard shortcuts
-- Many more
+- E-mail works
 
 ---
-## RStudio help
+## Class Assignments
 
-.center[&lt;img src="img/rstudio_help.png" height=550 &gt;]
+- Homeworks should be submitted via Canvas, or as instructed
 
----
-## Installing and loading packages
+- Homeworks are due 1 week after the class. E.g., homework for September 22 class is due September 29, 5:00pm Eastern time
 
+- A final project will conclude the course
 
-```r
-install.packages("cowsay")
-```
+- Office hours - by appointment. Message by Slack or e-mail to schedule, or talk with me at class. Zoom meetings are possible.
 
 
-```r
-library(cowsay)
-say('time')
-```
-
-```
-## 
-##  -------------- 
-## 2021-08-18 19:54:46 
-##  --------------
-##     \
-##       \
-##         \
-##             |\___/|
-##           ==) ^Y^ (==
-##             \  ^  /
-##              )=*=(
-##             /     \
-##             |     |
-##            /| | | |\
-##            \| | |_|/\
-##       jgs  //_// ___/
-##                \_)
-## 
-```
-
----
-## Getting started with R
-
-
-```r
-install.packages("swirl")
-```
-
-
-```r
-library(swirl)
-```
-
-```
-## 
-## | Hi! Type swirl() when you are ready to begin.
-```
-
----
-## RStudio is more than IDE
-
-RStudio PBC develops many now-gold-standard R packages
-
-- `tidyverse` – R packages for data science, including ggplot2, dplyr, tidyr, and purrr
-
-- `shiny` – An interactive web technology
-
-- `rmarkdown` – Insert R code into markdown documents
-
-- `knitr` – Dynamic reports combining R, TeX, Markdown &amp; HTML
-
-- `tensorflow` - open-source software library for Machine Intelligence
-
-- `reticulate` - provides a comprehensive set of 
-
-- `devtools` – Package development tool
-
----
-## Getting help
-
-- Get an overview of all functions in a package: `help(package = "dplyr")`
-
-- Use `?function_name` to get help on a function from a _loaded_ package. E.g., `?boxplot` (same as `help(boxplot)`)
-    - Use `example(boxplot)` to see how the function can be used
-
-- Use `??function_name` to search for the function across all installed packages, even not loaded. E.g., `??ggplotly`
-
-- Search engine is your best friend
-
----
-## References
-
-- Introduction to bioinformatics, https://uclouvain-cbio.github.io/WSBIM1207/sec-rrstudio.html
-
-- Orientation to programming, R, and RStudio, https://gge-ucd.github.io/R-DAVIS/lesson_intro_r_rstudio.html
-
----
-## Learn to code
-
-.center[&lt;img src="img/twitter_advice.png" height=400 &gt;]
-
-https://twitter.com/TanentzapfLab/status/1427720047431065601?s=20
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

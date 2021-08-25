@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Getting started with R and RStudio</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Mikhail Dozmorov" />
+    <script src="libs/header-attrs-2.9/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="xaringan-my.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Getting started with R and RStudio
+### Mikhail Dozmorov
+### Virginia Commonwealth University
+### 08-25-2020
+
+---
+
+
+
+
+## R history
+
+- Elegant, object-oriented programming language.
+  - Started by Robert Gentleman and Ross Ihaka (hence `R`) in 1995 as a free, independent, open-source implementation of the `S` programming language
+  - Currently, maintained by the R Core development team
+
+- An extremely powerful language for statistical modeling, machine learning, data manipulation, and visualization.
+  - Efficient data analysis
+  - Optimized operations on vectors, matrices lists
+  - Very sophisticated graphs and data displays
+
+&lt;img src="https://www.r-project.org/Rlogo.png" height=100&gt;
+
+---
+## More R history
+
+.small[
+- 1992: R development begins as a research project in Auckland, NZ by Robert Gentleman and Ross Ihaka 
+- 1993: First binary versions of R published at Statlib
+- 1995: R first distributed as open-source software, under GPL2 license
+- 1997: R core group formed
+- 1997: CRAN founded (by Kurt Jornik and Fritz Leisch)
+- 1999: The R website, r-project.org, founded
+- 1999: First in-person meeting of R Core team, at inaugural Directions in Statistical Computing conference, Vienna
+- 2000: R 1.0.0 released (February 29) 
+- 2000: John Chambers, recipient of the 1998 ACM Software Systems Award for the S language, joins R Core
+- 2001: R News founded (later to become the R Journal)
+- 2003: R Foundation founded
+- 2004: First UseR! conference (in Vienna)
+- 2004: R 2.0.0 released
+- 2009: First edition of the R Journal
+- 2013: R 3.0.0 released
+- 2015: R Consortium founded, with R Foundation participation
+- 2016: New R logo adopted
+- 2020: R 4.0.0 released
+
+https://blog.revolutionanalytics.com/2017/10/updated-history-of-r.html ]
+
+---
+## Organizations behind R
+
+- **The R project**, https://www.r-project.org/
+    - R source code contributors: https://www.r-project.org/contributors.html
+
+- **Comprehensive R Archive Network (CRAN)**, https://cran.r-project.org/
+    - Download and install R
+
+- **RStudio**, https://www.rstudio.com/
+    - Download RStudio: https://www.rstudio.com/products/rstudio/#Desktop
+
+- **Bioconductor**, https://bioconductor.org/
+
+---
+## Bioconductor
+
+"Is an open source and open development software project to provide tools for the analysis and comprehension of genomic data."
+
+**Goals**
+
+- To provide widespread access to a broad range of powerful statistical and graphical methods for the analysis of genomic data
+
+- To provide a common software platform that enables the rapid development and deployment of extensible, scalable, and interoperable software
+
+- To further scientific understanding by producing high-quality documentation and reproducible research
+
+- To train researchers on computational and statistical methods for the analysis of genomic data
+
+---
+## Advantages and disadvantages of `R`
+
+- Free and easy to install
+
+- Highly extensible through packages, collections of functions, data, and documentation
+
+- Active developer community
+
+- Anyone can contribute
+
+- Some learning curve
+
+- No centralized support
+
+- Less consistency in function/variable naming and structure
+
+---
+## Install/update R
+
+- Installation for Windows, Mac, and Linux is available
+
+- New version of R is released every 6 month, typically around April/October
+    - Bioconductor updates follow shortly thereafter
+
+- Use `installr` R package to cleanly update R on Windows
+
+.center[&lt;img src="img/RCRAN.png" height=180 &gt;]
+
+.small[ https://cran.r-project.org/, https://CRAN.R-project.org/package=installr ] 
+
+---
+## Run R
+
+.pull-left[
+- Command line. Type `R` and enter the R prompt
+    - Type `R CMD` to see the list of available commands
+    - Type `Rscript` to see how you can run R commands and scripts from the command line. E.g., `Rscript -e 'print("Hello, world!")'`
+
+- R console, installs with R
+
+- Rcommander. GUI for better interactions with R
+
+]
+
+.pull-right[&lt;img src="img/RConsole.png" height=350 &gt;
+
+- RStudio. Integrated development environment for basic and advanced R operations
+]
+
+## RStudio
+
+* RStudio is a program that allows you to run R in a more user-friendly environment
+    * RStudio offers some GUI (graphical user interface) features for R
+
+* RStudio is a very flexible IDE (Integrated development environment)
+    * The same R program is running underneath the interface
+
+* RStudio is open-source software (and therefore is free)
+    * Available for download at: http://rstudio.com
+
+&lt;img src="https://rstudio.com/wp-content/uploads/2018/10/RStudio-Logo.png" height=100&gt;
+    
+---
+## Why RStudio
+
+- Project-centric work - scripts and data are organized in one folder (project), easily accessible 
+
+- Single workspace with four (rearrangeable, zoomable) panels
+
+- Work on multiple projects simultaneously in several instances of RStudio
+
+- Work on multiple (types of) scripts
+
+- See all variables in R environment, easily visualize them
+
+- Easy access to help, plots, packages
+
+- Simple integration with Git version control system
+
+- **After you install R and RStudio, you only need to run RStudio**
+
+---
+## RStudio main window
+
+.center[&lt;img src="img/RStudioConsole.png" height=600 &gt;]
+
+---
+## R Console
+
+.center[&lt;img src="img/RStudioConsole2.png" height=600 &gt;]
+
+---
+## Create/open new script or other file
+
+.center[&lt;img src="img/RStudioConsole3.png" height=600 &gt;]
+
+---
+## Open an existing script:
+
+.center[&lt;img src="img/RStudioConsole4.png" height=600 &gt;]
+
+---
+## Rearrangeable tabbed interface 
+
+.center[&lt;img src="img/RStudioConsole5.png" height=600 &gt;]
+
+---
+## History of commands
+
+.center[&lt;img src="img/RStudioConsole6.png" height=600 &gt;]
+
+---
+## Environment tab 
+
+.center[&lt;img src="img/RStudioConsole7.png" height=600 &gt;]
+
+---
+## Plots tab
+
+.center[&lt;img src="img/RStudioConsole8.png" height=600 &gt;]
+
+---
+## RStudio keyboard shortcuts
+
+- Command (Ctrl) + Enter - Run current line/selection, go to the next line  
+- Alt + Enter - Run current line/selection, stay on the current line
+- Ctrl + 1 - Move cursor to source  
+- Ctrl + 2 - Move cursor to console  
+- Ctrl + L - Clear console
+- Ctrl + Alt + I - Create new code chunk
+- Ctrl + Alt + c - Run current code chunk
+- All the usual - Ctrl + Z, C, X, V, S, O
+
+See more via menu "Help -&gt; Keyboard Shortcuts Help", "Help -&gt; Cheatsheets"
+
+.small[https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts]
+
+---
+## RStudio settings
+
+- Set to "Never" the 'Save workspace to .RData on exit' option and uncheck the 'Restore .RData into workspace at startup' option in "Tools/Global Options/General"
+
+.center[&lt;img src="img/rstudio_options.png" height=500 &gt;]
+
+---
+## RStudio settings
+
+- In "Tools/Global Options/Code", check 'Enable code snippets', look what snippets are available and add your own. In the "Completion" tab, set completion delay to 0ms.
+
+.center[&lt;img src="img/rstudio_snippets.png" height=500 &gt;]
+
+---
+## RStudio settings
+
+- In the "Saving" tab, set 'UTF-8' as default text encoding, to avoid character encoding issue between Windows and other operating systems
+
+.center[&lt;img src="img/rstudio_encoding.png" height=500 &gt;]
+
+---
+## RStudio is more than IDE
+
+RStudio PBC develops many now-gold-standard R packages
+
+- `tidyverse` – R packages for data science, including ggplot2, dplyr, tidyr, and purrr
+
+- `shiny` – An interactive web technology
+
+- `rmarkdown` – Insert R code into markdown documents
+
+- `knitr` – Dynamic reports combining R, TeX, Markdown &amp; HTML
+
+- `tensorflow` - open-source software library for Machine Intelligence
+
+- `reticulate` - provides a comprehensive set of 
+
+- `devtools` – Package development tool
+
+---
+## RStudio cloud
+
+.pull-left[
+**Getting started locally**
+
+- Install R
+- Install RStudio
+- Install packages (`rmarkdown`, `tidyverse`)
+- Load packages
+- Install Git
+...
+]
+
+.pull-right[
+**Getting started online**
+
+- Go to https://rstudio.cloud/
+- Register or log-in with Google, GitHub (recommended) accounts
+]
+
+---
+## RStudio cloud
+
+.center[&lt;img src="img/rstudiocloud.png" width=800 &gt;]
+
+- An online, cloud-based instance of RStudio IDE, accessible via a web browser
+- No hardware requirements or software setup requirements from the user's side
+- Share projects with specific people or anyone
+- Import projects from GitHub
+- Free plan is always available (up to 15 projects, 1 shared space, 15 project-hours per month, up to 1Gb RAM and 1 CPU per project)
+
+.small[ https://rstudio.cloud/ ]
+
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
