@@ -270,7 +270,7 @@ RStudio PBC develops many now-gold-standard R packages
 
 - `tensorflow` - open-source software library for Machine Intelligence
 
-- `reticulate` - provides a comprehensive set of 
+- `reticulate` - provides a comprehensive set of packages for working with Python
 
 - `devtools` – Package development tool
 
