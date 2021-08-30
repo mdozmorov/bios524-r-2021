@@ -1,19 +1,19 @@
 ---
-title: "Lecture 2. R preliminaries"
+title: "LR preliminaries"
 # linktitle: "1. Introduction to RStudio and Images"
-date: "2020-09-24"
-class_date: "2020-09-24"
+date: "2020-08-30"
+class_date: "2020-08-30"
 output:
   blogdown::html_page:
     toc: false
-# menu:
-#   class:
-#     parent: Class sessions
-#     weight: 2
-# type: docs
-# weight: 1 
-# pdf: 
-# thumb: 
+menu:
+  class:
+    parent: Class sessions
+    weight: 2
+type: docs
+weight: 1
+pdf:
+thumb:
 editor_options: 
   chunk_output_type: console
 ---
@@ -22,9 +22,9 @@ editor_options:
 
 ### R preliminaries
 
-<a href="../../slides/21_R_basics.html#1" target="_blank">Lecture slides in HTML format</a>
+<a href="../../slides/22_R_basics.html#1" target="_blank">Lecture slides in HTML format</a>
 
 ```{r echo=FALSE}
-knitr::include_url('../../slides/21_R_basics.html#1')
+knitr::include_url('../../slides/22_R_basics.html#1')
 ```
 

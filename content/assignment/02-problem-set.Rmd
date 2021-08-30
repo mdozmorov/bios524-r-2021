@@ -1,14 +1,14 @@
 ---
 title: "Assignment 2. R preliminaries"
-date: "2020-09-24"
-due_date: "2020-10-01"
+date: "2020-09-02"
+due_date: "2020-09-08"
 due_time: "5:00 PM"
-# menu:
-#   assignment:
-#     parent: Assignments
-#     weight: 2
-# type: docs
-# weight: 1
+menu:
+  assignment:
+    parent: Assignments
+    weight: 2
+type: docs
+weight: 1
 output:
   blogdown::html_page:
     toc: false
@@ -24,21 +24,13 @@ editor_options:
 
 - Download [IntroR](https://github.com/mdozmorov/IntroR) code, create a project in the code's repository, run through the [Intro_R_workshop.R](https://raw.githubusercontent.com/mdozmorov/IntroR/master/Intro_R_workshop.R) code
      
-# To submit on blackboard, due 10-01-2020, 5:00pm
+# To submit on blackboard, due 09-08-2020, 5:00pm
 
-1) Use the help functions or R documentation to look up a function that you think you will use. Provide (in words) a description of what the function is and does, the arguments that takes, and why you find this function useful. Then, using a sample dataset in R (i.e., `mtcars`, `iris`, `ToothGrowth`), demonstrate (in code) the use of this function.
+1) Describe different ways to install R packages. Test each method by installing packages of your choice (e.g., `Hmisc`, `lme4`, `MASS`, `dslabs`). Install a GitHub package (e.g., `jokergoo/ComplexHeatmap`). How much time each method/package took? Hint: use `system.time` function. Copy-paste selected output and describe your observations.
 
-2) Create two numeric, two character, and two logical objects/variables in R. Give them descriptive names. Provide code examples.
+2) Describe all ways how to find path(s) where R packages are installed. Copy-paste selected output and describe your observations.
 
-3) Use some function that operates on the two numeric objects, another that operates on the two character objects, and another that operates on the two logical objects. 
-
-4) Describe different ways to install R packages. Test each method by installing packages of your choice (e.g., `Hmisc`, `lme4`, `MASS`, `dslabs`). Install a GitHub package (e.g., `jokergoo/ComplexHeatmap`)
-
-5) Describe all ways how to find:
-    - Path(s) where R packages are installed
-    - Copy-paste selected output and describe your observations
-
-6) What is unusual about each of the following objects?
+3) What is unusual about each of the following objects?
 
 ``` r
 num_char     <- c(1, 2, 3, "a")
@@ -46,5 +38,12 @@ num_logical  <- c(1, 2, 3, TRUE)
 char_logical <- c("a", "b", "c", TRUE)
 tricky       <- c(1, 2, 3, "4")
 ```
+4) Create two numeric objects, two character objects, two logical objects. Demonstrate up to three R functions operating on each pair of objects (e.g., correlation between two numeric objects). Copy-paste selected output and describe your observations.
+
+5) Download alcohol consumption data per country from https://github.com/fivethirtyeight/data/tree/master/alcohol-consumption and demonstrate the use of basic summary functions (min, max, mean, etc.). Describe your observation. Alternatively, use any built-in R datasets.
+
+<!--1) Use the help functions or R documentation to look up a function that you think you will use. Provide (in words) a description of what the function is and does, the arguments that takes, and why you find this function useful. Then, using a sample dataset in R (i.e., `mtcars`, `iris`, `ToothGrowth`), demonstrate (in code) the use of this function.
+
+2) Create two numeric, two character, and two logical objects/variables in R. Give them descriptive names. Provide code examples.-->
 
 - Submit your homework as a text or Word document. Files should be named, e.g., `LASTNAME-FIRSTNAME-HW02`.

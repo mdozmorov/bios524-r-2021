@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>R preliminaries</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Mikhail Dozmorov" />
+    <script src="libs/header-attrs-2.9/header-attrs.js"></script>
+    <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.2.6/panelset.js"></script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x023b1a87cab45529671efd595923e07","expires":14}</script>
+    <script src="libs/himalaya-1.1.0/himalaya.js"></script>
+    <script src="libs/js-cookie-3.0.0/js.cookie.js"></script>
+    <link href="libs/editable-0.2.6/editable.css" rel="stylesheet" />
+    <script src="libs/editable-0.2.6/editable.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="xaringan-my.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# R preliminaries
+### Mikhail Dozmorov
+### Virginia Commonwealth University
+### 08-30-2020
+
+---
+
+
+
+
+
+
+## Summary of the previous class
+
+.panelset[
+.panel[.panel-name[Objects]
+
+- Everything that exists in R is an **object**
+- Everything that happens in R is a **call to a function**
+- The assignment operator: ` &lt;- `, preferred over ` = `  
+- Do not name objects with [Reserved Words in R](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html) like `if else while function for TRUE FALSE NULL Inf NaN NA`
+]
+.panel[.panel-name[Object types]
+.can-edit[
+- Scalars, `a &lt;- 3.14`
+- Vectors, `b &lt;- c(1, 2)` or `b &lt;- c(1, "2")`
+    - Vectors can be named, `names(b) &lt;- c("First", "Second")`. Use `unname()` to remove.
+- Matrices, `mat &lt;- matrix(data = 0, nrow = 2, ncol = 2)`
+- Data frames, `dat = data.frame(Column.1 = c(3, 1, 3), Column.2 = c("2", "3", "2"))`
+- Boolean, `TRUE` or `FALSE`
+- Factors, `factor(c("Cats", "Dogs"), levels = c("Dogs", "Cats"))`
+]
+]
+
+.panel[.panel-name[Subsetting]
+
+.can-edit[
+- Access to elements using `[]`
+- Row/column indexes start from 1, `dat[1, 2]`
+- Columns in data frames can be accessed with `$`, `dat$Column.1`
+- Elements can be subsetted using Boolean indexes, `a[c(TRUE, FALSE)]`
+- Avoid spaces in column names, as well as numerical column names
+    - If absolutely necessary, wrap column names in forward ticks, `dat$1`
+]
+]
+.panel[.panel-name[Auxillary functions]
+
+.can-edit[
+- `class(a)`, `str(a)`, `is.character(a)`, `as.character(b)`
+- `dim(dat)`, `nrow(dat)`, `ncol(dat)`, `length(dat)`, `colnames(dat)`, `rownames(dat)`
+- `head()`, `tail()`, `summary()`
+- Use `?` on any function to get help, `?cor`
+- Type function name without parentheses to see its code, `cor`
+]
+]
+]
+
+---
+## Sequences of elements
+
+
+```r
+rep(c(1, 2, 3), 5)
+```
+
+```
+##  [1] 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3
+```
+
+```r
+seq(from = 1, to = 20, by = 2)
+```
+
+```
+##  [1]  1  3  5  7  9 11 13 15 17 19
+```
+
+```r
+1:5
+```
+
+```
+## [1] 1 2 3 4 5
+```
+
+```r
+5:1
+```
+
+```
+## [1] 5 4 3 2 1
+```
+
+---
+## Sequences of characters
+
+.panelset[
+.panel[.panel-name[Sequence of characters]
+
+```r
+"a":"e"
+```
+]
+.panel[.panel-name[Results]
+
+```r
+"a":"e"
+Error in "a":"e" : NA/NaN argument
+In addition: Warning messages:
+1: NAs introduced by coercion 
+2: NAs introduced by coercion 
+```
+]
+.panel[.panel-name[Solutions]
+.can-edit[
+
+```r
+head(letters)
+```
+
+```
+## [1] "a" "b" "c" "d" "e" "f"
+```
+
+```r
+tail(LETTERS)
+```
+
+```
+## [1] "U" "V" "W" "X" "Y" "Z"
+```
+
+```r
+month.abb
+```
+
+```
+##  [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec"
+```
+
+```r
+month.name
+```
+
+```
+##  [1] "January"   "February"  "March"     "April"     "May"       "June"     
+##  [7] "July"      "August"    "September" "October"   "November"  "December"
+```
+
+```r
+pi
+```
+
+```
+## [1] 3.141593
+```
+]
+]
+]
+
+---
+## Lists
+
+- **Lists**: objects containing elements of different types
+    - Each list element can be of different length
+    
+
+```r
+lst = list(A = rep(2, 5), B = seq(1:5), C = letters[1:10])
+lst
+```
+
+```
+## $A
+## [1] 2 2 2 2 2
+## 
+## $B
+## [1] 1 2 3 4 5
+## 
+## $C
+##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j"
+```
+
+```r
+unlist(lst)
+```
+
+```
+##  A1  A2  A3  A4  A5  B1  B2  B3  B4  B5  C1  C2  C3  C4  C5  C6  C7  C8  C9 C10 
+## "2" "2" "2" "2" "2" "1" "2" "3" "4" "5" "a" "b" "c" "d" "e" "f" "g" "h" "i" "j"
+```
+
+---
+## Addressing elements in a list
+
+- Address any element as `lst[1]` (or, `lst["A"]`)
+
+
+```r
+lst[1]
+```
+
+```
+## $A
+## [1] 2 2 2 2 2
+```
+
+- Address _the content of any element_ as `lst[[1]]` (or, `lst[["A"]]`, `lts$A`)
+
+
+```r
+lst[[1]]
+```
+
+```
+## [1] 2 2 2 2 2
+```
+
+---
+## Logical operators
+
+.can-edit[
+
+```r
+3 &lt; 4 &amp; "a" == "b"
+```
+]
+
+- Like arithmetic operations, logic statements follow the order of preference. Operators `&gt;`, `==`, `!` etc. are evaluated before `&amp;` and `|`
+- If in doubt, wrap your expressions in parentheses
+
+.can-edit[
+
+```r
+(3 &lt; 4) &amp; ("a" == "b")
+```
+]
+
+---
+## Logical operators
+
+.panelset[
+.panel[.panel-name[Evaluation]
+
+
+```r
+1 + 2 == 3
+```
+
+```
+## [1] TRUE
+```
+
+What do you think will happen if we evaluate `0.1 + 0.2 == 0.3`?
+
+]
+.panel[.panel-name[Caveats]
+
+```r
+0.1 + 0.2 == 0.3
+```
+
+```
+## [1] FALSE
+```
+
+**Problem:** Computers represent numbers as binary (i.e. base 2) floating-points. [Read more](https://floating-point-gui.de/basic/)
+
+**Solution:** Use `all.equal()` for evaluating floats (i.e fractions).
+
+
+```r
+all.equal(0.1 + 0.2, 0.3)
+```
+
+```
+## [1] TRUE
+```
+
+]
+
+]
+
+---
+## Value matching
+
+- To see whether an object is contained within (i.e. matches one of) a list of items, use `%in%`
+
+
+```r
+5 %in% 1:10
+```
+
+```
+## [1] TRUE
+```
+
+```r
+1:10 %in% 5
+```
+
+```
+##  [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+```
+
+- Value matching can be useful to subset R objects
+
+
+```r
+pvals &lt;- c(0.05, 0.04, 0.09, 0.03, 0.12)
+pvals[pvals &lt;= 0.05]
+```
+
+```
+## [1] 0.05 0.04 0.03
+```
+
+
+---
+## Comments
+
+R ignores everything after the `#` sign
+
+
+```r
+# This line is a comment
+print("Hello, World!") # This will print the message, but the comment will be ignored
+```
+
+```
+## [1] "Hello, World!"
+```
+
+---
+## Clean up your environment
+
+
+```r
+z &lt;- c(1, 2, 3)
+ls()
+```
+
+```
+## [1] "lst"   "pvals" "z"
+```
+
+```r
+rm(z) # Remove one variable
+ls()
+```
+
+```
+## [1] "lst"   "pvals"
+```
+
+```r
+# Remove everything from the environment
+rm(list = ls()) # Not the same as restarting R session
+ls()
+```
+
+```
+## character(0)
+```
+
+
+---
+## Functions
+
+- A function is a set of statements organized together to perform a specific task
+    - **Name** - the actual name of the function, e.g., `summary()`, `mean()`
+    - **Arguments** - values passed to the functions. Argument-less functions exist
+    - **Code** - actual code of the function
+    - **Return value** - the result of the function's code execution
+
+``` r
+read.csv(file="scores.csv")
+```
+
+`read.csv` is a function to import a CSV file, and `file` is an argument that specifies which file to import
+
+R has a large number of built-in functions, and the user can create their own functions
+
+---
+## Running functions
+
+- From the R console - type the function and hit Enter
+    - One function at a time, not efficient
+
+- Using an `R` script - a text file that contains all your `R` functions/code
+    - `R` scripts allow you to save, edit, reproduce and share your code
+    - R scripts stored in files with `.R` extension
+    - Run the whole script as `source("script_name.R")`, or, from command line, `Rscript script_name.R`
+    - In RStudio, you can run individual lines, code chunks, or source whole scripts. Keyboard shortcuts are available
+
+---
+## Packages
+
+- All functions belong to *packages*. The `read.csv` function is in the `utils` package.
+
+- `R` comes with about 30 packages (called "base `R`"), but as of August 2021, there are over 18,000 CRAN packages and over 2,000 Bioconductor packages
+
+- Example: `ggplot2` is a popular package that adds functions for creating graphs in a different way than what base `R` provides
+
+- To use functions in a package, the package must be installed and loaded. (They're free)
+- You only _install_ a package once
+- You _load_ a package whenever you want to use its functions
+
+---
+## Package repositories
+
+- `CRAN` - Comprehensive R Archive Network – a collection of &gt; 18,000 (September 2021) packages
+
+- `Bioconductor` – genomics-oriented free and open source project hosting &gt; 2,000 specialized R packages (September 2021)
+
+- `MRAN` - Microsoft R Application Network, includes CRAN packages and more
+
+- `GitHub` – code-hosting repository, packages for everyone and by everyone
+
+.small[ https://cran.r-project.org/web/packages/ 
+
+https://www.bioconductor.org/
+
+https://mran.microsoft.com/
+
+https://github.com/  ]
+
+---
+## Installing packages
+
+- `install.packages(“&lt;package_name&gt;”)` - installs packages from CRAN, e.g., `install.packages("BiocManager")`
+
+- `install.packages(“&lt;package_name.tar.gz&gt;”, repos = NULL)` – install from a tarball archive
+
+- `R CMD INSTALL &lt;package_name.tar.gz&gt;` - install from a command line
+
+- `remotes` package - installs R packages from GitHub, GitLab, Bitbucket, Bioconductor, or plain 'subversion' or 'git' repositories. E.g., `remotes::install_github("tidyverse/ggplot2")`
+
+- `BiocManager::install()` - Install or update Bioconductor, CRAN, or GitHub packages
+
+.small[ https://CRAN.R-project.org/package=BiocManager ]
+
+---
+## Installing packages
+
+- `AnVIL::install()` - Install package binaries, speeds up installation process
+
+- RStudio point-and-click interface
+
+.center[&lt;img src="img/rstudio_snippets.png" height=400 &gt;]
+
+---
+## Loading packages
+
+- `library()` will load the package, e.g., `library(readxl)` or `library("readxl")`
+    - But, when installing packages, always use parentheses, e.g., `install.packages("readxl")`
+
+- `require()` will load the package and, if success, return TRUE. Useful in `if` statement, e.g.
+
+``` r
+if (!require(ggplot2)) {
+  install.packages("ggplot2")
+}
+```
+
+---
+## Loading packages
+
+- `library(package_name)` – load library to use its functions
+
+- `library()` vs. `require()`
+    - `require()` _tries_ to load the package, returns TRUE or FALSE
+    - `library()` just loads the package, fails if the package is not available
+
+- Use only `library(package_name)`
+
+.small[ https://yihui.name/en/2014/07/library-vs-require/ ]
+
+---
+## Using functions from other packages
+
+- You can access functions without loading the package using the `::` operator, e.g., `Hmisc::rcorr()`
+
+- Entering the function name without parentheses will output its code
+
+``` r
+&gt; data.frame
+function (..., row.names = NULL, check.rows = FALSE, check.names = TRUE, 
+    fix.empty.names = TRUE, stringsAsFactors = default.stringsAsFactors()) 
+{
+    data.row.names &lt;- if (check.rows &amp;&amp; is.null(row.names)) 
+...
+```
+
+- You can access internal functions of a package with the `:::` operator if you know their name
+
+---
+## Getting help
+
+- Use `?function_name` to get help on a function from a _loaded_ package. E.g., `?boxplot` (same as `help(boxplot)`)
+    - Use `example(boxplot)` to see how the function can be used
+
+- Use `??function_name` to search for the function across all installed packages, even not loaded. E.g., `??ggplotly`
+
+- Get an overview of all functions in a package: `help(package = "dplyr")`
+
+---
+## Getting help
+
+- For many packages, you can also try the `vignette()` function, which will provide an introduction to a package and it's purpose through a series of helpful examples. E.g., `vignette("dplyr")`
+    - Bioconductor packages have vignettes, short tutorials on package-specific tasks. Browse them, e.g., `browseVignettes(package = "limma")`
+
+- Some packages have interactive demos. List all such packages with `demo(package = .packages(all.available = TRUE))`, use as `demo("fibonacci", package = "future")`
+
+---
+## Useful ways of getting data in and out of R
+
+- Base functions: `read.table`, `read.csv`, `write.table`, `write.csv`
+
+- Tidyverse way, `readr` package: `read_table`, `read_csv`, `read_tsv`, `write_csv` ...
+
+- For fixed-width files, use `read.fwf` or `readr::read_fwf` funcitons
+
+- For reading/writing Excel files, use `readxl` and `writexl` packages, `read_xlsx`, `write_xlsx` functions
+    - Remember that `.csv` is the preferred text-based format that opens in Excel
+
+.small[https://readr.tidyverse.org/
+
+https://readxl.tidyverse.org/
+
+https://CRAN.R-project.org/package=writexl]
+
+---
+## The stringsAsFactors curse
+
+- When creating data frames with `data.frame()` or reading data with `read.table()`, strings automatically converted to factors
+
+- This behind-the-scenes factor conversion can lead to unpredictable behaviors
+
+- Use `as.is = TRUE` in `read.table()` to avoid such conversion
+
+- Better yet, set `options(stringsAsFactors = FALSE)` at the beginning of your script files
+
+.small[https://developer.r-project.org/Blog/public/2020/02/16/stringsasfactors/]
+
+---
+## Save/load R objects
+
+- `save()`, `load()` - saves/loads R objects to the specified file
+``` r
+x &lt;- stats::runif(20)
+y &lt;- list(a = 1, b = TRUE, c = "oops")
+save(x, y, file = "xy.rda")
+load(file = "xy.rda")
+```
+
+- `saveRDS()`, `readRDS()` - saves/loads a _representation_ of the object
+``` r
+x &lt;- stats::runif(20)
+saveRDS(x, file = "x.rds")
+x2 &lt;- readRDS(file = "x.rds")
+identical(x, x2, ignore.environment = TRUE)
+```
+
+.small[https://fromthebottomoftheheap.net/2012/04/01/saving-and-loading-r-objects/]
+
+---
+## R datasets
+
+R contains many datasets (stored as data frames) that are built-in to the software
+
+
+```r
+data() # All built-in datasets
+# ?trees
+data(trees) # Load a particular one
+head(trees)
+```
+
+```
+##   Girth Height Volume
+## 1   8.3     70   10.3
+## 2   8.6     65   10.3
+## 3   8.8     63   10.2
+## 4  10.5     72   16.4
+## 5  10.7     81   18.8
+## 6  10.8     83   19.7
+```
+
+---
+## Accessing data in datasets
+
+
+```r
+attach(trees)   # You can make R find variables in any data frame by adding the data frame to the search path
+search()        # .GlobalEnv is your workspace and the package quantities are libraries
+```
+
+```
+##  [1] ".GlobalEnv"             "trees"                  "package:xaringanthemer"
+##  [4] "package:stats"          "package:graphics"       "package:grDevices"     
+##  [7] "package:utils"          "package:datasets"       "package:methods"       
+## [10] "Autoloads"              "package:base"
+```
+
+```r
+detach(trees)   # To remove an object from the search path, use the detach()
+with(trees, mean(Height)) # Evaluate an R expression in an environment constructed from data, possibly modifying (a copy of) the original data
+```
+
+```
+## [1] 76
+```
+
+`attach()` can cause name overloads and other serious issues. Avoid it
+
+---
+## Summary statistics
+
+- Simple statistical functions: `count()`, `min()`, `max()`, `mean()`, `median()`, `sd()`, `cor()`, `summary()`)
+
+- These, and many other functions, have settings to properly handle NAs, e.g., `mean(x, trim = 0, na.rm = FALSE, ...)`
+
+- `complete.cases()` on a matrix/data frame returns row-wise logical with TRUE for rows without NAs
+
+- `unique()` - unique elements in a vector. Combine with `length()` to get the number of unique elements
+
+- `table()` - contingency table for a vector (the number of elements per unique level)
+
+---
+## Summary statistics
+
+
+```r
+data(mtcars)    # simple summary 
+# ?mtcars
+head(mtcars)
+```
+
+```
+##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+```
+
+
+```r
+mean(mtcars$mpg) # Try median, sd, var, min, max
+```
+
+```
+## [1] 20.09062
+```
+
+```r
+summary(mtcars$mpg)
+```
+
+```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   10.40   15.43   19.20   20.09   22.80   33.90
+```
+
+---
+## Summary statistics
+
+
+```r
+quantile(mtcars$mpg, probs = c(.20, .80))
+```
+
+```
+##   20%   80% 
+## 15.20 24.08
+```
+
+```r
+cor(mtcars$mpg, mtcars$hp) # sample correlation coeficient
+```
+
+```
+## [1] -0.7761684
+```
+
+
+```r
+table(mtcars$cyl)
+```
+
+```
+## 
+##  4  6  8 
+## 11  7 14
+```
+
+```r
+table(mtcars$cyl)/length(mtcars$cyl) # normalized by the total number of observations = 32
+```
+
+```
+## 
+##       4       6       8 
+## 0.34375 0.21875 0.43750
+```
+
+---
+## Control structures inside R/functions
+
+- `if, else`
+- `for`
+- `while`
+- `repeat`
+- `break`
+- `next`
+
+---
+## If-else statement
+
+Conditional code execution
+
+``` r
+if (condition) {
+  # do something
+} else {
+  # do something else
+}
+```
+
+- `==`: Equal to
+- `!=`: Not equal to
+- `&gt;`, `&gt;=`: Greater than, greater than or equal to
+- `&lt;`, `&lt;=`: Less than, less than or equal to
+
+
+```r
+x &lt;- 1:15
+if (sample(x, 1) &lt;= 10) {
+  print("x is less than 10")
+} else {
+  print("x is greater than 10")
+}
+```
+
+```
+## [1] "x is greater than 10"
+```
+
+---
+## For loop
+
+Repetitive code execution
+
+
+```r
+for (i in 1:5) {
+  cat(i)
+}
+```
+
+```
+## 12345
+```
+
+Compare with
+
+
+```r
+for (i in 1:5) {
+  print(i)
+}
+```
+
+```
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+```
+
+---
+## More uses of For loops
+
+
+```r
+x &lt;- c("apples", "oranges", "bananas", "strawberries")
+
+for (i in x) {
+  cat(i); cat(" ")
+}
+```
+
+```
+## apples oranges bananas strawberries
+```
+
+
+```r
+for (i in 1:4) {
+  cat(x[i]); cat(" ")
+}
+```
+
+```
+## apples oranges bananas strawberries
+```
+
+
+```r
+for (i in seq(x)) {
+  cat(x[i]); cat(" ")
+}
+```
+
+```
+## apples oranges bananas strawberries
+```
+
+---
+## Nested For loops
+
+
+```r
+m &lt;- matrix(1:10, 2)
+m
+```
+
+```
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    3    5    7    9
+## [2,]    2    4    6    8   10
+```
+
+```r
+for (i in seq(nrow(m))) {
+  for (j in seq(ncol(m))) {
+    print(m[i, j])
+  }
+}
+```
+
+```
+## [1] 1
+## [1] 3
+## [1] 5
+## [1] 7
+## [1] 9
+## [1] 2
+## [1] 4
+## [1] 6
+## [1] 8
+## [1] 10
+```
+
+---
+## while, repeat loops
+
+
+```r
+i &lt;- 1
+while (i &lt; 10) {
+  print(i)
+  i &lt;- i + 1
+} # Be sure there is a way to exit out of a while loop
+```
+
+```
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+```
+
+``` r
+repeat {
+  # simulations; generate some value have an expectation if within some range,
+  # then exit the loop
+  if ((value - expectation) &lt;= threshold) {
+    break
+  }
+}
+```
+
+---
+## Combine any statements/functions
+
+
+```r
+for (i in 1:20) {           
+  if (i%%2 == 1) {
+    next                # skip printing over odd numbers
+  } else {
+    print(i)
+  }
+}
+```
+
+```
+## [1] 2
+## [1] 4
+## [1] 6
+## [1] 8
+## [1] 10
+## [1] 12
+## [1] 14
+## [1] 16
+## [1] 18
+## [1] 20
+```
+
+---
+## Vectorized operation
+
+Many operations in R are already vectorized, making code more efficient, concise, and easier to read
+
+
+```r
+x &lt;- 1:4; y &lt;- 6:9
+x
+```
+
+```
+## [1] 1 2 3 4
+```
+
+```r
+y
+```
+
+```
+## [1] 6 7 8 9
+```
+
+```r
+x * y
+```
+
+```
+## [1]  6 14 24 36
+```
+
+```r
+x / y
+```
+
+```
+## [1] 0.1666667 0.2857143 0.3750000 0.4444444
+```
+
+---
+## Manipulating vectors
+
+
+```r
+ages &lt;- c(40, 50, 60, 70, 80)
+# add a value to end of vector
+ages &lt;- c(ages, 90) 
+# add value at the beginning
+ages &lt;- c(30, ages)
+# extracting second value
+ages[2]
+```
+
+```
+## [1] 40
+```
+
+```r
+# excluding second value
+ages[-2]
+```
+
+```
+## [1] 30 50 60 70 80 90
+```
+
+```r
+# extracting first and third values
+ages[c(1, 3)] 
+```
+
+```
+## [1] 30 50
+```
+
+---
+## `apply` family of functions 
+
+Writing for, while loops in R are inefficient, and we want to vectorize computation in R.
+
+- `apply()` - apply a function over the margins of an array
+
+- `lapply()` - loop over a list and evaluate a function on each element
+
+- `sapply()` - same as lapply but try to simplify results, if the result is a list where every element is length 1, then a vector is returned
+
+- `mapply()` - multivariate version of lapply
+
+- `tapply()` -  apply a function over subsets of a vector
+
+---
+## apply examples
+
+
+```r
+x &lt;- 1:4
+lapply(x, runif)
+```
+
+```
+## [[1]]
+## [1] 0.7726863
+## 
+## [[2]]
+## [1] 0.5440545 0.4134648
+## 
+## [[3]]
+## [1] 0.004294721 0.535988411 0.035280535
+## 
+## [[4]]
+## [1] 0.4432684 0.9112915 0.8351823 0.4907507
+```
+
+
+```r
+x &lt;- list(a = 1:4, b = rnorm(10), c = rnorm(20, 1))
+sapply(x, mean)
+```
+
+```
+##         a         b         c 
+## 2.5000000 0.4460407 0.7017495
+```
+
+---
+## apply examples
+
+
+```r
+#If the result is a list where every element is a vector of the same length (&gt; 1), a matrix is returned.
+x &lt;- list(rnorm(100), runif(100), rpois(100, 1))
+sapply(x, quantile, probs = c(0.25, 0.75))
+```
+
+```
+##           [,1]      [,2] [,3]
+## 25% -0.7635050 0.2178317    0
+## 75%  0.7005711 0.6840777    2
+```
+
+
+```r
+x &lt;- matrix(rnorm(200), 20, 10)
+apply(x, 1, sum)
+```
+
+```
+##  [1]  2.65081486  6.45954733 -3.00054932  3.72213028 -1.23705418  0.07493197
+##  [7]  0.93445788 -4.03868526  1.50714797  2.85777962 -7.56989467  0.63846572
+## [13]  0.72298827 -2.32893053 -4.63611268 -0.95549133  0.21640758  5.45950286
+## [19] -3.13998944 -2.99592818
+```
+
+```r
+apply(x, 2, mean)
+```
+
+```
+##  [1]  0.01171856 -0.14785572 -0.02120442 -0.10850241 -0.07147093 -0.15528972
+##  [7] -0.05454284  0.33942602 -0.11579178  0.09059018
+```
+
+---
+## apply examples
+
+For sums and means of matrix dimensions, we have some shortcuts
+
+
+```r
+rowSums  = apply(x, 1, sum)
+rowMeans = apply(x, 1, mean)
+colSums  = apply(x, 2, sum)
+colMeans = apply(x, 2, mean)
+```
+
+Check `?rowSums` help on these base R functions
+
+---
+## tapply
+
+Apply a function to each cell of a ragged array, that is, to each (non-empty) group of values given by a unique combination of the levels of certain factors.
+
+``` r
+function (X, INDEX, FUN = NULL, ..., default = NA, simplify = TRUE)
+X is a vector
+INDEX is a factor or a list of factors (or else they are coerced to factors)
+FUN is a function to be applied
+... contains other arguments to be passed FUN
+simplify, should we simplify the result?
+```
+
+
+```r
+x &lt;- c(rnorm(10), runif(10), rnorm(10, 1))
+f &lt;- gl(3, 10)
+tapply(x, f, mean)
+```
+
+```
+##           1           2           3 
+## -0.08036659  0.42627035  1.11544522
+```
+
+---
+## mapply
+
+mapply is a multivariate version of sapply. mapply applies FUN to the first elements of each ... argument, the second elements, the third elements, and so on. Arguments are recycled if necessary.
+
+``` r
+function (FUN, ..., MoreArgs = NULL, SIMPLIFY = TRUE, USE.NAMES = TRUE)
+FUN is a function to apply
+... contains arguments to apply over
+MoreArgs is a list of other arguments to FUN.
+SIMPLIFY indicates whether the result should be simplified
+```
+
+
+
+```r
+mapply(rep, 1:4, 4:1)
+mapply(rnorm,mean=1:3,sd=1:3,n=seq(5,15,by=5))
+```
+
+---
+## Formatting
+
+
+```r
+round(c(3.14159, 2.71828), digits = 2)
+```
+
+```
+## [1] 3.14 2.72
+```
+
+
+```r
+formatC(c(3.14159, 2.71828), digits = 2, format = "e")
+```
+
+```
+## [1] "3.14e+00" "2.72e+00"
+```
+
+---
+## Handling NAs
+
+- NAs create problems in calculations. Many functions have built-in mechanism to handle NAs. Check `?mean` and the 'na.rm' argument
+
+- Check for presence of NAs in your data using `is.na()`
+
+
+```r
+vec_with_NAs &lt;- c(1, 2, NA, 3)
+sum(is.na(vec_with_NAs))
+```
+
+```
+## [1] 1
+```
+
+- Remove all **rows** containing NAs from a data frame
+
+
+```r
+dat &lt;- dat[complete.cases(dat), ]
+```
+
+---
+## Modifying vector elements
+
+.can-edit[
+
+```r
+a &lt;- c("Heineken", "Tuborg", "Carlsberg")
+paste("Beer", a)
+```
+
+```
+## [1] "Beer Heineken"  "Beer Tuborg"    "Beer Carlsberg"
+```
+
+```r
+paste("Beer", a, sep = ":")
+```
+
+```
+## [1] "Beer:Heineken"  "Beer:Tuborg"    "Beer:Carlsberg"
+```
+
+```r
+paste("Beer", a, collapse = ":")
+```
+
+```
+## [1] "Beer Heineken:Beer Tuborg:Beer Carlsberg"
+```
+
+
+```r
+paste0("e", "yes")
+```
+
+```
+## [1] "eyes"
+```
+]
+
+---
+## Modifying vector elements
+
+
+```r
+a &lt;- c("but", "cut")
+sub("u", "a", a)
+```
+
+```
+## [1] "bat" "cat"
+```
+
+
+```r
+a &lt;- c("Column.1", "Column.2")
+strsplit(a, ".", fixed = TRUE)
+```
+
+```
+## [[1]]
+## [1] "Column" "1"     
+## 
+## [[2]]
+## [1] "Column" "2"
+```
+
+```r
+sapply(a, function(x) strsplit(x, ".", fixed = TRUE)[[1]][2])
+```
+
+```
+## Column.1 Column.2 
+##      "1"      "2"
+```
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

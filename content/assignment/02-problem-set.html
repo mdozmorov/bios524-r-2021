@@ -1,0 +1,54 @@
+---
+title: "Assignment 2. R preliminaries"
+date: "2020-09-02"
+due_date: "2020-09-08"
+due_time: "5:00 PM"
+menu:
+  assignment:
+    parent: Assignments
+    weight: 2
+type: docs
+weight: 1
+output:
+  blogdown::html_page:
+    toc: false
+editor_options: 
+  chunk_output_type: console
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="to-do-yourself" class="section level1">
+<h1>To do yourself</h1>
+<ul>
+<li>Install <a href="https://swirlstats.com/students.html">swirl</a> R package
+<ul>
+<li>Install and run the <a href="https://github.com/swirldev/R_Programming_E">R Programming</a> course</li>
+<li>Explore <a href="https://github.com/swirldev/swirl_courses">other swirl courses</a></li>
+</ul></li>
+<li>Download <a href="https://github.com/mdozmorov/IntroR">IntroR</a> code, create a project in the code’s repository, run through the <a href="https://raw.githubusercontent.com/mdozmorov/IntroR/master/Intro_R_workshop.R">Intro_R_workshop.R</a> code</li>
+</ul>
+</div>
+<div id="to-submit-on-blackboard-due-09-08-2020-500pm" class="section level1">
+<h1>To submit on blackboard, due 09-08-2020, 5:00pm</h1>
+<ol style="list-style-type: decimal">
+<li><p>Describe different ways to install R packages. Test each method by installing packages of your choice (e.g., <code>Hmisc</code>, <code>lme4</code>, <code>MASS</code>, <code>dslabs</code>). Install a GitHub package (e.g., <code>jokergoo/ComplexHeatmap</code>). How much time each method/package took? Hint: use <code>system.time</code> function. Copy-paste selected output and describe your observations.</p></li>
+<li><p>Describe all ways how to find path(s) where R packages are installed. Copy-paste selected output and describe your observations.</p></li>
+<li><p>What is unusual about each of the following objects?</p></li>
+</ol>
+<pre class="r"><code>num_char     &lt;- c(1, 2, 3, &quot;a&quot;)
+num_logical  &lt;- c(1, 2, 3, TRUE)
+char_logical &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, TRUE)
+tricky       &lt;- c(1, 2, 3, &quot;4&quot;)</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Create two numeric objects, two character objects, two logical objects. Demonstrate up to three R functions operating on each pair of objects (e.g., correlation between two numeric objects). Copy-paste selected output and describe your observations.</p></li>
+<li><p>Download alcohol consumption data per country from <a href="https://github.com/fivethirtyeight/data/tree/master/alcohol-consumption" class="uri">https://github.com/fivethirtyeight/data/tree/master/alcohol-consumption</a> and demonstrate the use of basic summary functions (min, max, mean, etc.). Describe your observation. Alternatively, use any built-in R datasets.</p></li>
+</ol>
+<!--1) Use the help functions or R documentation to look up a function that you think you will use. Provide (in words) a description of what the function is and does, the arguments that takes, and why you find this function useful. Then, using a sample dataset in R (i.e., `mtcars`, `iris`, `ToothGrowth`), demonstrate (in code) the use of this function.
+
+2) Create two numeric, two character, and two logical objects/variables in R. Give them descriptive names. Provide code examples.-->
+<ul>
+<li>Submit your homework as a text or Word document. Files should be named, e.g., <code>LASTNAME-FIRSTNAME-HW02</code>.</li>
+</ul>
+</div>

@@ -9,10 +9,10 @@ lessons:
     class: "01-class"
 
   - title: '**R preliminaries**'
-    # date: "August 30"
-    # # reading: "02-reading"
-    # assignment: "02-problem-set"
-    # class: "02-class"
+    date: "August 30"
+    # reading: "02-reading"
+    assignment: "02-problem-set"
+    class: "02-class"
 
   - title: '**R base graphics, statistical functions**'
     # date: "September 1, 8"
