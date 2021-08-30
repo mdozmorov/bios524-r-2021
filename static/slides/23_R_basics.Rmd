@@ -384,6 +384,8 @@ tapply(x, f, mean)
 ---
 ## mapply
 
+.panelset[
+.panel[.panel-name[mapply]
 mapply is a multivariate version of sapply. mapply applies FUN to the first elements of each ... argument, the second elements, the third elements, and so on. Arguments are recycled if necessary.
 
 ``` r
@@ -393,12 +395,18 @@ FUN is a function to apply
 MoreArgs is a list of other arguments to FUN.
 SIMPLIFY indicates whether the result should be simplified
 ```
-
-
-```{r eval = FALSE}
+]
+.panel[.panel-name[Example 1]
+```{r}
 mapply(rep, 1:4, 4:1)
-mapply(rnorm,mean=1:3,sd=1:3,n=seq(5,15,by=5))
 ```
+]
+.panel[.panel-name[Example 1]
+```{r}
+mapply(rnorm, mean = 1:3, sd = 1:3, n = seq(5, 15, by = 5))
+```
+]
+]
 
 ---
 ## Formatting
