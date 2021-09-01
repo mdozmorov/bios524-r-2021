@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>R base graphics, statistical functions</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Mikhail Dozmorov" />
+    <script src="libs/header-attrs-2.9/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="xaringan-my.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# R base graphics, statistical functions
+### Mikhail Dozmorov
+### Virginia Commonwealth University
+### 09-01-2021
+
+---
+
+
+
+
+## R base graphics
+
+- `plot()` 			generic x-y plotting
+- `barplot()` 	bar plots
+- `boxplot()` 	box-and-whisker plot
+- `hist()` 			histograms
+
+.center[&lt;img src="img/bar_box_hist.png" width = 800&gt;]
+
+.small[ http://manuals.bioinformatics.ucr.edu/home/R_BioCondManual#TOC-Graphical-Procedures ]
+
+---
+## Basic plotting
+
+R graphic regions
+
+![](31_R_graphics_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+
+---
+## R graphic regions
+
+`par(mar=c(5.1, 4.1, 4.1, 2.1), mgp=c(3, 1, 0), las=0)`
+
+- `par` sets or adjusts plotting parameters. Here we consider the following three parameters: margin size (`mar`), axis label locations (`mgp`), and axis label orientation (`las`)
+
+.small[
+- `mar` – A numeric vector of length 4, which sets the margin sizes in the following order: bottom, left, top, and right. The default is `c(5.1, 4.1, 4.1, 2.1)`
+
+- `mgp` – A numeric vector of length 3, which sets the axis label locations relative to the edge of the inner plot window. The first value represents the location of the labels (i.e., xlab and ylab in plot), the second the tick-mark labels, and third the tick marks. The default is `c(3, 1, 0)`
+
+- `las` – A numeric value indicating the orientation of the tick mark labels and any other text added to a plot after its initialization. The options are as follows: always parallel to the axis (the default, 0), always horizontal (1), always perpendicular to the axis (2), and always vertical (3)
+]
+
+.small[ http://rfunction.com/archives/1302 ]
+
+---
+# Save and restore graphic parameters
+
+
+```r
+old.par &lt;- par("mar")
+par(mar = c(1, 1, 1, 1))
+plot(iris$Sepal.Length)
+```
+
+![](31_R_graphics_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+```r
+par(old.par)
+```
+
+```
+## NULL
+```
+
+---
+# Multiple plots in one region
+
+
+```r
+par(mfrow = c(1, 2))
+plot(iris$Sepal.Length)
+plot(iris$Sepal.Width)
+```
+
+![](31_R_graphics_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+```r
+par(mfrow = c(1, 1))
+```
+
+---
+## Some functions used in plot region
+
+``` r
+text() 
+points() 
+lines()
+arrows()
+box()
+abline()
+```
+
+Some common plot settings
+
+``` r
+col: color of lines, text, ...
+lwd: line width
+lty: line type
+font: font face (plain, bold, italic)
+pch: type of plotting symbol
+srt: string rotation
+```
+
+---
+Plot examples
+
+
+```r
+data(cars)
+# ?cars
+plot(cars$dist) # if a single vector object is given to plot(), the values are plotted on the y-axis against the row numbers or index
+```
+
+![](31_R_graphics_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+```r
+# plot(cars) # bivariate scatterplot
+# plot(cars$speed, type="o", col="blue") # graph cars using blue points overlayed by a line 
+# plot(cars$dist,cars$speed, xlab="x axis", ylab="y axis", main="my plot", ylim=c(0,20), xlim=c(0,20), pch=15, col="blue") # Set a bunch of parameters
+```
+
+---
+
+```r
+x &lt;- seq(0,20,by=2)
+y &lt;- seq(0,10,by=1)
+plot(x,y,col="blue") 
+# lines and points add graphics to the existing plot
+lines(x,y,col="green",lty="dashed")
+
+x2 &lt;- c(0.5, 3, 5, 8, 12) 
+y2 &lt;- c(0.8, 1, 2, 4, 6) 
+points(x2, y2, pch=16, col="green")
+```
+
+![](31_R_graphics_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+---
+
+```r
+# barplot(as.matrix(mtcars), main="Autos", ylab= "Total", beside=TRUE, col=rainbow(5))
+# barplot(mtcars$cyl)
+barplot(mtcars$cyl,col=rainbow(3))
+```
+
+![](31_R_graphics_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+---
+
+```r
+data(faithful)
+attach(faithful)
+hist(eruptions, main = "Old Faithful data", prob = T)
+```
+
+![](31_R_graphics_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+```r
+# hist(eruptions, main = "Old Faithful data", prob = T, breaks=18)
+
+# boxplot(faithful)                      # same as boxplot(eruptions, waiting)
+```
+
+---
+## Add legends to plots
+
+
+```r
+with(iris,
+     plot(Sepal.Length, Sepal.Width, 
+          pch=as.numeric(Species), cex=1.2,ylim=c(1,6)))
+legend("topright", c("setosa", "versicolor", "virginica"), cex=1.5, pch=1:3)
+```
+
+![](31_R_graphics_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+---
+## R base graphics
+
+- `stats::heatmap()` - basic heatmap
+
+Alternatives: 
+
+- `gplots::heatmap.2()` - an extension of heatmap
+- `heatmap3::heatmap3()` - another extension of heatmap
+- `ComplexHeatmap::Heatmap()` - highly customizable, interactive heatmap
+
+Other options:
+
+- `pheatmap::pheatmap()` - grid-based heatmap
+- `NMF::aheatmap()` - another grid-based heatmap
+
+.small[	[ComplexHeatmap Complete Reference](https://jokergoo.github.io/ComplexHeatmap-reference/book/) by Zuguang Gu
+
+https://bioconductor.org/packages/ComplexHeatmap/ ]
+
+---
+## Interactive heatmaps
+
+- `d3heatmap::d3heatmap()` - interactive heatmap in d3
+
+- `heatmaply::heatmaply()` - interactive heatmap with better dendrograms
+
+- `plotly` - make ggplot2 plots interactive
+
+.small[ [Heatmaps in R](https://channel9.msdn.com/Events/useR-international-R-User-conference/useR2016/Heatmaps-in-R-Overview-and-best-practices) 20 min video by Tal Galili
+
+[Interactive plots in R](https://davetang.org/muse/2018/05/18/interactive-plots-in-r/) blog post by Dave Tang ]
+
+---
+## Special plots
+
+- `vioplot()`: Violin plot
+- `PiratePlot()`: violin plot enhanced 
+- `beeswarm()`: The Bee Swarm Plot, an Alternative to Stripchart
+
+.center[&lt;img src="img/violin_plots.png" width = 800&gt;]
+
+.small[ https://CRAN.R-project.org/package=vioplot 
+
+[YaRrr! The Pirate’s Guide to R](https://bookdown.org/ndphillips/YaRrr/)
+
+https://CRAN.R-project.org/package=beeswarm ]
+
+
+---
+## Saving plots
+
+- Save to PDF
+
+``` r
+pdf("filename.pdf", width = 7, height = 5)
+plot(1:10, 1:10)
+dev.off()
+```
+
+- Other formats: `bmp()`, `jpg()`, `pdf()`, `png()`, or `tiff()`
+
+- Click Export in the Plots window in RStudio
+
+- Learn more `?Devices`
+
+---
+## R base graphic cheat-sheet
+
+.center[&lt;img src="img/graphics_cheatsheet.png" width = 900&gt;]
+
+.small[ https://github.com/nbrgraphs/mro/blob/master/BaseGraphicsCheatsheet.pdf ]
+
+&lt;!--
+## Don't use barplots
+
+.center[&lt;img src="https://cogtales.files.wordpress.com/2016/06/originalmeme1.png" width = 700&gt;]
+
+.small[ Weissgerber T et.al., "[Beyond Bar and Line Graphs: Time for a New Data Presentation Paradigm](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002128)", PLOS Biology,2015
+
+https://cogtales.wordpress.com/2016/06/06/congratulations-barbarplots/ ]
+--&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

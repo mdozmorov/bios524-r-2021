@@ -15,10 +15,10 @@ lessons:
     class: "02-class"
 
   - title: '**R base graphics, statistical functions**'
-    # date: "September 1, 8"
-    # # reading: "03-reading"
-    # assignment: "03-problem-set"
-    # class: "03-class"
+    date: "September 1"
+    # reading: "03-reading"
+    assignment: "03-problem-set"
+    class: "03-class"
 
   - title: '**R in command line, Unix, text manupulation with regular expressions**'
     # date: "September 1, 8"
