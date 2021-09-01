@@ -4,7 +4,7 @@ title: "R preliminaries"
 author: "Mikhail Dozmorov"
 institute: "Virginia Commonwealth University"
 # date: "`r Sys.Date()`"
-date: "08-30-2020"
+date: "09-01-2021"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -33,87 +33,11 @@ mono_light(
 xaringanExtra::use_xaringan_extra(c("editable", "panelset"))
 ```
 
-## Useful ways of getting data in and out of R
-
-- Base functions: `read.table`, `read.csv`, `write.table`, `write.csv`
-
-- Tidyverse way, `readr` package: `read_table`, `read_csv`, `read_tsv`, `write_csv` ...
-
-- For fixed-width files, use `read.fwf` or `readr::read_fwf` funcitons
-
-- For reading/writing Excel files, use `readxl` and `writexl` packages, `read_xlsx`, `write_xlsx` functions
-    - Remember that `.csv` is the preferred text-based format that opens in Excel
-
-.small[https://readr.tidyverse.org/
-
-https://readxl.tidyverse.org/
-
-https://CRAN.R-project.org/package=writexl]
-
----
-## The stringsAsFactors curse
-
-- When creating data frames with `data.frame()` or reading data with `read.table()`, strings automatically converted to factors
-
-- This behind-the-scenes factor conversion can lead to unpredictable behaviors
-
-- Use `as.is = TRUE` in `read.table()` to avoid such conversion
-
-- Better yet, set `options(stringsAsFactors = FALSE)` at the beginning of your script files
-
-.small[https://developer.r-project.org/Blog/public/2020/02/16/stringsasfactors/]
-
----
-## Save/load R objects
-
-- `save()`, `load()` - saves/loads R objects to the specified file
-``` r
-x <- stats::runif(20)
-y <- list(a = 1, b = TRUE, c = "oops")
-save(x, y, file = "xy.rda")
-load(file = "xy.rda")
-```
-
-- `saveRDS()`, `readRDS()` - saves/loads a _representation_ of the object
-``` r
-x <- stats::runif(20)
-saveRDS(x, file = "x.rds")
-x2 <- readRDS(file = "x.rds")
-identical(x, x2, ignore.environment = TRUE)
-```
-
-.small[https://fromthebottomoftheheap.net/2012/04/01/saving-and-loading-r-objects/]
-
----
-## R datasets
-
-R contains many datasets (stored as data frames) that are built-in to the software
-
-```{r}
-data() # All built-in datasets
-# ?trees
-data(trees) # Load a particular one
-head(trees)
-```
-
----
-## Accessing data in datasets
-
-```{r}
-attach(trees)   # You can make R find variables in any data frame by adding the data frame to the search path
-search()        # .GlobalEnv is your workspace and the package quantities are libraries
-detach(trees)   # To remove an object from the search path, use the detach()
-with(trees, mean(Height)) # Evaluate an R expression in an environment constructed from data, possibly modifying (a copy of) the original data
-```
-
-`attach()` can cause name overloads and other serious issues. Avoid it
-
----
 ## Summary statistics
 
-- Simple statistical functions: `count()`, `min()`, `max()`, `mean()`, `median()`, `sd()`, `cor()`, `summary()`)
+- Simple statistical functions: `count()`, `min()`, `max()`, `mean()`, `median()`, `sd()`, `cor()`, `summary()`, `quantile()`)
 
-- These, and many other functions, have settings to properly handle NAs, e.g., `mean(x, trim = 0, na.rm = FALSE, ...)`
+- These, and many other functions, have settings to properly handle NAs, e.g., `mean(x, na.rm = FALSE, ...)`
 
 - `complete.cases()` on a matrix/data frame returns row-wise logical with TRUE for rows without NAs
 

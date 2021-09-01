@@ -28,3 +28,8 @@ editor_options:
 knitr::include_url('../../slides/22_R_basics.html#1')
 ```
 
+<a href="../../slides/23_R_basics.html#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/23_R_basics.html#1')
+```

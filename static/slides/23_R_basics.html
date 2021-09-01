@@ -7,7 +7,7 @@
     <script src="libs/header-attrs-2.9/header-attrs.js"></script>
     <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
     <script src="libs/panelset-0.2.6/panelset.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x8afa7cc958b4aa49511dbec7afcf886","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x9bd5ac38fbe470292cb873eede1eb77","expires":14}</script>
     <script src="libs/himalaya-1.1.0/himalaya.js"></script>
     <script src="libs/js-cookie-3.0.0/js.cookie.js"></script>
     <link href="libs/editable-0.2.6/editable.css" rel="stylesheet" />
@@ -22,7 +22,7 @@ class: center, middle, inverse, title-slide
 # R preliminaries
 ### Mikhail Dozmorov
 ### Virginia Commonwealth University
-### 08-30-2020
+### 09-01-2021
 
 ---
 
@@ -30,113 +30,11 @@ class: center, middle, inverse, title-slide
 
 
 
-## Useful ways of getting data in and out of R
-
-- Base functions: `read.table`, `read.csv`, `write.table`, `write.csv`
-
-- Tidyverse way, `readr` package: `read_table`, `read_csv`, `read_tsv`, `write_csv` ...
-
-- For fixed-width files, use `read.fwf` or `readr::read_fwf` funcitons
-
-- For reading/writing Excel files, use `readxl` and `writexl` packages, `read_xlsx`, `write_xlsx` functions
-    - Remember that `.csv` is the preferred text-based format that opens in Excel
-
-.small[https://readr.tidyverse.org/
-
-https://readxl.tidyverse.org/
-
-https://CRAN.R-project.org/package=writexl]
-
----
-## The stringsAsFactors curse
-
-- When creating data frames with `data.frame()` or reading data with `read.table()`, strings automatically converted to factors
-
-- This behind-the-scenes factor conversion can lead to unpredictable behaviors
-
-- Use `as.is = TRUE` in `read.table()` to avoid such conversion
-
-- Better yet, set `options(stringsAsFactors = FALSE)` at the beginning of your script files
-
-.small[https://developer.r-project.org/Blog/public/2020/02/16/stringsasfactors/]
-
----
-## Save/load R objects
-
-- `save()`, `load()` - saves/loads R objects to the specified file
-``` r
-x &lt;- stats::runif(20)
-y &lt;- list(a = 1, b = TRUE, c = "oops")
-save(x, y, file = "xy.rda")
-load(file = "xy.rda")
-```
-
-- `saveRDS()`, `readRDS()` - saves/loads a _representation_ of the object
-``` r
-x &lt;- stats::runif(20)
-saveRDS(x, file = "x.rds")
-x2 &lt;- readRDS(file = "x.rds")
-identical(x, x2, ignore.environment = TRUE)
-```
-
-.small[https://fromthebottomoftheheap.net/2012/04/01/saving-and-loading-r-objects/]
-
----
-## R datasets
-
-R contains many datasets (stored as data frames) that are built-in to the software
-
-
-```r
-data() # All built-in datasets
-# ?trees
-data(trees) # Load a particular one
-head(trees)
-```
-
-```
-##   Girth Height Volume
-## 1   8.3     70   10.3
-## 2   8.6     65   10.3
-## 3   8.8     63   10.2
-## 4  10.5     72   16.4
-## 5  10.7     81   18.8
-## 6  10.8     83   19.7
-```
-
----
-## Accessing data in datasets
-
-
-```r
-attach(trees)   # You can make R find variables in any data frame by adding the data frame to the search path
-search()        # .GlobalEnv is your workspace and the package quantities are libraries
-```
-
-```
-##  [1] ".GlobalEnv"             "trees"                  "package:xaringanthemer"
-##  [4] "package:stats"          "package:graphics"       "package:grDevices"     
-##  [7] "package:utils"          "package:datasets"       "package:methods"       
-## [10] "Autoloads"              "package:base"
-```
-
-```r
-detach(trees)   # To remove an object from the search path, use the detach()
-with(trees, mean(Height)) # Evaluate an R expression in an environment constructed from data, possibly modifying (a copy of) the original data
-```
-
-```
-## [1] 76
-```
-
-`attach()` can cause name overloads and other serious issues. Avoid it
-
----
 ## Summary statistics
 
-- Simple statistical functions: `count()`, `min()`, `max()`, `mean()`, `median()`, `sd()`, `cor()`, `summary()`)
+- Simple statistical functions: `count()`, `min()`, `max()`, `mean()`, `median()`, `sd()`, `cor()`, `summary()`, `quantile()`)
 
-- These, and many other functions, have settings to properly handle NAs, e.g., `mean(x, trim = 0, na.rm = FALSE, ...)`
+- These, and many other functions, have settings to properly handle NAs, e.g., `mean(x, na.rm = FALSE, ...)`
 
 - `complete.cases()` on a matrix/data frame returns row-wise logical with TRUE for rows without NAs
 
@@ -535,16 +433,16 @@ lapply(x, runif)
 
 ```
 ## [[1]]
-## [1] 0.9506478
+## [1] 0.6999571
 ## 
 ## [[2]]
-## [1] 0.9815279 0.2646404
+## [1] 0.7955854 0.4125683
 ## 
 ## [[3]]
-## [1] 0.4861740 0.1582288 0.2982079
+## [1] 0.2328673 0.8489271 0.3013256
 ## 
 ## [[4]]
-## [1] 0.01501364 0.12632338 0.62485281 0.27903568
+## [1] 0.5576035 0.6193335 0.9416713 0.5645791
 ```
 
 
@@ -554,8 +452,8 @@ sapply(x, mean)
 ```
 
 ```
-##         a         b         c 
-## 2.5000000 0.1446989 0.5027523
+##          a          b          c 
+##  2.5000000 -0.1032136  1.0378142
 ```
 
 ---
@@ -570,8 +468,8 @@ sapply(x, quantile, probs = c(0.25, 0.75))
 
 ```
 ##           [,1]      [,2] [,3]
-## 25% -0.5041084 0.2493931    0
-## 75%  0.7792140 0.7233359    2
+## 25% -0.8106229 0.2163873    0
+## 75%  0.5144180 0.6999420    1
 ```
 
 
@@ -581,10 +479,10 @@ apply(x, 1, sum)
 ```
 
 ```
-##  [1] -1.1802104  1.2507109 -6.8129320 -3.5461855 -4.4940018 -1.1646513
-##  [7] -3.2883065 -3.5583786  3.9480657 -3.2810947 -3.0727836 -3.4201481
-## [13] -7.0799163 -2.8324258  0.4551680 -0.4894223  1.2295571 -1.0613888
-## [19]  1.8614694 -1.6521764
+##  [1]  4.9116667  2.1055798 -3.8914536 -3.4788586 -5.3450159 -1.4163235
+##  [7] -2.3220034 -0.8991211  2.4337448  1.6838857 -1.6034605 -0.8034428
+## [13] -4.3773092  1.2695287  2.1041034 -0.3162727 -2.9455331 -0.7074898
+## [19] -6.5179255 -2.5579397
 ```
 
 ```r
@@ -592,8 +490,8 @@ apply(x, 2, mean)
 ```
 
 ```
-##  [1] -0.39048339 -0.16856110  0.35462317 -0.29871863 -0.43422578  0.07275814
-##  [7] -0.50647166 -0.33771634  0.03200471 -0.23266166
+##  [1]  0.24533466  0.02261196 -0.32187919 -0.31931651  0.11146099 -0.07918584
+##  [7] -0.71896407  0.02902220 -0.13657525  0.03380904
 ```
 
 ---
@@ -633,8 +531,8 @@ tapply(x, f, mean)
 ```
 
 ```
-##         1         2         3 
-## 0.3163901 0.4182015 0.9328892
+##          1          2          3 
+## 0.04389055 0.44173130 0.59684233
 ```
 
 ---
@@ -680,16 +578,16 @@ mapply(rnorm, mean = 1:3, sd = 1:3, n = seq(5, 15, by = 5))
 
 ```
 ## [[1]]
-## [1] 0.01452104 2.01294926 2.11596283 0.29914609 0.07179439
+## [1] 2.1558090 2.4309716 0.6884657 3.1994954 2.9252681
 ## 
 ## [[2]]
-##  [1]  2.8314521  4.5570875  0.1774028 -0.6743812 -0.8464569  1.1540802
-##  [7]  3.1355052  1.6185482  0.2856996  2.9191939
+##  [1]  4.7301836  2.3093369  2.3742895  2.4623988  0.4974263  1.4877722
+##  [7]  2.1168063 -0.3330924  4.7041323  2.0338169
 ## 
 ## [[3]]
-##  [1]  4.8977012  6.6623300  2.1776041  7.8953739  3.6342131  5.5290916
-##  [7]  3.3646219  5.5051481 -0.5061060  4.6074765 -0.8519285  3.9032520
-## [13]  7.4014848 -2.0656764 -0.1153166
+##  [1] -1.1829592  4.6160085  2.3367599 -1.3558627  7.2952608  1.0622329
+##  [7]  0.5689258  4.1001359 -0.2127514  6.0450216  8.8583073  0.2490650
+## [13]  2.9993432  2.3854606  6.1836488
 ```
 ]
 ]
