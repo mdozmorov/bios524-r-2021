@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Useful functions and plots in stats</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Mikhail Dozmorov" />
+    <script src="libs/header-attrs-2.9/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="xaringan-my.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Useful functions and plots in stats
+### Mikhail Dozmorov
+### Virginia Commonwealth University
+### 09-08-2021
+
+---
+
+
+
+
+## Empirical Cumulative Distribution Function
+
+
+```r
+set.seed(4)
+Fn &lt;- ecdf(x &lt;- rnorm(100)) # ?ecdf()
+curve(Fn) # Try plot(Fn)
+```
+
+![](32_R_stats_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+
+---
+## Quantile-Quantile Plots
+
+- `qqnorm()`, `qqline()`, `qqplot()` - distribution comparison plots
+
+
+```r
+data(trees) # load data to global environment
+attach(trees)
+qqnorm(Height) # A normal QQ plot 
+```
+
+![](32_R_stats_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+---
+## Scatterplot Matrices
+
+- `pairs()` - pair-wise plot of multivariate data
+
+
+```r
+data(trees)
+pairs(trees) 
+```
+
+![](32_R_stats_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+---
+## Random samples and permutations
+
+
+```r
+sample(1:10)
+```
+
+```
+##  [1]  7  5 10  2  1  4  8  3  9  6
+```
+
+```r
+sample(letters, 5)
+```
+
+```
+## [1] "l" "q" "a" "v" "b"
+```
+
+```r
+sample(1:10, replace = TRUE)
+```
+
+```
+##  [1]  1  6 10  5  2  2  8 10 10  3
+```
+
+
+```r
+set.seed(1)
+```
+
+---
+## Examples of density functions
+
+Prefix each R distribution name with + ‘d’ for the density or mass function, + ‘p’ for the CDF, + ‘q’ for the percentile function (also called the quantile), + ‘r’ for the generation of pseudorandom variables
+
+| Function | Distribution |
+|:--------:|:------------:|
+| dnorm    | Normal       |
+| dpois    | Poisson      |
+| dbinom   | Binomial     |
+| dchisq   | Chi-squared  |
+| dt       | Student’s t  |
+| dunif    | Uniform      |
+
+
+---
+
+```r
+x=rnorm(100)
+y=rnorm(100)
+plot(x, y)
+```
+
+![](32_R_stats_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+
+
+```r
+qnorm(.75,mean=10,sd=2) # 3rd quartile of N(mu = 10,sigma = 2)
+```
+
+```
+## [1] 11.34898
+```
+
+```r
+qnorm(c(0.05, 0.10, 0.20, 0.95),mean=10,sd=2)
+```
+
+```
+## [1]  6.710293  7.436897  8.316758 13.289707
+```
+
+```r
+qt(.95,df=20) # 95th percentile of t(20)
+```
+
+```
+## [1] 1.724718
+```
+
+---
+
+```r
+x&lt;-rchisq(100,1)
+plot(x)
+```
+
+![](32_R_stats_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+```r
+hist(x)
+```
+
+![](32_R_stats_files/figure-html/unnamed-chunk-8-2.png)&lt;!-- --&gt;
+
+
+```r
+x&lt;-dbinom(3:10,size=10,prob=.25)   # P(X=3) for X ~ Bin(n=10, p=.25)
+
+barplot(x)
+```
+
+![](32_R_stats_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+```r
+plot(x) 
+```
+
+![](32_R_stats_files/figure-html/unnamed-chunk-9-2.png)&lt;!-- --&gt;
+
+```r
+plot(0:10, dbinom(0:10, size=10, prob=.25), type = "h", lwd = 30)
+```
+
+![](32_R_stats_files/figure-html/unnamed-chunk-9-3.png)&lt;!-- --&gt;
+
+```r
+plot(3:10, x, type = "h", lwd = 30, main = "Binomial Probabilities w/ n = 10, p = .25", ylab = "p(x)") # which is gives the histogram-like vertical lines 
+```
+
+![](32_R_stats_files/figure-html/unnamed-chunk-9-4.png)&lt;!-- --&gt;
+
+```r
+# lwd option (the default width is 1) controls line thickness
+```
+
+---
+
+```r
+dpois(0:2, lambda=4) # P(X=0), P(X=1), P(X=2) for X ~ Poisson
+```
+
+```
+## [1] 0.01831564 0.07326256 0.14652511
+```
+
+```r
+x&lt;- dpois(0:20, lambda=4)
+barplot(x)
+```
+
+![](32_R_stats_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+```r
+# plot(x)
+```
+
+---
+
+```r
+pbinom(3,size=10,prob=.25) # P(X &lt;=3) in the above distribution
+```
+
+```
+## [1] 0.7758751
+```
+
+```r
+x&lt;- pbinom(3:10,size=10,prob=.25)
+plot(x)
+```
+
+![](32_R_stats_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+---
+## More useful stats functions
+
+
+```r
+lm(Sepal.Length~Sepal.Width, data=iris) # simple linear regression
+```
+
+```
+## 
+## Call:
+## lm(formula = Sepal.Length ~ Sepal.Width, data = iris)
+## 
+## Coefficients:
+## (Intercept)  Sepal.Width  
+##      6.5262      -0.2234
+```
+
+
+```r
+glm(ifelse(Species=="setosa",1,0)~Sepal.Width, family="binomial",data=iris)  # logistic regression
+```
+
+```
+## 
+## Call:  glm(formula = ifelse(Species == "setosa", 1, 0) ~ Sepal.Width, 
+##     family = "binomial", data = iris)
+## 
+## Coefficients:
+## (Intercept)  Sepal.Width  
+##      -15.72         4.79  
+## 
+## Degrees of Freedom: 149 Total (i.e. Null);  148 Residual
+## Null Deviance:	    191 
+## Residual Deviance: 123.8 	AIC: 127.8
+```
+
+---
+## More useful stats functions
+
+
+```r
+t.test(iris$Sepal.Length,iris$Petal.Length)
+```
+
+```
+## 
+## 	Welch Two Sample t-test
+## 
+## data:  iris$Sepal.Length and iris$Petal.Length
+## t = 13.098, df = 211.54, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  1.771500 2.399166
+## sample estimates:
+## mean of x mean of y 
+##  5.843333  3.758000
+```
+
+
+```r
+aov(Sepal.Length~Species,data=iris)
+```
+
+```
+## Call:
+##    aov(formula = Sepal.Length ~ Species, data = iris)
+## 
+## Terms:
+##                  Species Residuals
+## Sum of Squares  63.21213  38.95620
+## Deg. of Freedom        2       147
+## 
+## Residual standard error: 0.5147894
+## Estimated effects may be unbalanced
+```
+
+---
+## More useful stats functions
+
+
+```r
+chisq.test(iris$Petal.Length,iris$Species)
+```
+
+```
+## Warning in chisq.test(iris$Petal.Length, iris$Species): Chi-squared
+## approximation may be incorrect
+```
+
+```
+## 
+## 	Pearson's Chi-squared test
+## 
+## data:  iris$Petal.Length and iris$Species
+## X-squared = 271.8, df = 84, p-value &lt; 2.2e-16
+```
+
+
+```r
+fisher.test(mtcars$gear, mtcars$carb)
+```
+
+```
+## 
+## 	Fisher's Exact Test for Count Data
+## 
+## data:  mtcars$gear and mtcars$carb
+## p-value = 0.2434
+## alternative hypothesis: two.sided
+```
+
+---
+## Regression models
+
+Regression models can be used to estimate how the expected value of a dependent variable changes as independent variables change.
+
+In R, regression formulas take this structure:
+
+```
+## Generic code
+[response variable] ~ [indep. var. 1] +  [indep. var. 2] + ...
+```
+
+Notice that a tilde, ~, is used to separate the independent and dependent variables and that a plus sign, +, is used to join independent variables. This format mimics the statistical notation:
+
+`\(Y_i \sim X_1 + X_2 + X_3\)`
+
+---
+## Conventions for linear models
+
+| Convention	| Meaning |
+|:-----------:|:-------:|
+| I()	| evaluate the formula inside I() before fitting (e.g., I(x1 + x2)) |
+| :	| fit the interaction between x1 and x2 variables |
+| *	| fit the main effects and interaction for both variables (e.g., x1*x2 equals x1 + x2 + x1:x2)|
+| .	| include as independent variables all variables other than the response (e.g., y ~ .) |
+| 1	| intercept (e.g., y ~ 1 for an intercept-only model) | 
+| -	|do not include a variable in the data frame as an independent variables (e.g., y ~ . - x1); usually used in conjunction with . or 1 | 
+
+---
+## Linear models
+
+To fit a linear model, you can use the function `lm()`. This function is part of the `stats` package, which comes installed with base R
+
+
+```r
+mod &lt;- lm(mpg ~ hp, data = mtcars)
+# Check class() and str() of the mod object
+```
+
+This previous call fits the model:
+
+`\(Y_{i} = \beta_{0} + \beta_{1}X_{1,i} + \epsilon_{i}\)`
+
+.small[ [INTRODUCTION TO LINEAR MIXED MODELS](https://ourcodingclub.github.io/tutorials/mixed-models/) ]
+
+---
+## Manipulating the `lm` object
+
+| Function	| Description |
+|:---------:|:-----------:|
+| summary	  | Get a variety of information on the model, including coefficients and p-values for the coefficients |
+| coefficients	| Pull out just the coefficients for a model |
+| fitted	| Get the fitted values from the model (for the data used to fit the model) | 
+| plot	| Create plots to help assess model assumptions
+| residuals	| Get the model residuals |
+
+
+```r
+class(mod)
+```
+
+```
+## [1] "lm"
+```
+
+
+---
+## plot(mod)
+
+![](32_R_stats_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;![](32_R_stats_files/figure-html/unnamed-chunk-20-2.png)&lt;!-- --&gt;![](32_R_stats_files/figure-html/unnamed-chunk-20-3.png)&lt;!-- --&gt;![](32_R_stats_files/figure-html/unnamed-chunk-20-4.png)&lt;!-- --&gt;
+
+---
+## Manipulating the `lm` object
+
+
+```r
+mod_coef &lt;- coefficients(mod)
+library(ggplot2)
+ggplot(mtcars, aes(x = hp, y = mpg)) + 
+  geom_point(size = 1) + 
+  xlab("Miles/(US) gallon") + ylab("Gross horsepower") + 
+  geom_abline(aes(intercept = mod_coef[1],
+                  slope = mod_coef[2]), col = "red")
+```
+
+![](32_R_stats_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+
+---
+## Working with text
+
+- The `grep()` function takes as parameters the pattern and a character vector as the data to search through for the pattern. Parameters:
+    - `ignore.case = FALSE` - by default it is case sensitive
+    - `value = FALSE` - by default returns vector with index values of match; otherwise returns the values
+    - `fixed = FALSE` - by default treats pattern as regular expression; otherwise will match exact
+    - `invert = FALSE` - by default matches the pattern; otherwise returns what is not matched
+
+
+```r
+strings &lt;- c('abcd', 'dabc', 'abcabc')
+pattern &lt;- '^abc'
+print (grep(pattern, strings))
+```
+
+```
+## [1] 1 3
+```
+
+.small[`grepl()` - grep logical, returns a vector of the same length as a string, with TRUE/FALSE pattern matching]
+
+---
+## Regular expressions
+
+Some useful regular expression operators include:
+
+| Expression | Description                                                                                                                                     |
+|:----------:|-------------------------------------------------------------------------------------------------------------------------------------------------|
+|     []     | Matches a set. [abc] matches a, b, or c. [a-zA-Z] matches any letter. [0-9] matches any number. “^” negates a set, [^abc] matches d, e, f, etc. |
+|      ^     | Starting position anchor. ^abc finds lines starting with abc                                                                                    |
+|      \$     | Ending position anchor. xyz\$ finds lines ending with xyz                                                                                        |
+|      \\     | Escape symbol, to find special characters. \\\* will find \*. \\n matches new line character, \\t – tab character                                  |
+|      \*     | Match the preceding element zero or more times. a\*b matches ab, aab, aaab, etc.                                                                 |
+
+---
+## Extended regular expressions
+
+| Expression | Description                                                                    |
+|:----------:|--------------------------------------------------------------------------------|
+|      ?     | Matches the preceding element zero or one time. a*b matches b, ab, but not aab |
+|      +     | Matches the preceding element one or more times. a+b matches ab, aab, etc.     |
+|      &amp;#124;     | OR operator. "abc&amp;#124;def" matches abc or def                                      |
+|   .	       | Any character |
+
+---
+## Special characters
+
+| Expression | Description  |
+|:----------:|--------------|
+|   \\n       | Newline      |
+|   \\r       | Return       |
+|   \\t       | Tab          |
+
+.small[https://www.regular-expressions.info/refcharacters.html
+
+Online preview: https://regexr.com/]
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
