@@ -272,7 +272,7 @@ Some useful regular expression operators include:
 |:----------:|-------------------------------------------------------------------------------------------------------------------------------------------------|
 |     []     | Matches a set. [abc] matches a, b, or c. [a-zA-Z] matches any letter. [0-9] matches any number. “^” negates a set, [^abc] matches d, e, f, etc. |
 |      ^     | Starting position anchor. ^abc finds lines starting with abc                                                                                    |
-|      \$     | Ending position anchor. xyz\$ finds lines ending with xyz                                                                                        |
+|      "$"     | Ending position anchor. xyz"$" finds lines ending with xyz. Remove quotes                                                                                        |
 |      \\     | Escape symbol, to find special characters. \\\* will find \*. \\n matches new line character, \\t – tab character                                  |
 |      \*     | Match the preceding element zero or more times. a\*b matches ab, aab, aaab, etc.                                                                 |
 
@@ -295,8 +295,8 @@ Some useful regular expression operators include:
 |   \\r       | Return       |
 |   \\t       | Tab          |
 
-.small[https://www.regular-expressions.info/refcharacters.html
+https://www.regular-expressions.info/refcharacters.html
 
-Online preview: https://regexr.com/]
+Online preview: https://regexr.com/
 
-
+Play Regex Golf: https://alf.nu/RegexGolf
