@@ -47,4 +47,4 @@ editor_options:
 
 3. Set a seed to ensure reproducibility. Then, generate n=100 random variables from an Exponential distribution with lambda=5 parameter. Plot the empirical CDF (cumulative distribution function) of this data with informative axes labels. Make a really long title - so long that you must use a special character to get the title to go on two lines.
 
-- Submit your homework as an RMarkdown document (the `LASTNAME-FIRSTNAME-HW02.Rmd` file), as well as knitted PDF or Word document (the `LASTNAME-FIRSTNAME-HW02.pdf` file). Make sure that the knitted version shows both the code chunks and their output.
+- Submit your homework as a<!--n RMarkdown document (the `LASTNAME-FIRSTNAME-HW02.Rmd` file), as well as knitted--> PDF or Word document (the `LASTNAME-FIRSTNAME-HW03.docx` file).<!-- Make sure that the knitted version shows both the code chunks and their output.-->
