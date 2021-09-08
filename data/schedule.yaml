@@ -20,6 +20,18 @@ lessons:
     assignment: "03-problem-set"
     class: "03-class"
 
+  - title: "**Tidyverse, dplyr, data manipulation**"
+    # date: "September 22"
+    # # reading: "05-reading"
+    # assignment: "07-problem-set"
+    # class: "07-class"
+
+  - title: "**Tidyverse, ggplot2, data visualization**"
+    # date: "September 27"
+    # # reading: "05-reading"
+    # assignment: "08-problem-set"
+    # class: "08-class"
+
   - title: '**R in command line, Unix, text manupulation with regular expressions**'
     # date: "September 1, 8"
     # # reading: "03-reading"
@@ -43,18 +55,6 @@ lessons:
     # # reading: "05-reading"
     # assignment: "05-problem-set"
     # class: "05-class"
-
-  - title: "**Tidyverse, dplyr, data manipulation**"
-    # date: "September 22"
-    # # reading: "05-reading"
-    # assignment: "07-problem-set"
-    # class: "07-class"
-
-  - title: "**Tidyverse, ggplot2, data visualization**"
-    # date: "September 27"
-    # # reading: "05-reading"
-    # assignment: "08-problem-set"
-    # class: "08-class"
 
   - title: "**Version control using Git/GitHub**"
     # date: "September 29"
