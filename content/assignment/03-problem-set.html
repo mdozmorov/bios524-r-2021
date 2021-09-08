@@ -1,0 +1,63 @@
+---
+title: "Assignment 3: R base graphics, statistical functions"
+date: "2020-09-08"
+due_date: "2020-09-15"
+due_time: "5:00 PM"
+menu:
+  assignment:
+    parent: Assignments
+    weight: 3
+type: docs
+weight: 1
+output:
+  blogdown::html_page:
+    toc: false
+editor_options: 
+  chunk_output_type: console
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="to-do-yourself" class="section level1">
+<h1>To do yourself</h1>
+<ul>
+<li><p>Subscribe to <a href="https://www.r-bloggers.com/">R-bloggers</a> mailing list or RSS feed</p></li>
+<li><p>Watch playlists/videos from <a href="https://www.youtube.com/channel/UC73v_zCdNE2aZrFZsG22JBw/playlists">Brooke Anderson’s channel</a>, as well as her <a href="https://geanders.github.io/RProgrammingForResearch/">R Programming for Research</a> course</p></li>
+<li><p>Install <a href="https://swirlstats.com/students.html">swirl</a> R package</p>
+<ul>
+<li>For statistical functions, install and run “Statistical Inference”, “Regression Models” courses (<a href="https://github.com/swirldev/swirl_courses#install-and-run-a-course-automatically-from-swirl">Installation instructions</a>)</li>
+<li>Explore <a href="https://swirlstats.com/scn/title.html">other swirl courses</a></li>
+</ul></li>
+<li><p><a href="https://geanders.github.io/RProgrammingForResearch/exploring-data-3.html">Statistical functions</a></p></li>
+<li><p><a href="https://geanders.github.io/RProgrammingForResearch/entering-and-cleaning-data-1.html">read.table, readr, Excel, SAS, SPSS, file/folder structure/paths</a></p></li>
+<li><p>Download or clone the <a href="https://github.com/clayford/RGraphics">RGraphics</a> repository, and run through code in the <a href="https://raw.githubusercontent.com/clayford/RGraphics/master/R_graphics_workshop.R">R_graphics_workshop.R</a> until <code>ggplot2</code> part (line 440)</p></li>
+</ul>
+</div>
+<div id="to-submit-on-blackboard-due-10-06-2020-500pm" class="section level1">
+<h1>To submit on blackboard, due 10-06-2020, 5:00pm</h1>
+<ol style="list-style-type: decimal">
+<li>Install package “babynames”. Include your code and results to answer the following questions:</li>
+</ol>
+<ul>
+<li>How many values are in the <code>babynames</code> object?<br />
+</li>
+<li>What their data types?</li>
+<li>Using base graphics, plot the proportion of your name usage vs. year. Choose closest or random name, if your exact spelling is not available. Make plots using points, lines, barplots. Add color.</li>
+<li>What is the most and least popular names starting with the first letter of your name (or second, third, etc., if no match with the first letter) and matching your sex? (Hint: Use <code>agrep</code> function to find the closest match to your name if the perfect match cannot be found)</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Load in the ToothGrowth dataset, which comes with R.<br />
+</li>
+</ol>
+<ul>
+<li>Produce a boxplot of the tooth length variable, with x- and y-axis labels as well as a title.<br />
+</li>
+<li>Change the graphics parameters to a window of one row and two columns of plots. Then, populate the first one with a scatterplot of dose on the x-axis and length on the y-axis, only using observations with a VC supplement type. Populate the second one with a scatterplot of dose on the x-axis and length on the y-axis, only using observations with an OJ supplement type. Provide informative axis labels. Use filled-in circles as the plotting character in the first plot, and filled-in triangles as the plotting character in the second plot.<br />
+</li>
+<li>Fit a linear regression model of tooth length on the variables ‘supp’ and ‘dose’. Change the graphics parameters back to just one plot, not several. Plot <em>only</em> the QQ-plot of residuals from this regression model, filled in with blue circles.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Set a seed to ensure reproducibility. Then, generate n=100 random variables from an Exponential distribution with lambda=5 parameter. Plot the empirical CDF (cumulative distribution function) of this data with informative axes labels. Make a really long title - so long that you must use a special character to get the title to go on two lines.</li>
+</ol>
+</div>

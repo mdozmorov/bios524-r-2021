@@ -1,14 +1,14 @@
 ---
 title: "Assignment 3: R base graphics, statistical functions"
-date: "2020-09-29"
-due_date: "2020-10-06"
+date: "2020-09-08"
+due_date: "2020-09-15"
 due_time: "5:00 PM"
-# menu:
-#   assignment:
-#     parent: Assignments
-#     weight: 3
-# type: docs
-# weight: 1
+menu:
+  assignment:
+    parent: Assignments
+    weight: 3
+type: docs
+weight: 1
 output:
   blogdown::html_page:
     toc: false
@@ -34,11 +34,12 @@ editor_options:
 
 # To submit on blackboard, due 10-06-2020, 5:00pm
 
-1. Install package "babynames"  
+1. Install package "babynames". Include your code and results to answer the following questions:
   - How many values are in the `babynames` object?  
-  - What their data types?  
-  - Get an overview of `babynames`  
-  - Plot the proportion of your name usage vs. year. Choose closest or random name, if your exact spelling is not available  
+  - What their data types? 
+  - Using base graphics, plot the proportion of your name usage vs. year. Choose closest or random name, if your exact spelling is not available. Make plots using points, lines, barplots. Add color.
+  - What is the most and least popular names starting with the first letter of your name (or second, third, etc., if no match with the first letter) and matching your sex? (Hint: Use `agrep` function to find the closest match to your name if the perfect match cannot be found)
+
 
 2. Load in the ToothGrowth dataset, which comes with R.  
   - Produce a boxplot of the tooth length variable, with x- and y-axis labels as well as a title.  
@@ -46,3 +47,4 @@ editor_options:
   - Fit a linear regression model of tooth length on the variables 'supp' and 'dose'. Change the graphics parameters back to just one plot, not several. Plot *only* the QQ-plot of residuals from this regression model, filled in with blue circles. 
 
 3. Set a seed to ensure reproducibility. Then, generate n=100 random variables from an Exponential distribution with lambda=5 parameter. Plot the empirical CDF (cumulative distribution function) of this data with informative axes labels. Make a really long title - so long that you must use a special character to get the title to go on two lines.
+
