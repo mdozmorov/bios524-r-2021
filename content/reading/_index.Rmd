@@ -10,7 +10,7 @@ weight: 1
 
 - Class-specific reading assignments will be posted under the [Assignments](/assignment/) section following each class session
 
-- See ["Data science in R notes"](https://github.com/mdozmorov/R_notes) GitHub repository for more resources
+- See [R notes](https://github.com/mdozmorov/R_notes) and ["Data science in R notes"](https://github.com/mdozmorov/R_notes) GitHub repositories for more resources
 
 ## R
 
