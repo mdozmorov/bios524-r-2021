@@ -14,11 +14,17 @@ lessons:
     assignment: "02-problem-set"
     class: "02-class"
 
-  - title: '**R base graphics, statistical functions**'
+  - title: '**R base graphics, statistical functions, text manupulation basics**'
     date: "September 1"
     # reading: "03-reading"
     assignment: "03-problem-set"
     class: "03-class"
+
+  - title: '**Literate programming with RMarkdown/KnitR, BibTex, Reproducible presentations**'
+    # date: "September 13"
+    # # reading: "04-reading"
+    # assignment: "04-problem-set"
+    # class: "04-class"
 
   - title: "**Tidyverse, dplyr, data manipulation**"
     # date: "September 22"
@@ -32,7 +38,7 @@ lessons:
     # assignment: "08-problem-set"
     # class: "08-class"
 
-  - title: '**R in command line, Unix, text manupulation with regular expressions**'
+#  - title: '**R in command line, Unix, text manupulation with regular expressions**'
     # date: "September 1, 8"
     # # reading: "03-reading"
     # assignment: "03-problem-set"
@@ -43,12 +49,6 @@ lessons:
     # # reading: "05-reading"
     # assignment: "06-problem-set"
     # class: "06-class"
-
-  - title: '**Literate programming with RMarkdown/KnitR, BibTex, Reproducible presentations**'
-    # date: "September 13"
-    # # reading: "04-reading"
-    # assignment: "04-problem-set"
-    # class: "04-class"
 
   - title: "**Data management/code best practices**"
     # date: "September 15"
