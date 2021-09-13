@@ -20,11 +20,11 @@ lessons:
     assignment: "03-problem-set"
     class: "03-class"
 
-  - title: '**Literate programming with RMarkdown/KnitR, BibTex, Reproducible presentations**'
-    # date: "September 13"
-    # # reading: "04-reading"
+  - title: '**Reproducible reports with Markdown, knitr, BibTex, MathJax**'
+    date: "September 13"
+    # reading: "04-reading"
     # assignment: "04-problem-set"
-    # class: "04-class"
+    class: "04-class"
 
   - title: "**Tidyverse, dplyr, data manipulation**"
     # date: "September 22"
