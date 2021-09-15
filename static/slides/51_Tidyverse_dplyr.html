@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Tidyverse, data manipulation</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Mikhail Dozmorov" />
+    <script src="libs/header-attrs-2.9/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="xaringan-my.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Tidyverse, data manipulation
+### Mikhail Dozmorov
+### Virginia Commonwealth University
+### 09-15-2021
+
+---
+
+
+
+
+## Tidyverse
+
+.center[&lt;img src="img/tidyverse-packages.png" height=430 &gt;]
+
+.small[ https://www.tidyverse.org/ 
+
+https://education.rstudio.com/blog/2020/07/teaching-the-tidyverse-in-2020-part-1-getting-started/]
+
+---
+## Tidyverse
+
+The `tidyverse` is a collection of packages based on [four principles](https://tidyverse.tidyverse.org/articles/manifesto.html) for handling data:
+
+1. Reuse existing data structures
+2. Compose simple functions with **the pipe %&gt;%**
+3. Embrace functional programming
+4. Design for humans
+
+The R project for Statistical Computing was built for a different age; the tidyverse is a collection of tools for *our* age
+
+.small[ [The tidy tools manifesto](https://tidyverse.tidyverse.org/articles/manifesto.html) ]
+
+---
+## Tidyverse core packages
+
+- **ggplot2** - data visualisation
+- **dplyr** - data wrangling
+- **readr** - reading data
+- **tibble** - modern data frames
+- **stringr** - string manipulation
+- **forcats** - dealing with factors
+- **tidyr** - data tidying
+- **purrr** - functional programming
+
+Each tidyverse package has a website at [PKGNAME].tidyverse.org, check https://ggplot2.tidyverse.org
+
+.small[ https://www.tidyverse.org/packages/#core-tidyverse ]
+
+---
+class: center, middle
+
+# Reading in data
+
+---
+## Base R functions for read-write the data
+
+- `scan()` - Read data into a vector or list from the console or file
+
+- `read.table()`, `read.csv()`, `read.delim()` - Reads a file in table format and creates a data frame from it, with cases corresponding to lines and variables to fields in the file
+
+- `write.table()`, `write.csv()` - Saves the object (data.frame) to a file
+
+- `?data.table::fread` for very fast data read into R
+
+- "File -&gt; Import Dataset" in RStudio
+
+---
+## readr
+
+- There are some built-in functions for reading in data in text files. These functions are _read-dot-something_, for example, `read.csv()` reads in comma-delimited text data; `read.delim()` reads in tab-delimited text, etc. 
+
+- `readr` package provides fast and intelligent data reading capabilities. Very similar looking functions, named _read-underscore-something_ -- e.g., `read_csv()`
+
+- They're good at guessing the types of data in the columns, they don't do some of the other silly things that the base functions do
+
+- Play nicely with `dplyr` - data manipulation package
+
+.small[ http://readr.tidyverse.org/ ]
+
+---
+## tibbles
+
+Data frames are great! Except for 
+
+- printing them
+- working with both characters and factors
+- manipulating multiple columns
+- ~~You need to remember to set `options(stringsAsFactors = FALSE)`~~ [Not needed from R v.4.0.0](https://stackoverflow.com/questions/61536155/r-4-0-0-and-stringsasfactors)
+- If you want a one-collumn data frame, you need to use `dat[, "column1", drop = FALSE]`
+
+tibbles are the data frame alternative simplifying work with data frame-like objects
+
+.small[https://tibble.tidyverse.org/]
+
+---
+## tibbles
+
+- A `tibble`, or `tbl_df`, is a modern reimagining of the `data.frame`, keeping what time has proven to be effective, and throwing out what is not
+
+- Tibbles are `data.frames` that are lazy and surly: they do less (i.e., they don't change variable names or types, and don't do partial matching) and complain more (e.g., when a variable does not exist)
+
+- This forces you to confront problems earlier, typically leading to cleaner, more expressive code. Tibbles also have an enhanced `print` method which makes them easier to use with large datasets containing complex objects
+    - Hadley Wickham, Chief Scientist at RStudio 
+
+- `glimpse()` into tibble, analog of `str()`
+
+---
+##  Making the data tidy with `tidyr`
+
+- Principles of tidy data
+    - Each _column_ is a _variable_
+    - Each _row_ is an _observation_
+
+.center[&lt;img src="img/tidy_data.png" width = 500&gt;]
+
+.small[ Tidy data paper, http://www.jstatsoft.org/v59/i10/paper ]
+
+---
+##  Making the data tidy with `tidyr`
+
+- Principles of tidy data
+    - Each _column_ is a _variable_
+    - Each _row_ is an _observation_
+
+.center[&lt;img src="img/tidyr-longer-wider-modified.gif" width = 300&gt;]
+
+.small[ https://twitter.com/dataandme/status/1175010415341985793?s=20 ]
+
+---
+##  Making the data tidy with `tidyr`
+
+- `tidyr` - flexible data reshaping
+    - `pivot_longer()` -  "lengthens" data, increasing the number of rows and decreasing the number of columns
+    - `pivot_wider()` - "widens" data, increasing the number of columns and decreasing the number of rows
+
+Example of converting the wide data into tidy data
+
+.center[&lt;img src="img/tidy_data.png" width = 500&gt;]
+
+.small[ https://tidyr.tidyverse.org/index.html, vignette("tidy-data"), vignette("pivot") ]
+
+
+---
+class: center, middle
+
+# Data manipulation with dplyr
+
+---
+## Why not base R data subsetting?
+
+- Bracket subsetting is useful but can be difficult to read
+
+- Various ways of subsetting (by index, names, dollar sign) make interpretation less intuitive
+
+---
+## dplyr: data manipulation with R
+
+80% of your work will be data preparation
+
+- getting data (from databases, spreadsheets, flat-files)
+
+- performing exploratory/diagnostic data analysis
+
+- reshaping data
+
+- visualizing data
+
+---
+## dplyr: data manipulation with R
+
+80% of your work will be data preparation
+
+- Filtering rows (to create a subset)
+
+- Selecting columns of data (i.e., selecting variables)
+
+- Adding new variables
+
+- Sorting
+
+- Aggregating 
+
+- Joining
+
+---
+## dplyr: A grammar of data manipulation
+
+- The `dplyr` package gives you a handful of useful **verbs** for managing data. On their own they don't do anything that base R can't do
+
+- Basic `dplyr` verbs
+    - `filter()`
+    - `select()`
+    - `mutate()`
+    - `arrange()`
+    - `summarize()`
+    - `group_by()`
+
+- They all take a data frame or tibble as their input for the first argument, and they all return a data frame or tibble as output
+
+.small[ https://dplyr.tidyverse.org/ ]
+
+---
+## The pipe %&gt;% operator
+
+- Pipe `%&gt;%` output of one command into an input of another command - chain commands together. (Think about the "|" operator in Linux)
+- Imported from `magrittr` package
+- Read as "then". Take the dataset (or object), _then_ do ...
+
+
+```r
+library(dplyr)
+round( sqrt(1000), 3)
+```
+
+```
+## [1] 31.623
+```
+
+```r
+1000 %&gt;% sqrt %&gt;% round(., 3)
+```
+
+```
+## [1] 31.623
+```
+
+---
+## The pipe %&gt;% operator
+
+- For example, we can view the head of the `diamonds` data.frame using either of the last two lines of code here:
+
+
+```r
+library(dplyr)
+library(ggplot2)
+data(diamonds)
+# glimpse(diamonds)
+diamonds %&gt;% glimpse()
+```
+
+
+```
+## # A tibble: 6 x 10
+##   carat cut       color clarity depth table price     x     y     z
+##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+## 2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+## 3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+## 4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+## 5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+## 6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
+```
+
+---
+## The pipe %&gt;% operator
+
+For example, read the last line of code as: "Take the `price` column of the `diamonds` data.frame and _then_ summarize it"
+    
+
+```r
+library(dplyr)
+data(diamonds)
+head(diamonds)
+diamonds %&gt;% head
+summary(diamonds$price)
+diamonds$price %&gt;% summary(object = .)
+```
+
+- (Ctrl/CMD)+SHIFT+M - a shortcut to insert the `%&gt;%` sequence - you can see what it is by clicking the _Tools_ menu in RStudio, then selecting _Keyboard Shortcut Help_
+- On Mac, it's CMD-SHIFT-M
+
+---
+## dplyr::filter()
+
+If you want to filter **rows** of the data where some condition is true, use the `filter()` function. 
+
+1. The first argument is the data frame you want to filter, e.g. `filter(mydata, ...`.
+2. The second argument is a condition you must satisfy, e.g. `filter(ydat, symbol == "LEU1")`. If you want to satisfy *all* of multiple conditions, you can use the "and" operator, `&amp;`. The "or" operator `|` (the pipe character, usually shift-backslash) will return a subset that meet *any* of the conditions.
+
+- `==`: Equal to
+- `!=`: Not equal to
+- `&gt;`, `&gt;=`: Greater than, greater than or equal to
+- `&lt;`, `&lt;=`: Less than, less than or equal to
+
+---
+## dplyr::filter()
+
+For example, keep only the entries with Ideal cut
+
+
+```r
+df.diamonds_ideal &lt;- filter(diamonds, cut == "Ideal")
+df.diamonds_ideal
+```
+
+```
+## # A tibble: 21,551 x 10
+##    carat cut   color clarity depth table price     x     y     z
+##    &lt;dbl&gt; &lt;ord&gt; &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  0.23 Ideal E     SI2      61.5    55   326  3.95  3.98  2.43
+##  2  0.23 Ideal J     VS1      62.8    56   340  3.93  3.9   2.46
+##  3  0.31 Ideal J     SI2      62.2    54   344  4.35  4.37  2.71
+##  4  0.3  Ideal I     SI2      62      54   348  4.31  4.34  2.68
+##  5  0.33 Ideal I     SI2      61.8    55   403  4.49  4.51  2.78
+##  6  0.33 Ideal I     SI2      61.2    56   403  4.49  4.5   2.75
+##  7  0.33 Ideal J     SI1      61.1    56   403  4.49  4.55  2.76
+##  8  0.23 Ideal G     VS1      61.9    54   404  3.93  3.95  2.44
+##  9  0.32 Ideal I     SI1      60.9    55   404  4.45  4.48  2.72
+## 10  0.3  Ideal I     SI2      61      59   405  4.3   4.33  2.63
+## # … with 21,541 more rows
+```
+
+---
+## dplyr::filter()
+
+We can achieve this same result using the `%&gt;%` operator
+
+
+```r
+diamonds %&gt;% head
+df.diamonds_ideal &lt;- filter(diamonds, cut == "Ideal")
+df.diamonds_ideal &lt;- diamonds %&gt;% filter(cut == "Ideal")
+```
+
+---
+## dplyr::select()
+
+- The `filter()` function allows you to return only certain _rows_ matching a condition. The `select()` function returns only certain _columns_. The first argument is the data, and subsequent arguments are the columns you want.
+    - Syntax: `select(data, columns)`
+
+
+```r
+df.diamonds_ideal %&gt;% head
+select(df.diamonds_ideal, carat, cut, color, price, clarity)
+df.diamonds_ideal &lt;- df.diamonds_ideal %&gt;% select(., carat, cut, color, price, clarity)
+```
+
+---
+## dplyr::mutate()
+
+- The `mutate()` function adds new columns to the data that are functions of old columns
+
+- It doesn't actually modify the data frame you're operating on, and the result is transient unless you assign it to a new object or reassign it back to itself (generally, not a good practice)
+    - Syntax: `mutate(data, new_column = function(old_columns))`
+
+
+```r
+df.diamonds_ideal %&gt;% head
+mutate(df.diamonds_ideal, price_per_carat = price/carat)
+df.diamonds_ideal &lt;- df.diamonds_ideal %&gt;% mutate(price_per_carat = price/carat)
+```
+
+---
+## dplyr::arrange()
+
+- The `arrange()` function does what it sounds like - sorts things
+
+- It takes a `data.frame` or `tbl_df` and arranges (or sorts) by column(s) of interest
+
+- The first argument is the data, and subsequent arguments are columns to sort on. Use the `desc()` function to arrange by descending
+    - Syntax: `arrange(data, column_to_sort_by)`
+
+
+```r
+df.diamonds_ideal %&gt;% head
+arrange(df.diamonds_ideal, price)
+df.diamonds_ideal %&gt;% arrange(price, price_per_carat)
+```
+
+---
+## dplyr::summarize()
+
+- The `summarize()` function summarizes multiple values to a single value
+
+- The power of `summarize()` comes from a few convenience functions called `n()` and `n_distinct()` that tell you the number of observations or the number of distinct values of a particular variable.
+    - Syntax: `summarize(function_of_variables)`
+
+
+```r
+summarize(df.diamonds_ideal, length = n(), avg_price = mean(price))
+df.diamonds_ideal %&gt;% summarize(length = n(), avg_price = mean(price))
+```
+
+---
+## dplyr::group_by()
+
+- Summarize *subsets of* columns by custom summary statistics
+
+- Syntax: `group_by(data, column_to_group)`
+
+
+```r
+group_by(diamonds, cut) %&gt;% summarize(mean(price))
+group_by(diamonds, cut, color) %&gt;% summarize(mean(price))
+```
+
+---
+## The power of pipe %&gt;%
+
+- Summarize *subsets of* columns by custom summary statistics
+
+
+```r
+arrange(mutate(arrange(filter(tbl_df(diamonds), cut == "Ideal"), price),
+  price_per_carat = price/carat), price_per_carat)
+arrange(
+  mutate(
+    arrange(
+      filter(tbl_df(diamonds), cut == "Ideal"), 
+    price), 
+  price_per_carat = price/carat), 
+price_per_carat)
+diamonds %&gt;% filter(cut == "Ideal") %&gt;% arrange(price) %&gt;%
+  mutate(price_per_carat = price/carat) %&gt;% arrange(price_per_carat)
+```
+
+---
+## Counting
+
+- Count number of observations found for each factor or combination of factors
+
+
+```r
+diamonds %&gt;% count(cut, sort = TRUE)
+```
+
+```
+## # A tibble: 5 x 2
+##   cut           n
+##   &lt;ord&gt;     &lt;int&gt;
+## 1 Ideal     21551
+## 2 Premium   13791
+## 3 Very Good 12082
+## 4 Good       4906
+## 5 Fair       1610
+```
+
+
+```r
+diamonds %&gt;% group_by(cut) %&gt;% summarise(count = n()) %&gt;% arrange(desc(count))
+```
+
+```
+## # A tibble: 5 x 2
+##   cut       count
+##   &lt;ord&gt;     &lt;int&gt;
+## 1 Ideal     21551
+## 2 Premium   13791
+## 3 Very Good 12082
+## 4 Good       4906
+## 5 Fair       1610
+```
+
+
+---
+## Joining data frames
+
+- `inner_join(x, y)`: Keep only rows where there are observations in both `x` and `y`
+- `left_join(x, y)`: Keep all rows from `x`, whether they have a match in `y` or not (unmatched rows are filled with NAs)
+- `right_join(x, y)`: Keep all rows from `y`, whether they have a match in `x` or not
+- `full_join(x, y)`: Keep all rows from both `x` and `y`, whether they have a match in the other dataset or not
+
+.small[ Review https://ready4r.netlify.app/labbook/part-5-doing-useful-things-with-multiple-tables.html#joining-tables ]
+
+---
+## Working with factors tidyverse way
+
+`library(forcats)`
+
+- `fct_rev()` - Reverse order of factor levels
+
+- `fct_reorder()` - Reordering a factor by another variable
+
+- `fct_collapse()` - Collapse multiple categories into one category
+
+- `fct_lump()` - Collapsing the least/most frequent values of a factor into “other”
+
+- `fct_infreq()` - Reordering a factor by the frequency of values
+
+- `fct_relevel()` - Changing the order of a factor by hand
+
+.small[ https://forcats.tidyverse.org/ ]
+
+---
+## But wait... There's more
+
+- [tidymodels](https://www.tidymodels.org/start/) - a collection of packages for statistical inference, modeling and machine learning using tidyverse principles.
+
+- [rvest](https://rvest.tidyverse.org) - scrape (or harvest) data from web pages.
+
+- [dbplyr](https://dbplyr.tidyverse.org/articles/dbplyr.html) and [dtplyr](https://dtplyr.tidyverse.org/articles/translation.html) - two packages that provide interfaces for translations between dplyr and SQL and data.table code
+
+---
+## Useful links
+
+[Data Transformation Cheat Sheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf) - dplyr grammar
+
+- Teaching the Tidyverse in 2020, by Mine Çetinkaya-Rundel. [Part 1](https://education.rstudio.com/blog/2020/07/teaching-the-tidyverse-in-2020-part-1-getting-started/), [Part 3](https://education.rstudio.com/blog/2020/07/teaching-the-tidyverse-in-2020-part-3-data-wrangling-and-tidying/), [Part 4](https://education.rstudio.com/blog/2020/07/teaching-the-tidyverse-in-2020-part-4-when-to-purrr/)
+
+- [Teaching the Tidyverse in 2021](https://www.tidyverse.org/blog/2021/08/teach-tidyverse-2021/), by Mine Çetinkaya-Rundel. 
+
+- [Tidy Animated Verbs](https://www.garrickadenbuie.com/project/tidyexplain/)
+
+- [Reshaping the data](https://uclouvain-cbio.github.io/WSBIM1207/sec-dplyr.html#reshaping-data)
+
+---
+## Next up
+
+[Join](https://github.com/rstudio-education/remaster-the-tidyverse/tree/master/Data-Wrangling-With-The-Tidyverse/keynotes) from [Remaster the Tidyverse](https://github.com/rstudio-education/remaster-the-tidyverse) class materials built by Garrett Grolemund
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

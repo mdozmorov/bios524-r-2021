@@ -29,3 +29,5 @@ editor_options:
 ```{r echo=FALSE}
 knitr::include_url('../../slides/51_Tidyverse_dplyr.html#1')
 ```
+
+<a href="../../slides/51_dplyr.R" target="_blank">dplyr.R example code</a>
