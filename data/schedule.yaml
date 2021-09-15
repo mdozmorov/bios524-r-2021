@@ -27,10 +27,10 @@ lessons:
     class: "04-class"
 
   - title: "**Tidyverse, dplyr, data manipulation**"
-    # date: "September 22"
-    # # reading: "05-reading"
-    # assignment: "07-problem-set"
-    # class: "07-class"
+    date: "September 15"
+    # reading: "05-reading"
+    assignment: "04-problem-set"
+    class: "05-class"
 
   - title: "**Tidyverse, ggplot2, data visualization**"
     # date: "September 27"
