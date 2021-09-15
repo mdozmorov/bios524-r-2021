@@ -1,7 +1,7 @@
 ---
 title: "Assignment 4: RMarkdown"
 date: "2021-09-15"
-due_date: "2021-09-21"
+due_date: "2021-09-22"
 due_time: "5:00 PM"
 menu:
   assignment:
@@ -20,7 +20,7 @@ editor_options:
 
 -   [RMarkdown, knitr, best code practices](https://geanders.github.io/RProgrammingForResearch/reproducible-research-1.html)
 
-# To submit on blackboard, due 09-21-2021, 5:00pm
+# To submit on blackboard, due 09-22-2021, 5:00pm
 
 First, create an R Markdown document in which you will complete this assignment. Demonstrate your knowledge of R Markdown in the following ways:
 
