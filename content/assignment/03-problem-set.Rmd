@@ -35,10 +35,10 @@ editor_options:
 # To submit on blackboard, due 10-06-2020, 5:00pm
 
 1. Install package "babynames". Include your code and results to answer the following questions:
-  - How many values are in the `babynames` object?  
+  - How many variables are in the `babynames` object?  
   - What their data types? 
   - Using base graphics, plot the proportion of your name usage vs. year. Choose closest or random name, if your exact spelling is not available. Make plots using points, lines, barplots. Add color.
-  - What is the most and least popular names starting with the first letter of your name (or second, third, etc., if no match with the first letter) and matching your sex? (Hint: Use `agrep` function to find the closest match to your name if the perfect match cannot be found)
+  - What is the most and least popular names starting with the first letter of your name (or second, third, etc., if no match with the first letter) and matching your sex? How is your name matches within this ranking (approximately)? (Hint: Use `agrep` function to find the closest match to your name if the perfect match cannot be found)
 
 2. Load in the ToothGrowth dataset, which comes with R.  
   - Produce a boxplot of the tooth length variable, with x- and y-axis labels as well as a title.  
