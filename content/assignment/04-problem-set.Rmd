@@ -3,12 +3,12 @@ title: "Assignment 4: RMarkdown"
 date: "2020-10-10"
 due_date: "2020-10-08"
 due_time: "5:00 PM"
-# menu:
-#   assignment:
-#     parent: Assignments
-#     weight: 4
-# type: docs
-# weight: 1
+menu:
+  assignment:
+    parent: Assignments
+    weight: 4
+type: docs
+weight: 1
 output:
   blogdown::html_page:
     toc: false
