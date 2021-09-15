@@ -1,0 +1,75 @@
+---
+title: "Final Project"
+date: "2021-10-13"
+due_date: "2021-10-27"
+due_time: "05:00 PM"
+menu:
+  assignment:
+    parent: Assignments
+    weight: 11
+type: docs
+weight: 1
+output:
+  blogdown::html_page:
+    toc: false
+editor_options: 
+  chunk_output_type: console
+---
+
+# Overview
+
+The final project will consist of analysis on a dataset of your own choice. The goal of this project is for you to demonstrate that you are proficient at asking meaningful statistical questions and answering them with results and visualization of data analysis. You should demonstrate that you are proficient in using R, and that you are proficient at interpreting and presenting the results. Also, critique the data and your own methods and provide suggestions for improving your analysis. 
+
+# Data
+
+The dataset may already exist, or you may collect your own data using a survey or by conducting an experiment. Discuss the dataset with your teammate. You can choose the data based on your interests or based on work in other courses or research projects. Use [Data_notes](https://github.com/mdozmorov/Data_notes) to help with your dataset search. Your dataset must have at least 50 observations and between 10 to 20 variables (exceptions can be made but you must speak with me first). The dataset’s variables should include categorical variables and continuous numerical variables. Do not reuse datasets used in class or homework assignments.
+
+# Proposal (Announcemed 2021-09-15, due 2021-09-29)
+
+- Find a teammate and work together - the goal is for you to learn and share experiences with your peer. Contact me if you need help finding a partner or want to work alone.
+
+Submit a brief description of your proposed project. Include:
+
+- Names of team members
+- Introduction, introduce your dataset and general research questions.
+- Data, where it came from, how it was collected, what are the cases, what are the variables, etc.
+- Analysis plan, what (outcome/response) variables you will use to answer your questions. What comparison groups you will use, if applicable. What statistical methods are needed to support your research? How you plan to visualize your results?
+
+# Components
+
+Make functions that perform data analysis and visualization. As an input, your functions should accept your dataset and some arguments. As an output, a function should produce meaningful statistical output and/or visualization. Make your functions general purpose, where possible, e.g., depending on input variables, a function may produce different test results or visualizations.
+
+Make a package that includes your functions. Your package should be installable from Github. Document your functions using Roxygen syntax. Use `tidyverse` packages where possible.
+
+Create functions that demonstrate:
+
+- Download/read in your dataset
+- Summary of your dataset 
+- Statistical functions (e.g., differential tests, regression)
+- Visualization (e.g., histograms, scatterplots with fit lines, )
+
+Create a RMarkdown document that demonstrate the use of your functions to analyze your dataset. 
+
+# Reporting
+
+- Submit an RMarkdown document demonstrating the loading of your package, data, and the use of your functions. Include the link to your GitHub package repository. Note that both teammembers should have contributed to this repository. The document must be knittable on any computer.
+- Submit a compiled PDF version of the document.
+
+# Grading
+
+Your project will be assessed on the following criteria:
+
+- **Code** - Does the package installs without errors? Does the RMarkdown document compiles on a local machine? Is the code sufficiently commented?
+- **Content** - What is the quality of research and/or policy question and relevancy of data to those questions?
+- **Correctness** - Are statistical procedures carried out and explained correctly?
+- **Writing and Presentation** - What is the quality of the statistical explanations, writing, and visualization?
+- **Creativity and Critical Thought** - Is the project carefully thought out? Are the limitations carefully considered? Does it appear that time and effort went into the planning and implementation of the project?
+
+A general breakdown of scoring is as follows:
+
+- 90%-100% - Outstanding effort. Students understand how to apply all statistical concepts, can put the results into a cogent argument, can identify weaknesses in the arguments, and can clearly communicate the results to others.
+- 80%-89% - Good effort. Students understand most of the concepts, puts together an adequate arguments, identifies some weaknesses of their argument, and communicates most results clearly to others.
+- 70%-79% - Passing effort. Students have misunderstanding of concepts in several areas, have some omissions putting results together in a cogent argument, and communication of results is sometimes unclear.
+- 60%-69% - Struggling effort. Students are making some efforts, but have misunderstanding of many concepts and are unable to put together a cogent argument. Communication of results is unclear.
+- Below 60% - Students are not making a sufficient effort.
+
