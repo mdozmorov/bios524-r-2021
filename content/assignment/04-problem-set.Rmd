@@ -14,41 +14,48 @@ output:
     toc: false
 editor_options: 
   chunk_output_type: console
-
 ---
 
 # To do yourself
 
-- [RMarkdown, knitr, best code practices](https://geanders.github.io/RProgrammingForResearch/reproducible-research-1.html)
+-   [RMarkdown, knitr, best code practices](https://geanders.github.io/RProgrammingForResearch/reproducible-research-1.html)
 
-- [RStudio v1.4 Preview: Visual Markdown Editing](https://blog.rstudio.com/2020/09/30/rstudio-v1-4-preview-visual-markdown-editing/)
-
-# To submit on blackboard, due 10-08-2020, 5:00pm
+# To submit on blackboard, due 09-21-2021, 5:00pm
 
 First, create an R Markdown document in which you will complete this assignment. Demonstrate your knowledge of R Markdown in the following ways:
 
-- Produce a section header that says "R Markdown" and is bigger than normal text.
-  - Within this section, produce a subsection header that is smaller than the section header and  says "R Markdown features". 
-  - Write a sentence that includes bold text, italicized text, and normal text. (This will not be in a code chunk.)
-  - Write a sentence that includes one inline R code in the sentence.
-  - Link an image from your computer - that is school-appropriate - to be output when the document is knitted together.
-  - Produce a 3x3 table with column headers just using text - no code chunk. (See Lecture 4 for a hint).
-  
-- Produce a section header that says "Statistical functions" and is bigger than normal text.
+1. Produce a section header that says "R Markdown" and is bigger than normal text.
 
-  - Read in the dataset 'warpbreaks'. It comes as a default with R. 
-    - Fit a regression model of the number of breaks on the type of wool, the level of tension, and the interaction between wool and tension. 
-    - Look at the summary. Interpret the results. 
-    - Plot only the QQ-plot of this model. Then, provide code that would save it as a pdf to your computer.
-    
-  - Now, read in the 'UCBAdmissions' dataset, which comes as default with R.
-    - Only keep the admissions data from Department A.
-    - Run a chi-squared test of independence between gender and admittance. Comment on the results.
-    
-  - Going to simulate some data now. Set a seed for reproducibility.
-    - Generate $1000$ observations from a Normal distribution with parameters $\mu=5, \sigma=2$.
-    - Plot the empirical cdf of these data. Add a horizontal line in red at the $0.8$ mark on the y-axis.
-    - Use R's statistical distribution functions to determine the $80^{th}$ percentile of the above normal distribution, and store it in a variable called q80. 
-      - Add a point to the plot that has x-coordinate equal to the $80^{th}$ percentile of your sample data and y-coordinate equal to $0.8$. Fill it in with some color.
-      - Add another point that has x-coordinate equal to q80 and y-coordinate equal to $0.8$. Fill it in with another color.
-      - Think about what all this means.
+-   Within this section, produce a subsection header that is smaller than the section header and says "R Markdown features".
+-   Write a sentence that includes bold text, italicized text, superscript, strikethrough text. (This will not be in a code chunk.)
+-   Write a sentence that includes one inline R code in the sentence.
+-   Link an image from your computer - that is school-appropriate - to be output when the document is knitted together.
+-   Produce a 3x3 table with column headers just using text - no code chunk. (See Lecture 4 for a hint).
+
+2.   Produce a section header that says "Statistical functions" and is bigger than normal text.
+
+-   Read in the dataset `warpbreaks`. It comes as a default with R.
+-   Fit a regression model of the number of breaks on the type of wool, the level of tension, and the interaction between wool and tension.
+    -   Display the summary. Interpret the results.
+    -   Plot only the QQ-plot of this model. Then, provide code that would save it as a pdf to your computer.
+-   Use MathJax to express the regression formula you have been using.
+-   Create a bibtex file containing references for the `?warpbreaks` package. Insert them in the R Markdown document and make sure they are added when the document is knitted.
+
+3.   Read in the `UCBAdmissions` dataset, which comes as default with R.
+
+-   Only keep the admissions data from Department A.
+-   Run a chi-squared test of independence between gender and admittance. Comment on the results.
+- Using R base graphics, create 6 plots (one for each Department) showing barplots of admission frequency (Y axis). Each bar shows admission frequency for admitted males, admitted femailes, rejected males, rejected females. Color  Make efforts to make the code chunk maximally compact, but not at the expense of comments. Hint 1: Use `par(mfrow=...)` to place plots on 3x2 plotting area (3 rows and 2 columns, 6 plots total). Hint 2: use `as.data.frame` to make the `UCBAdmissions` dataset more amenable for subsetting and plotting.
+
+4. Generate and work with the new data. Set a seed for reproducibility.
+
+-   Generate $1000$ observations from a Normal distribution with parameters $\mu=5, \sigma=2$.
+-   Plot the empirical cdf of these data. Add a horizontal line in red at the $0.8$ mark on the y-axis. Hint: `abline`
+-   Use R's statistical distribution functions to determine the $80^{th}$ percentile of the above normal distribution, and store it in a variable called $q80$.
+-   Add a point to the plot that has x-coordinate equal to the $q80$ percentile of your sample data and y-coordinate equal to $0.8$. Use blue solid circle.
+- Add a curve of your observations to the plot. Hint: Put your observations in `x` variable. Use `(x)` to represent the vector as a function that `curve` can handle.
+
+- Submit your homework as a<!--n RMarkdown document (the `LASTNAME-FIRSTNAME-HW02.Rmd` file), as well as knitted--> PDF or Word document (the `LASTNAME-FIRSTNAME-HW04` file).<!-- Make sure that the knitted version shows both the code chunks and their output.-->
+
+
+
