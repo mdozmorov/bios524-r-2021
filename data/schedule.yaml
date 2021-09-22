@@ -45,10 +45,10 @@ lessons:
     # class: "03-class"
 
   - title: "**Data management/code best practices**"
-    # date: "September 15"
-    # # reading: "05-reading"
-    # assignment: "05-problem-set"
-    # class: "05-class"
+    date: "September 22"
+    # reading: "05-reading"
+    assignment: "05-problem-set"
+    class: "06-class"
 
   - title: "**Functions, Packages, CRAN, Bioconductor**"
     # date: "September 20"

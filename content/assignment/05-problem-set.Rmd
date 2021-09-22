@@ -1,5 +1,5 @@
 ---
-title: "Assignment 7: Tidyverse, data manipulation"
+title: "Assignment 5: Tidyverse, data manipulation"
 date: "2021-09-22"
 due_date: "2021-09-29"
 due_time: "05:00 PM"
@@ -11,7 +11,7 @@ type: docs
 weight: 1
 output:
   blogdown::html_page:
-    toc: true
+    toc: false
 editor_options: 
   chunk_output_type: console
 ---
