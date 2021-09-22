@@ -1,85 +1,102 @@
 ---
-title: "Assignment 5: Data management/code best practices"
-date: "2020-10-06"
-due_date: "2020-10-13"
-due_time: "5:00 PM"
-# menu:
-#   assignment:
-#     parent: Assignments
-#     weight: 5
-# type: docs
-# weight: 1
+title: "Assignment 7: Tidyverse, data manipulation"
+date: "2021-09-22"
+due_date: "2021-09-29"
+due_time: "05:00 PM"
+menu:
+  assignment:
+    parent: Assignments
+    weight: 7
+type: docs
+weight: 1
 output:
   blogdown::html_page:
-    toc: false
+    toc: true
 editor_options: 
   chunk_output_type: console
 ---
 
 # To do yourself
 
-- Read the [vignette for DataExplorer](https://cran.r-project.org/web/packages/DataExplorer/vignettes/dataexplorer-intro.html) R package, to know what it is capable of
+### dplyr 
 
-- Read the [vignette for doParaller](https://cran.r-project.org/web/packages/doParallel/vignettes/gettingstartedParallel.pdf) R package, go through code examples there
+- Read Wickham, Hadley, et al. “[Welcome to the Tidyverse](https://joss.theoj.org/papers/10.21105/joss.01686)." Journal of Open Source Software, 2019, or Wickham, Hadley. “[Tidy data](https://www.jstatsoft.org/article/view/v059i10)." Journal of Statistical Software, 2014
 
-- [Parallelization in R](https://www.r-bloggers.com/speed-boosting-in-r-writing-efficient-code-parallel-programming/)
+- [introverse](https://spielmanlab.github.io/introverse/index.html) - alternate documentation for commonly-used functions and concepts in Base R and in the tidyverse. [Tweet](https://twitter.com/stephspiel/status/1430200830527950856?s=20)
 
-# To submit on Blackboard
+- [Dive into dplyr (tutorial)](https://www.kaggle.com/jessemostipak/dive-into-dplyr-tutorial)
 
-### Question One
-#### Spreadsheets, Summarization, and Naming Conventions
+- [Data Manipulation Using R (& dplyr)](https://ramnarasimhan.files.wordpress.com/2014/10/data-manipulation-using-r_acm2014.pdf) by Ram	Narasimhan, PDF slides
 
-##### Part A
+- [Data Manipulation with dplyr](http://datascienceplus.com/data-manipulation-with-dplyr/) brief tutorial
 
-- Create an Excel spreadsheet with 4 columns and 10 rows, following proper spreadsheet conventions discussed in class.
-    - Let the first column be an ID number. 
-    - Let the second column be a set of integers between 20 and 30, denoting the number of teeth someone has.
-    - Let the third column be a set of real numbers between 1.0 and 4.0, denoting GPA in school. 
-    - Let the fourth column be a mix of "H" and "T" character values, denoting the tosses of a coin.
+- [Aggregating and analyzing data with dplyr](http://www.datacarpentry.org/R-genomics/04-dplyr.html) tutorial by Data Carpentry
 
-- Read it into R. What is the class of this object?
-- Create a new object with the same content, but with the class `list`
-- Address the fourth element of the list object. Address the content of the fourth element
- 
-##### Part B
+- [Introduction to dplyr for Faster Data Manipulation in R](https://rpubs.com/justmarkham/dplyr-tutorial) tutorial and a 40 min video [Hands-on dplyr tutorial for faster data manipulation in R](https://www.youtube.com/watch?v=jWjqLW-u3hc)
 
-- In one line of code, calculate the mean of the second column and the third column. Do the same for the list object.
-- Print out the frequency distribution of the fourth column. 
+- [Animations of tidyverse verbs using R, the tidyverse, and gganimate](https://github.com/gadenbuie/tidy-animated-verbs) - visual explanation of dplyr operations
 
-##### Part C
+- [Pivoting, reformatting data into long/wide formats](https://tidyr.tidyverse.org/dev/articles/pivot.html)
 
-- Rename the columns into something descriptive using R code. What variable naming convention are you using (refer to Code Organization Best Practices slides)? 
-- Save the data into .csv format and submit along with the code file
+- [A graphical introduction to tidyr's pivot](https://speakerdeck.com/yutannihilation/a-graphical-introduction-to-tidyrs-pivot-star)
 
-### Question Two
-#### Summarizing Quickly
+- [Reusing Tidyverse code](https://speakerdeck.com/lionelhenry/reusing-tidyverse-code) - dplyr/tidyverse data manipulation lecture slides
 
-Load the ChickWeight dataset that comes with R. Install the skimr package. 
-Use this package to summarize the dataset in one line of code.
+### ggplot2 
 
-Explore at least one of the following functions. Compare it with the skimr functionality, which one would you prefer?
+- O'Donoghue, Sen I., Benedetta Frida Baldi, Susan J. Clark, Aaron E. Darling, James M. Hogan, Sandeep Kaur, Lena Maier-Hein, et al. "[Visualization of Biomedical Data](https://doi.org/10.1146/annurev-biodatasci-080917-013424)." Annual Review of Biomedical Data Science 1, no. 1 (July 20, 2018) - Visualization best practices (the use of length, area, color etc.)
 
-- describe, from the Hmisc package
-- stat.desc from pastecs
-- describe from psych
-- descr and dfSummary from summarytools
+- [RStudio Webinars](https://github.com/rstudio/webinars) - Code and slides for RStudio webinars
+<!--
+- [Data visualization in R](http://www.datacarpentry.org/R-genomics/05-data-visualization.html) by Data Carpentry
+-->
 
-### Question Three 
-#### File Save Naming Conventions
+- [ggplot2 tutorial/slides/code examples/references](https://github.com/jennybc/ggplot2-tutorial) by Jenny Bryan 
 
-Type a list of 5 files with good naming conventions (they could have an R file extension, a SAS file extension, etc.)
+- [The R Graph Gallery, all graphs](http://www.r-graph-gallery.com/all-graphs/) with code
 
-Let the files represent tasks in some project. Explain why your naming conventions are good and helpful to future you.
+- [Collection of ggplot2 materials](https://github.com/Z3tt/ggplot-courses)
 
+- [A Gentle Guide to the Grammar of Graphics with ggplot2](https://github.com/gadenbuie/gentle-ggplot2) by Garrick Aden-Buie
 
-### Question Four
-#### Efficiency and Timing
+- [Plotting/reporting best practices](https://geanders.github.io/RProgrammingForResearch/reporting-data-results-1.html) 
 
-Make an empty vector of length 10 million. Set a seed for reproducibility. Populate the vector in two ways and compare:
+# To submit on blackboard, due 10-20-2020, 5:00pm
 
-- Use a for loop to enter a randomly-generated Exponential variable with rate parameter 3 in each position in the vector. 
-- Use a more efficient method, possibly writing a function, to populate the vector with randomly-generated numbers from the same distribution. 
-- Try parallelization approaches.
+### dplyr
 
-Time all methods, and make a conclusion. 
+- What is the difference between `read_xls()` and `read_xlsx()` functions? What message do you get if reading an `.xlsx` file using `read_xls()` function?
+- What does the skip argument do?
+- Do we need to refer to a sheet within an excel file as a number, or can we refer to it as the sheet name instead?
+- What does the guess_max argument do?
+- What happens if columns in the Excel worksheet are of different length?
+- How would you write into an Excel file? Demonstrate saving the `mtcars` dataset into an Excel file.
+
+- Use the `starwars` dataset that is loaded with the tidyverse. Accomplish the following in one long string of pipes. 
+  - Keep only observations with weight and height recorded.
+  - Create a variable called `bmi` that calculates the character's BMI (search for formula). 
+  - Summarize the BMI variable, grouping observations by homeworld. 
+  - Print this summary in decreasing order of average BMI. 
+  
+ - Read in the following data into R. This data is from the American Community Survey and references the population of three cities in Virginia between 2009 and 2012.
+ `cities <- data.frame(name = rep(c("richmond", "norfolk", "charlottesville")), pop2009 = c(1202494,236071,191515), pop2010 = c(1235565,242143,197279), pop2011 = c(1248271,241943,199675), pop2012 = c(1260202,243056,210909))`
+   In one long string of pipes, convert the data from wide (2009 to 2012 population values) to long format, naming the new column of populations `pop`, group by city, create a summary variable that is the ratio of the largest population value to smallest population value for the city, and arrange by this ratio value in decreasing order. 
+
+### ggplot2
+
+<!--
+- We will start with a very basic ggplot. Read in the `mtcars` dataset that comes with R. Produce a histogram of the MPG variable for each value of the cylinders variable (there are 3) in a 1 row by 3 column grid. You may notice that the plots appear 'sideways'. If so, correct it using a ggplot command. Give the plot an informative title.
+
+- Read in the `diamonds` dataset in R. In one long string of pipe operations, keep only those observations with `price` less than the 80th percentile of the `price` variable, group observations by `Clarity` type, and create a summary dataframe that summarizes the median `price` in one column and summarizes the median `x` value in another column. Using this dataset, create a ggplot scatterplot with `x` on the x-axis and `price` on the y-axis. Label the plot with values of Clarity and adjust the labels slightly so that they do not overlap the points.
+
+- Again using the `diamonds` dataset, starting from the full dataset. First remove all diamonds with an 'Ideal' cut. Then make a ggplot of the data that displays the density estimate of price for each of the (now 4) values of cut, separately, arranged in a 4 row by 1 column grid. Fill in the area below the density curve in each plot with some color. Give the plot a title. 
+-->
+
+- Get names of all packages installed on your computer, check the `installed.packages()` function. Split package names into characters. Calculate frequency of each letter, case sensitive. Create a horizontal barplot, Y-axis - letters/characters, X-axis - frequency. Make it sorted, so the most frequently occurring letters (highest bars) are on top. Color each bar by its own color. Do not output legend.
+
+- Download the CDC US Birth dataset from https://github.com/fivethirtyeight/data/tree/master/births. Answer the following questions:
+    - Make barplots of most-to-least popular a) day of week, b) day of month, c) month to give birth, irrespectively of year. X-axis - date, Y-axis - number of births. Color by date
+    - Visually demonstrate the total birth trend over the years. X-axis - years, Y-axis - total number of births per year.
+    - For each a) day of week, b) day of month, c) month, collect the number of births, irrespectively of year. Plot them as a) scatterplots, b) boxplots, with X-axis being the corresponding data and Y-axis - the number of births. For scatterplots, fit a smoothing line with the default nonlinear fit. Color by date.
+    - Bonus question: Make the time series curve similar to the second plot of the [accompanying article](https://fivethirtyeight.com/features/some-people-are-too-superstitious-to-have-a-baby-on-friday-the-13th/). 
 
