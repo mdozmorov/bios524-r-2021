@@ -1,19 +1,19 @@
 ---
-title: "Lecture 6: Packages"
+title: "Data management/code best practices"
 # linktitle: "1. Introduction to RStudio and Images"
-date: "2020-10-08"
-class_date: "2020-10-08"
+date: "2021-09-22"
+class_date: "2021-09-22"
 output:
   blogdown::html_page:
     toc: false
-# menu:
-#   class:
-#     parent: Class sessions
-#     weight: 6
-# type: docs
-# weight: 1 
-# pdf: 
-# thumb: 
+menu:
+  class:
+    parent: Class sessions
+    weight: 6
+type: docs
+weight: 1
+pdf:
+thumb:
 editor_options: 
   chunk_output_type: console
 ---
@@ -22,8 +22,8 @@ editor_options:
 
 ### Packages
 
-<a href="../../slides/61_Packages#1" target="_blank">Lecture slides in HTML format</a>
+<a href="../../slides/61_Data_best_practices#1" target="_blank">Lecture slides in HTML format</a>
 
 ```{r echo=FALSE}
-knitr::include_url('../../slides/61_Packages.html#1')
+knitr::include_url('../../slides/61_Data_best_practices.html#1')
 ```
