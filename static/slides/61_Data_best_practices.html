@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Data organization best practices</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Mikhail Dozmorov" />
+    <script src="libs/header-attrs-2.9/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="xaringan-my.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Data organization best practices
+### Mikhail Dozmorov
+### Virginia Commonwealth University
+### 09-22-2020
+
+---
+
+
+
+
+## Spreadsheets
+
+- Store data in text files, delimiter-separated
+
+- Spreadsheets may be used for data entry and storage
+
+- Analysis and visualization should happen outside of spreadsheets
+
+.small[Broman, Karl W, and Kara H. Woo. “[Data Organization in Spreadsheets](https://doi.org/10.7287/peerj.preprints.3183v1).” - Excel spreadsheet tips and best practices]
+
+---
+## General spreadsheet tips
+
+- Use a consistent data layout in multiple files
+    - Your primary data file should contain just the data and nothing else: no calculations, no graphs
+
+- Enter one piece of information in one cell
+    - Don't use formatting, e.g., coloring, to convey additional meaning to the cell value. Instead, add another column, e.g., "outlier" with a boolean `TRUE` or `FALSE` indicator variable
+
+- Use a consistent format for all dates, YYYY-MM-DD recommended
+    - Use "Text" format where possible, to avoid autoreformatting, e.g., "SEPT9" will become "9/9/2020" displayed as "9-Sep"
+    - Use "\`forward tick" trick to force text format
+    
+---
+## General spreadsheet tips (cont.)
+
+- Fill in all cells. No empty cells
+    - Use a consistent fixed code for any missing values, e.g. "NA". Don't use numerical values like 999
+
+- Use consistent file names for similar datasets
+    - Never include “final” in a file name
+
+- Save and distribute the data in plain text files
+    - Use comma-delimited (CSV) format
+
+.small[http://www.datacarpentry.org/spreadsheet-ecology-lesson/02-common-mistakes/
+
+https://www.theverge.com/2020/8/6/21355674/human-genes-rename-microsoft-excel-misreading-dates]
+
+---
+## Variable naming conventions
+
+- Avoid using spaces in column/row names. Use some filler instead, e.g., "." or "_"
+
+- Note that `read.csv()`, `read.table` and the like functions will silently replace spases with dots in column names
+
+
+```r
+column_names_with_spaces &lt;- c("First column", "Second column")
+make.names(column_names_with_spaces)
+```
+
+```
+## [1] "First.column"  "Second.column"
+```
+
+---
+## Spreadsheet horror stories
+
+&lt;img src="http://www.eusprig.org/images/logo.jpg" height=100&gt;
+
+- A public archive of spreadsheet “horror stories”
+
+- In 13 audits of real-world spreadsheets, an average of 88% spreadsheets contained errors (Panko, Raymond R. "[What we know about spreadsheet errors](https://www.igi-global.com/article/know-spreadsheet-errors/55750)." Journal of Organizational and End User Computing (JOEUC) 10, no. 2 (1998): 15-21.)
+ 
+.small[http://www.eusprig.org/horror-stories.htm]
+
+---
+## Project organization principles
+
+- One project = one folder
+    - Create readable names for subfolders/code. E.g. `00_raw_data`, `01_raw_data_QC` etc.
+    - Choose file names carefully. Don't put spaces and special characters in file names!
+
+- Be sure to get and keep any/all data and meta-data possible
+
+- Get the data in the most-raw form possible. Keep the original files, names intact. (gzipped) CSV Text format is the most preferable
+
+- Separate data from code. Use relative paths in code. Create multiple `README.md` and write notes - your future you will thank you
+
+.small[Convert Excel files to CSV https://github.com/dilshod/xlsx2csv]
+
+---
+## Another project organization idea
+
+``` bash
+project/
+| data/
+| | processing_scripts
+| | raw/
+| | proc/
+| tools/
+| | src/
+| | bin/
+| exps
+| | pipeline_scripts
+| | results/
+| | analysis_scripts
+| | figures/
+```
+
+---
+## And another project organization idea
+
+``` bash
+project/
+| 00_raw/
+| 01_processed/
+| 02_summary/
+| 01_process.sh
+| 02_summary.sh
+| README.md
+```
+
+---
+## Folder organization
+
+- Your project folder dictates relative paths of all files and subfolders
+- Use relative paths, e.g., `read_csv("data/matrix.txt")`
+- Set your project folder as a variable; if a project is transferred to another computer, there will be only ove variable to change
+``` r
+dirMain &lt;-"/path/to/my/project" # On Windows, can use \\
+setwd(dirMain) # Set working directory. Check ?getwd
+list.files(path = dirMain) $ List files
+```
+- You can construct explicit paths like `file.path(dirMain, "data/matrix.txt")`
+
+---
+## Project organization principles
+
+- **Script everything** - All analysis steps, including data cleaning (removal of outliers, correcting numbers, typos, renaming columns etc.) should be scripted
+
+- **Scalability and universality** - ask yourself a question, if the data are updated (e.g., additional subjects) or you find some artifact that needs fixing, can you just “press a button” to update? If you work on a similar project, can you reuse your existing scripts with minimal modifications?
+
+- **Document everything** - Text format, human readable. Explicitly tie files together. Have a plan to organize, store and make your work understandable by others
+
+---
+## File naming principles
+
+- Machine readable
+
+- Human readable
+
+- Plays well with default ordering
+
+.small[http://www.mnhs.org/preserve/records/electronicrecords/erfnaming.php]
+
+---
+## File naming: Machine readable
+
+- Regular expression and globbing friendly
+    - Avoid spaces, punctuation, accented characters, case sensitivity
+    - Easy to compute on
+- Deliberate use of delimiters, e.g. "-", "\_" (think `cut -d "_" -f1,3,5`, `grep Notes` commands)
+    
+``` bash
+2018-05-16_Lecture_Slides_01.pdf
+2018-05-16_Lecture_Notes_01.pdf
+2018-05-16_Lecture_Slides_02.pdf
+2018-05-16_Lecture_Notes_02.pdf
+```
+
+---
+## File naming: Human readable
+
+- Name contains info on content
+
+- Easy to figure out what something is, based on its name
+
+``` bash
+01_preprocessing.R
+02_quality-control.R
+helper01_rename-files.sh
+helper02_merge-duplicates.py
+```
+
+---
+## File naming summary
+
+- Plays well with default ordering
+    - Put something numeric first
+    - Left pad numbers with zeros
+    - Use the ISO 8601 standard for dates (YYYY-MM-DD _or_ YYMMDD)
+
+Good
+``` bash
+2018-05-16_Lecture_Slides_01.pdf
+2018-05-16_Lecture_Notes_01.pdf
+```
+Bad
+``` bash
+10_final-figures.R
+1_data-cleaning.R
+2_quality-control.R
+```
+
+.small[http://en.wikipedia.org/wiki/ISO_8601]
+
+---
+## Data management
+
+- Save the raw data
+
+- Ensure that raw data are backed up in more than one location
+
+- Create the data you wish to see in the world
+
+- Create analysis-friendly data
+
+- Record all the steps used to process data
+
+- Anticipate the need to use multiple tables, and use a unique identifier for every record
+
+- Submit data to a reputable DOI - issuing repository so that others can access and cite it
+
+---
+## Data management
+
+- Data are cheap, time is expensive
+
+    - A terabyte hard drive costs about US $50 retail, which means that 50 Gigabytes costs less than US $5
+
+    - How much of your time is needed to generate 50Gb of code?    
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

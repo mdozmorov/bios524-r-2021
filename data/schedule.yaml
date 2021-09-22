@@ -26,13 +26,13 @@ lessons:
     # assignment: "04-problem-set"
     class: "04-class"
 
-  - title: "**Tidyverse, dplyr, data manipulation**"
+  - title: "**Tidyverse, dplyr, ggplot2**"
     date: "September 15"
     # reading: "05-reading"
     assignment: "04-problem-set"
     class: "05-class"
 
-  - title: "**Tidyverse, ggplot2, data visualization**"
+#  - title: "**Tidyverse, ggplot2, data visualization**"
     # date: "September 27"
     # # reading: "05-reading"
     # assignment: "08-problem-set"
@@ -44,17 +44,17 @@ lessons:
     # assignment: "03-problem-set"
     # class: "03-class"
 
-  - title: "**Functions, Packages, CRAN, Bioconductor**"
-    # date: "September 20"
-    # # reading: "05-reading"
-    # assignment: "06-problem-set"
-    # class: "06-class"
-
   - title: "**Data management/code best practices**"
     # date: "September 15"
     # # reading: "05-reading"
     # assignment: "05-problem-set"
     # class: "05-class"
+
+  - title: "**Functions, Packages, CRAN, Bioconductor**"
+    # date: "September 20"
+    # # reading: "05-reading"
+    # assignment: "06-problem-set"
+    # class: "06-class"
 
   - title: "**Version control using Git/GitHub**"
     # date: "September 29"

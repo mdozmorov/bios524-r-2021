@@ -32,7 +32,7 @@ knitr::include_url('../../slides/51_Tidyverse_dplyr.html#1')
 
 <a href="../../slides/51_dplyr.R" target="_blank">dplyr.R example code</a>
 
-### Tidyverse, data manipulation
+### Tidyverse, ggplot2
 
 <a href="../../slides/52_Tidyverse_ggplot2#1" target="_blank">Lecture slides in HTML format</a>
 
@@ -40,5 +40,5 @@ knitr::include_url('../../slides/51_Tidyverse_dplyr.html#1')
 knitr::include_url('../../slides/52_Tidyverse_ggplot2.html#1')
 ```
 
-<a href="../../slides/51_dplyr.R" target="_blank">dplyr.R example code</a>
+<a href="../../slides/0-companion-script.R" target="_blank">ggplot2 example code</a>. Source: [A Gentle Guide to the Grammar of Graphics with ggplot2](https://github.com/gadenbuie/gentle-ggplot2) by Garrick Aden-Buie
 
