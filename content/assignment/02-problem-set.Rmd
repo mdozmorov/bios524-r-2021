@@ -24,7 +24,7 @@ editor_options:
 
 - Download [IntroR](https://github.com/mdozmorov/IntroR) code, create a project in the code's repository, run through the [Intro_R_workshop.R](https://raw.githubusercontent.com/mdozmorov/IntroR/master/Intro_R_workshop.R) code
      
-# To submit on blackboard, due 09-08-2020, 5:00pm
+# To submit on Canvas
 
 1) Describe different ways to install R packages. Test each method by installing packages of your choice (e.g., `Hmisc`, `lme4`, `MASS`, `dslabs`). Install a GitHub package (e.g., `jokergoo/ComplexHeatmap`). How much time each method/package took? Hint: use `system.time` function. Copy-paste selected output and describe your observations.
 
