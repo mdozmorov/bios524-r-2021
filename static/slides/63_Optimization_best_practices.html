@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Code optimization best practices</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Mikhail Dozmorov" />
+    <script src="libs/header-attrs-2.9/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="xaringan-my.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Code optimization best practices
+### Mikhail Dozmorov
+### Virginia Commonwealth University
+### 09-27-2021
+
+---
+
+
+
+
+## Timing
+
+Use `system.time()` functions to measure the time of execution.
+
+``` r
+&gt; # make a function
+&gt; myFun &lt;- function(x) {
++    y = vector(length=x)
++    for (i in 1:x) y[i]=i/(i+1)
++    y
++ }
+
+
+&gt; # execute the function, measuring the time of the execution
+&gt; system.time( myFun(100000) )
+   user  system elapsed
+  0.107   0.002   0.109
+```
+
+---
+## Memory
+
+`utils::object.size()` - Report the Space Allocated for an Object
+
+
+```r
+sl &lt;- object.size(seq(1:10^6))
+
+print(sl) ## 4000048 bytes
+print(sl, units = "auto") ## 3.8 Mb
+print(sl, units = "auto", standard = "IEC") ## 3.8 Mib
+print(sl, units = "auto", standard = "SI") ## 4 MB
+```
+
+Alternatively, `pryr::object_size()` function to measure memory footprint of R objects
+
+``` r
+&gt; library(pryr)
+&gt; object_size(USArrests)
+5.23 kB
+```
+
+---
+## Code speedup: Use vectors
+
+``` r
+&gt; # using loops
+&gt; g1 &lt;- function(x) {
++    y = vector(length=x)
++    for (i in 1:x) y[i]=i/(i+1)
++    y
++ }
+
+&gt; # execute the function 
+&gt; system.time( g1(100000) )
+   user  system elapsed
+  0.107   0.002   0.109
+```
+
+---
+## vs.
+
+``` r
+&gt; # using vectors
+&gt; x &lt;- (1:100000)
+&gt; g2 &lt;- function(x) {
++    x/(x+1)
++ }
+
+&gt; # execute the function
+&gt; system.time( g2(x) )
+ user  system elapsed
+  0.002   0.000   0.003
+```
+
+---
+## Pre-allocate arrays
+
+``` r
+&gt; vec1&lt;-NULL  
+
+
+&gt; # execute the command
+&gt; system.time(
++ for(i in 1:100000) 
++ vec1 &lt;- c(vec1,mean(1:100)))
+    user  system elapsed
+  58.181   0.193  58.417
+```
+
+---
+## vs.
+
+``` r
+&gt; vec2 &lt;- vector(
++ mode=“numeric”,length=100000)
+
+&gt; # execute the command
+&gt; system.time(
++ for(i in 1:100000) 
++ vec2[i] &lt;- mean(1:100))
+   user  system elapsed
+  2.324   0.063   2.388
+```
+
+---
+## Use optimized R-functions
+
+- `rowSums()`,  `rowMeans()`,  `table()`,  etc.
+
+``` r
+&gt; matx &lt;- matrix(rnorm(1000000),100000,10)
+
+&gt; # execute the command
+&gt; system.time(apply(matx,1,mean))
+    user  system elapsed
+   2.686   0.057   2.748
+```
+
+---
+## vs.
+
+``` r
+&gt; matx &lt;- matrix(rnorm(1000000),100000,10)
+
+&gt; # execute the command
+&gt; system.time(rowMeans(matx))
+   user  system elapsed
+  0.013   0.000   0.014
+```
+
+---
+## Parallelization: parallel
+
+- The `parallel` R core package has `mclapply()` function for multi-core lapply (Mac, Linux)
+- Implements functionality previously provided by the `multicore` and `snow` packages
+
+
+```r
+library(parallel)
+library(MASS)
+
+starts &lt;- rep(100, 40)
+fx &lt;- function(nstart) kmeans(Boston, 4, nstart=nstart)
+system.time( results &lt;- lapply(starts, fx) )
+```
+
+```
+##    user  system elapsed 
+##   0.950   0.044   0.997
+```
+
+---
+## Parallelization: parallel
+
+- The `parallel` R core package has `mclapply()` function for multi-core lapply (Mac, Linux)
+
+
+```r
+(numCores &lt;- detectCores())
+```
+
+```
+## [1] 16
+```
+
+```r
+system.time( results &lt;- mclapply(starts, fx, mc.cores = numCores) )
+```
+
+```
+##    user  system elapsed 
+##   1.528   0.469   0.163
+```
+
+.small[ https://nceas.github.io/oss-lessons/parallel-computing-in-r/parallel-computing-in-r.html ]
+
+---
+## Parallelization methods: foreach/doParallel
+
+- Combined with `doParallel` functionality, the `foreach` R package enables parallelized for loops
+
+
+```r
+library(foreach)
+library(doParallel)
+registerDoParallel(numCores)  # use multicore
+foreach (i=1:3) %dopar% {
+  sqrt(i)
+}
+```
+
+```
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 1.414214
+## 
+## [[3]]
+## [1] 1.732051
+```
+
+Used by over 700 packages on CRAN and Bioconductor
+
+.small[ https://CRAN.R-project.org/package=foreach ]
+
+---
+## Parallelization methods: BiocParallel
+
+- Unified interface to the methods for parallel evaluation
+
+- The `bplapply()` function performs parallel lapply
+
+
+```r
+library(BiocParallel)
+```
+
+```
+## Warning: package 'BiocParallel' was built under R version 4.1.1
+```
+
+```r
+system.time( results &lt;- bplapply(starts, fx) )
+```
+
+```
+##    user  system elapsed 
+##   1.560   0.544   0.355
+```
+
+.small[ http://lcolladotor.github.io/2016/03/07/biocparallel/ ]
+
+---
+## Rcpp = R and C++
+
+- R is a high-level _interpreted_ language
+
+- C/C++ are low-level _compiled_ languages
+
+- C is approximately more than 50X times faster than R
+
+- R is much better for prototyping - one line of code in R is typically many lines of code in C/C++
+
+- `Rcpp` was created by Dirk Eddelbuettel and Romain Francois in 2011. Permits direct interchange of rich R objects between R and C++
+
+.small[ http://adv-r.had.co.nz/Rcpp.html
+
+http://dirk.eddelbuettel.com/code/rcpp.html ]
+
+---
+## Code profiling
+
+Profiling is a tool, which can be used to find out how much time is spent in each function. Code profiling can give a way to locate those parts of a program which will benefit most from optimization.
+
+- `Rprof()` – turn profiling on
+- `Rprof(NULL)` – turn profiling off
+- `summaryRprof("Rprof.out")` – Summarize the output of the `Rprof()` function to show the amount of time used by different R functions.
+
+``` r
+&gt; summaryRprof("bmslow.out")
+$by.self
+         self.time self.pct total.time total.pct
+"cbind"     400.52    99.39     400.52     99.39
+"rnorm"       1.70     0.42       1.70      0.42
+"bmslow"      0.74     0.18     402.96    100.00
+```
+
+
+---
+## Code profiling
+
+- `microbenchmark` - Accurate Timing Functions. Provides infrastructure to accurately measure and compare the execution time of R expression
+
+- `profvis` -  Interactive Visualizations for Profiling R Code Overview, 
+
+- `bench` - High Precision Timing of R Expressions
+
+.small[ https://CRAN.R-project.org/package=microbenchmark
+
+https://rstudio.github.io/profvis/
+
+http://r-lib.github.io/bench ]
+
+---
+## R goodies
+
+- `skimr` - A frictionless, pipeable approach to dealing with summary statistics, [https://github.com/ropenscilabs/skimr](https://github.com/ropenscilabs/skimr)
+
+- `data.table` - fast data reading, subsetting, aggregating, summarizing,  [https://github.com/Rdatatable/data.table/wiki/Getting-started](https://github.com/Rdatatable/data.table/wiki/Getting-started)
+
+- [dtplyr](https://dtplyr.tidyverse.org/) - The data.table backend to dplyr. [Overview](https://www.business-science.io/code-tools/2021/04/13/dtplyr-datatable-dplyr-backend.html), [Tweet](https://twitter.com/mdancho84/status/1441776263702712320?s=20)
+
+- Whenever you get a strange execution error it is sometimes helpful to show the history of all the function calls leading to that error. This is done by typing `traceback()` at the command prompt
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

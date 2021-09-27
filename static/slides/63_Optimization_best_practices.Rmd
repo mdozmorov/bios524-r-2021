@@ -1,0 +1,283 @@
+---
+title: "Code optimization best practices"
+# subtitle: "Getting started"
+author: "Mikhail Dozmorov"
+institute: "Virginia Commonwealth University"
+# date: "`r Sys.Date()`"
+date: "09-27-2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["xaringan-themer.css", "xaringan-my.css"]
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+mono_light(
+  base_color = "midnightblue",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "500", "500i"),
+  code_font_google   = google_font("Droid Mono"),
+  link_color = "#8B1A1A", #firebrick4, "deepskyblue1"
+  text_font_size = "28px",
+  code_font_size = "26px"
+)
+```
+
+## Timing
+
+Use `system.time()` functions to measure the time of execution.
+
+``` r
+> # make a function
+> myFun <- function(x) {
++    y = vector(length=x)
++    for (i in 1:x) y[i]=i/(i+1)
++    y
++ }
+
+
+> # execute the function, measuring the time of the execution
+> system.time( myFun(100000) )
+   user  system elapsed
+  0.107   0.002   0.109
+```
+
+---
+## Memory
+
+`utils::object.size()` - Report the Space Allocated for an Object
+
+```{r eval=FALSE}
+sl <- object.size(seq(1:10^6))
+
+print(sl) ## 4000048 bytes
+print(sl, units = "auto") ## 3.8 Mb
+print(sl, units = "auto", standard = "IEC") ## 3.8 Mib
+print(sl, units = "auto", standard = "SI") ## 4 MB
+```
+
+Alternatively, `pryr::object_size()` function to measure memory footprint of R objects
+
+``` r
+> library(pryr)
+> object_size(USArrests)
+5.23 kB
+```
+
+---
+## Code speedup: Use vectors
+
+``` r
+> # using loops
+> g1 <- function(x) {
++    y = vector(length=x)
++    for (i in 1:x) y[i]=i/(i+1)
++    y
++ }
+
+> # execute the function 
+> system.time( g1(100000) )
+   user  system elapsed
+  0.107   0.002   0.109
+```
+
+---
+## vs.
+
+``` r
+> # using vectors
+> x <- (1:100000)
+> g2 <- function(x) {
++    x/(x+1)
++ }
+
+> # execute the function
+> system.time( g2(x) )
+ user  system elapsed
+  0.002   0.000   0.003
+```
+
+---
+## Pre-allocate arrays
+
+``` r
+> vec1<-NULL  
+
+
+> # execute the command
+> system.time(
++ for(i in 1:100000) 
++ vec1 <- c(vec1,mean(1:100)))
+    user  system elapsed
+  58.181   0.193  58.417
+```
+
+---
+## vs.
+
+``` r
+> vec2 <- vector(
++ mode=“numeric”,length=100000)
+
+> # execute the command
+> system.time(
++ for(i in 1:100000) 
++ vec2[i] <- mean(1:100))
+   user  system elapsed
+  2.324   0.063   2.388
+```
+
+---
+## Use optimized R-functions
+
+- `rowSums()`,  `rowMeans()`,  `table()`,  etc.
+
+``` r
+> matx <- matrix(rnorm(1000000),100000,10)
+
+> # execute the command
+> system.time(apply(matx,1,mean))
+    user  system elapsed
+   2.686   0.057   2.748
+```
+
+---
+## vs.
+
+``` r
+> matx <- matrix(rnorm(1000000),100000,10)
+
+> # execute the command
+> system.time(rowMeans(matx))
+   user  system elapsed
+  0.013   0.000   0.014
+```
+
+---
+## Parallelization: parallel
+
+- The `parallel` R core package has `mclapply()` function for multi-core lapply (Mac, Linux)
+- Implements functionality previously provided by the `multicore` and `snow` packages
+
+```{r}
+library(parallel)
+library(MASS)
+
+starts <- rep(100, 40)
+fx <- function(nstart) kmeans(Boston, 4, nstart=nstart)
+system.time( results <- lapply(starts, fx) )
+```
+
+---
+## Parallelization: parallel
+
+- The `parallel` R core package has `mclapply()` function for multi-core lapply (Mac, Linux)
+
+```{r}
+(numCores <- detectCores())
+system.time( results <- mclapply(starts, fx, mc.cores = numCores) )
+```
+
+.small[ https://nceas.github.io/oss-lessons/parallel-computing-in-r/parallel-computing-in-r.html ]
+
+---
+## Parallelization methods: foreach/doParallel
+
+- Combined with `doParallel` functionality, the `foreach` R package enables parallelized for loops
+
+```{r message=FALSE}
+library(foreach)
+library(doParallel)
+registerDoParallel(numCores)  # use multicore
+foreach (i=1:3) %dopar% {
+  sqrt(i)
+}
+```
+
+Used by over 700 packages on CRAN and Bioconductor
+
+.small[ https://CRAN.R-project.org/package=foreach ]
+
+---
+## Parallelization methods: BiocParallel
+
+- Unified interface to the methods for parallel evaluation
+
+- The `bplapply()` function performs parallel lapply
+
+```{r}
+library(BiocParallel)
+system.time( results <- bplapply(starts, fx) )
+```
+
+.small[ http://lcolladotor.github.io/2016/03/07/biocparallel/ ]
+
+---
+## Rcpp = R and C++
+
+- R is a high-level _interpreted_ language
+
+- C/C++ are low-level _compiled_ languages
+
+- C is approximately more than 50X times faster than R
+
+- R is much better for prototyping - one line of code in R is typically many lines of code in C/C++
+
+- `Rcpp` was created by Dirk Eddelbuettel and Romain Francois in 2011. Permits direct interchange of rich R objects between R and C++
+
+.small[ http://adv-r.had.co.nz/Rcpp.html
+
+http://dirk.eddelbuettel.com/code/rcpp.html ]
+
+---
+## Code profiling
+
+Profiling is a tool, which can be used to find out how much time is spent in each function. Code profiling can give a way to locate those parts of a program which will benefit most from optimization.
+
+- `Rprof()` – turn profiling on
+- `Rprof(NULL)` – turn profiling off
+- `summaryRprof("Rprof.out")` – Summarize the output of the `Rprof()` function to show the amount of time used by different R functions.
+
+``` r
+> summaryRprof("bmslow.out")
+$by.self
+         self.time self.pct total.time total.pct
+"cbind"     400.52    99.39     400.52     99.39
+"rnorm"       1.70     0.42       1.70      0.42
+"bmslow"      0.74     0.18     402.96    100.00
+```
+
+
+---
+## Code profiling
+
+- `microbenchmark` - Accurate Timing Functions. Provides infrastructure to accurately measure and compare the execution time of R expression
+
+- `profvis` -  Interactive Visualizations for Profiling R Code Overview, 
+
+- `bench` - High Precision Timing of R Expressions
+
+.small[ https://CRAN.R-project.org/package=microbenchmark
+
+https://rstudio.github.io/profvis/
+
+http://r-lib.github.io/bench ]
+
+---
+## R goodies
+
+- `skimr` - A frictionless, pipeable approach to dealing with summary statistics, [https://github.com/ropenscilabs/skimr](https://github.com/ropenscilabs/skimr)
+
+- `data.table` - fast data reading, subsetting, aggregating, summarizing,  [https://github.com/Rdatatable/data.table/wiki/Getting-started](https://github.com/Rdatatable/data.table/wiki/Getting-started)
+
+- [dtplyr](https://dtplyr.tidyverse.org/) - The data.table backend to dplyr. [Overview](https://www.business-science.io/code-tools/2021/04/13/dtplyr-datatable-dplyr-backend.html), [Tweet](https://twitter.com/mdancho84/status/1441776263702712320?s=20)
+
+- Whenever you get a strange execution error it is sometimes helpful to show the history of all the function calls leading to that error. This is done by typing `traceback()` at the command prompt
+
+

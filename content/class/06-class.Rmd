@@ -20,10 +20,26 @@ editor_options:
 
 ## Slides
 
-### Packages
+### Data best practices
 
 <a href="../../slides/61_Data_best_practices#1" target="_blank">Lecture slides in HTML format</a>
 
 ```{r echo=FALSE}
 knitr::include_url('../../slides/61_Data_best_practices.html#1')
+```
+
+### Code best practices
+
+<a href="../../slides/62_Code_best_practices#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/62_Code_best_practices.html#1')
+```
+
+### Optimization best practices
+
+<a href="../../slides/63_Optimization_best_practices#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/63_Optimization_best_practices.html#1')
 ```
