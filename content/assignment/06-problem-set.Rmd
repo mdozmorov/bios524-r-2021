@@ -1,14 +1,14 @@
 ---
 title: "Assignment 6: Packages"
-date: "2020-10-08"
-due_date: "2020-10-15"
+date: "2021-09-29"
+due_date: "2021-10-06"
 due_time: "5:00 PM"
-# menu:
-#   assignment:
-#     parent: Assignments
-#     weight: 6
-# type: docs
-# weight: 1
+menu:
+  assignment:
+    parent: Assignments
+    weight: 6
+type: docs
+weight: 1
 output:
   blogdown::html_page:
     toc: false
@@ -30,7 +30,7 @@ editor_options:
 
 - [Package Development tutorial for useR! 2019 Toulouse](https://github.com/jennybc/pkg-dev-tutorial), by Jenny Bryant, slides, exercises
 
-# To submit on blackboard, due 10-15-2020, 5:00pm
+# To submit on Canvas
 
 ## Functions
 All of your functions should be written clearly, with commented code, readable spacing, and be as non-repetitive as possible 
