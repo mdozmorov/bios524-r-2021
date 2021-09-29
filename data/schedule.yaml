@@ -50,11 +50,11 @@ lessons:
     assignment: "05-problem-set"
     class: "06-class"
 
-  - title: "**Functions, Packages, CRAN, Bioconductor**"
-    # date: "September 20"
-    # # reading: "05-reading"
-    # assignment: "06-problem-set"
-    # class: "06-class"
+  - title: "**Functions, Packages**"
+    date: "September 20"
+    # reading: "05-reading"
+    assignment: "06-problem-set"
+    class: "06-class"
 
   - title: "**Version control using Git/GitHub**"
     # date: "September 29"
