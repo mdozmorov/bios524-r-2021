@@ -27,3 +27,12 @@ editor_options:
 ```{r echo=FALSE}
 knitr::include_url('../../slides/71_Packages.html#1')
 ```
+
+### "Writing R packages" lecture slides by [Daniel Sjoberg](http://www.danieldsjoberg.com/)
+
+<a href="http://www.danieldsjoberg.com/writing-R-packages/#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('http://www.danieldsjoberg.com/writing-R-packages/#1')
+```
+

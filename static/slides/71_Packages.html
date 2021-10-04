@@ -121,7 +121,7 @@ system.time(for (i in 1:1e4) fact1(100))
 
 ```
 ##    user  system elapsed 
-##   0.442   0.015   0.458
+##   0.411   0.019   0.430
 ```
 
 ```r
@@ -130,7 +130,7 @@ system.time(for (i in 1:1e4) fact2(100))
 
 ```
 ##    user  system elapsed 
-##   0.011   0.000   0.012
+##   0.012   0.000   0.012
 ```
 
 ```r
@@ -139,7 +139,7 @@ system.time(for (i in 1:1e4) fact3(100))
 
 ```
 ##    user  system elapsed 
-##   0.007   0.000   0.007
+##   0.006   0.000   0.006
 ```
 
 ---
@@ -447,7 +447,7 @@ import(e1071)
 ``` yaml
 ---
 title: "Vignette title"
-date: "2021-09-29"
+date: "2021-10-04"
 output: rmarkdown::html_vignette
 vignette: &gt;
   %\VignetteIndexEntry{Vignette title}
@@ -472,7 +472,7 @@ install("cats") # Install package
 check("cats") # Build and check a source package, using all known best practices
 ```
 
-.small[ttps://CRAN.R-project.org/package=devtools
+.small[https://CRAN.R-project.org/package=devtools
 
 https://www.r-project.org/nosvn/pandoc/devtools.html]
 
@@ -534,7 +534,7 @@ https://www.r-project.org/nosvn/pandoc/devtools.html]
 
 - Use `devtools::install_github("hadley/usdanutrients")` function to install a package from GitHub
 
-.center[ &lt;img src="https://github.com/hadley/usdanutrients/blob/master/relations.png" height=300&gt; ]
+.center[ &lt;img src="https://github.com/hadley/usdanutrients/blob/master/relations.png?raw=true" height=250&gt; ]
 
 .small[ https://github.com/hadley/usdanutrients ]
 
@@ -564,7 +564,30 @@ https://github.com/AndreaCirilloAC/updateR ]
 
 - [bookdown](https://bookdown.org/) - Write HTML, PDF, ePub, and Kindle books with R Markdown, by Yihui Xie et al.
 
-Much more
+---
+## More references
+
+- [Writing R packages](http://www.danieldsjoberg.com/writing-R-packages/#1) lecture slides by Daniel Sjoberg. [GitHub source](https://github.com/ddsjoberg/writing-R-packages)
+
+- [How to create an R package](https://isteves.github.io/r-pkg-intro/Presentation.html#/) lecture slides by Irene Steves, Mitchell Maier. [GitHub source](https://github.com/isteves/r-pkg-intro)
+
+- [R packages](https://r-pkgs.org/) book by Hadley Wickham, [GitHub](https://github.com/hadley/r-pkgs)
+
+&lt;!--
+- Short notes by Karl Broman: [How-to package functions](http://kbroman.org/steps2rr/pages/packages.html), [Transform repeated code into functions](http://kbroman.org/steps2rr/pages/functions.html), [R package primer](http://kbroman.org/pkg_primer/), and [Package tutorial by Hillary Parker](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) 
+
+- [Package Development tutorial for useR! 2019 Toulouse](https://github.com/jennybc/pkg-dev-tutorial), by Jenny Bryant, slides, exercises
+
+- Project-oriented workflow. https://www.tidyverse.org/articles/2017/12/workflow-vs-script/
+--&gt;
+
+- [Jeff Leek on developing R packages](https://github.com/jtleek/rpackages) 
+
+- Templates for making R packages: [sinew](https://github.com/metrumresearchgroup/sinew), [pRojects](https://github.com/lockedata/pRojects), [mkrpkg](https://github.com/noamross/mkrpkg)
+
+- [R package workshop](https://combine-australia.github.io/r-pkg-dev/)
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

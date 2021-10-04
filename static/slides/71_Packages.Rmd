@@ -488,7 +488,7 @@ install("cats") # Install package
 check("cats") # Build and check a source package, using all known best practices
 ```
 
-.small[ttps://CRAN.R-project.org/package=devtools
+.small[https://CRAN.R-project.org/package=devtools
 
 https://www.r-project.org/nosvn/pandoc/devtools.html]
 
@@ -550,7 +550,7 @@ https://www.r-project.org/nosvn/pandoc/devtools.html]
 
 - Use `devtools::install_github("hadley/usdanutrients")` function to install a package from GitHub
 
-.center[ <img src="https://github.com/hadley/usdanutrients/blob/master/relations.png" height=300> ]
+.center[ <img src="https://github.com/hadley/usdanutrients/blob/master/relations.png?raw=true" height=250> ]
 
 .small[ https://github.com/hadley/usdanutrients ]
 
@@ -580,4 +580,27 @@ https://github.com/AndreaCirilloAC/updateR ]
 
 - [bookdown](https://bookdown.org/) - Write HTML, PDF, ePub, and Kindle books with R Markdown, by Yihui Xie et al.
 
-Much more
+---
+## More references
+
+- [Writing R packages](http://www.danieldsjoberg.com/writing-R-packages/#1) lecture slides by Daniel Sjoberg. [GitHub source](https://github.com/ddsjoberg/writing-R-packages)
+
+- [How to create an R package](https://isteves.github.io/r-pkg-intro/Presentation.html#/) lecture slides by Irene Steves, Mitchell Maier. [GitHub source](https://github.com/isteves/r-pkg-intro)
+
+- [R packages](https://r-pkgs.org/) book by Hadley Wickham, [GitHub](https://github.com/hadley/r-pkgs)
+
+<!--
+- Short notes by Karl Broman: [How-to package functions](http://kbroman.org/steps2rr/pages/packages.html), [Transform repeated code into functions](http://kbroman.org/steps2rr/pages/functions.html), [R package primer](http://kbroman.org/pkg_primer/), and [Package tutorial by Hillary Parker](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) 
+
+- [Package Development tutorial for useR! 2019 Toulouse](https://github.com/jennybc/pkg-dev-tutorial), by Jenny Bryant, slides, exercises
+
+- Project-oriented workflow. https://www.tidyverse.org/articles/2017/12/workflow-vs-script/
+-->
+
+- [Jeff Leek on developing R packages](https://github.com/jtleek/rpackages) 
+
+- Templates for making R packages: [sinew](https://github.com/metrumresearchgroup/sinew), [pRojects](https://github.com/lockedata/pRojects), [mkrpkg](https://github.com/noamross/mkrpkg)
+
+- [R package workshop](https://combine-australia.github.io/r-pkg-dev/)
+
+
