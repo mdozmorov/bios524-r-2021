@@ -32,7 +32,4 @@ knitr::include_url('../../slides/71_Packages.html#1')
 
 <a href="http://www.danieldsjoberg.com/writing-R-packages/#1" target="_blank">Lecture slides in HTML format</a>
 
-```{r echo=FALSE}
-knitr::include_url('http://www.danieldsjoberg.com/writing-R-packages/#1')
-```
 
