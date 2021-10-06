@@ -54,13 +54,13 @@ lessons:
     date: "September 20"
     # reading: "05-reading"
     assignment: "06-problem-set"
-    class: "06-class"
+    class: "07-class"
 
   - title: "**Version control using Git/GitHub**"
-    # date: "September 29"
-    # # reading: "05-reading"
+    date: "October 6"
+    # reading: "05-reading"
     # assignment: "09-problem-set"
-    # class: "05-class"
+    class: "08-class"
 
   - title: "**Interactive web apps with Shiny**"
     # date: "October 22"

@@ -1,33 +1,30 @@
 ---
-title: "Lecture 8: Tidyverse, data visualization"
+title: "Version control using Git/GitHub"
 # linktitle: "1. Introduction to RStudio and Images"
-date: "2020-10-15"
-class_date: "2020-10-15"
+date: "2021-10-06"
+class_date: "2021-10-06"
 output:
   blogdown::html_page:
     toc: false
-# menu:
-#   class:
-#     parent: Class sessions
-#     weight: 8
-# type: docs
-# weight: 1 
-# pdf: 
-# thumb: 
+menu:
+  class:
+    parent: Class sessions
+    weight: 8
+type: docs
+weight: 1
+pdf:
+thumb:
 editor_options: 
   chunk_output_type: console
 ---
 
 ## Slides
 
-### Tidyverse, data visualization
+### Git, GitHub, GitHub Actions, SSH
 
-<a href="../../slides/81_Tidyverse_ggplot2#1" target="_blank">Lecture slides in HTML format</a>
+<a href="../../slides/91_Git#1" target="_blank">Lecture slides in HTML format</a>
 
 ```{r echo=FALSE}
-knitr::include_url('../../slides/81_Tidyverse_ggplot2.html#1')
+knitr::include_url('../../slides/91_Git.html#1')
 ```
 
-### Code for dplyr tutorial
-
-<a href="../../slides/72_dplyr.R" target="_blank">72_dplyr.R</a>
