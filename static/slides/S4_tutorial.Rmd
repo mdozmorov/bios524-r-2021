@@ -1,0 +1,452 @@
+---
+title: "S4: a short guide for the perplexed"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This document is the implementation of an excellent blog post "[S4: a short guide for the perplexed](https://stuartlee.org/2019/07/09/s4-short-guide/)" by [Stuart Lee](https://stuartlee.org/about/) ( [Source Rmd file](https://github.com/sa-lee/stuartlee.org/blob/abcd1475c869ff8b1ec056aa766e422f058f1028/content/post/2019-07-02-s4/index.Rmd) ). More S4 resources are available at the [S4-Bioconductor](https://github.com/MalteThodberg/S4-Bioconductor) repo by [Malte Thodberg](https://github.com/MalteThodberg).
+
+## What is S4?
+
+S4 is a formal object oriented system in R, it's named S4 since it was a part
+of version four of S language. It's implemented in the
+`methods` package created by John Chambers and maintained by the R core team.
+It also is one of several packages that ships with base R and is loaded on
+start up. 
+
+## Why use S4?
+
+Compared to other object oriented paradigms in R, S4 requires a developer
+to write classes that follow a strict structure - an S4 object has its 
+components defined upfront using slots. A well designed class can avoid code
+duplication, and the strictness helps a developer to ensure
+their code is correct. As will we see later, defining an S4 class requires 
+components and their types to be declared upfront, meaning that S4 classes
+are also self-documenting.
+
+As with any other programming language or paradigm, 
+you may have to use S4 because everyone else is using it. Take the 
+Bioconductor project for example. They have defined standard S4 classes in their
+ecosystem to represent many types of 'omics' data. Developers are strongly 
+nudged use these classes and their associated methods. This has two massive 
+benefits: firstly, a developer doesn't need to invent their own class and 
+secondly, it enables interoperability between many different packages.
+
+Learning to program with S4 can be daunting - especially for new users of R 
+or those who are used to the relative simplicity of the tidyverse ecosystem.
+I remember being incredibly confused and overwhelmed when I started to learn
+it (a lot of the documentation and guides are extremely technical) and found
+myself reading a lot of other people's code in order to figure out what on
+earth is going on. From both a developer and user perspective, I think 
+the essence of S4 can be distilled into three principles. 
+
+## The Big Picture Design Principles of S4
+
+### Principle 1: it's all about the abstraction
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">S4 objects don&#39;t do anything; they are pure data. Accepting that is the first step towards mastery of OOP in <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a>.</p>&mdash; Michael Lawrence (@lawremi) <a href="https://twitter.com/lawremi/status/632273174160277504?ref_src=twsrc%5Etfw">August 14, 2015</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+The design of an S4 class is merely a way of setting up an abstraction for a data 
+analysis problem. This is often the hardest part of using S4, coming up with a 
+'good-enough' abstraction for the problem at hand. 
+
+Let's try creating an S4 class for a [Turtle](https://en.wikipedia.org/wiki/Turtle_graphics). 
+A turtle can move in a path in two dimensions as illustrated below:
+
+```{r, echo = FALSE, eval=FALSE}
+gif_file("./img/turtle.gif")
+```
+
+We can define a class to represent a Turtle as follows:
+
+```{r}
+library(methods)
+setClass("Turtle", 
+         slots = c(location = "numeric", 
+                   orientation = "numeric", 
+                   path = "matrix")
+)
+```
+
+At a minimum an S4 class needs two things the name of the class 
+and a named character vector of slots. Slots define the data that forms
+the class. In the case of the Turtle, we have three slots one representing
+the turtle's current location as a numeric vector, one representing
+it's current orientation (the angle that the turtle is facing), and finally
+a matrix representing the path it's travelled so far.
+
+We can create an instance of a Turtle using `new`:
+
+```{r}
+lil_turtle <- new("Turtle", 
+                  location = c(0,0), 
+                  orientation = 0,
+                  path = matrix(c(0,0), ncol = 2))
+lil_turtle
+```
+
+Slots can be accessed using `@` but we will see later it's better to define
+functions called getters that access each component of the object. 
+
+```{r}
+lil_turtle@location
+lil_turtle@orientation
+lil_turtle@path
+```
+
+We would like to ensure that when we create a new turtle
+that it's current location is always a numeric vector of length 2, and that
+it's orientation is in degrees between -360 to 360. We'll also
+check that the path is a matrix with two columns. We can do this by creating
+a function to check our turtle is valid:
+
+```{r, echo = TRUE}
+okTurtle <- function(object) {
+  # check location has length 2
+  loc_ln <- length(object@location)
+  # check orientation is between -360 to 360 and has length one
+  orientation <- object@orientation
+  # check path is a numeric matrix
+  path <- object@path
+  c(if (loc_ln != 2) "location must have length two.",
+    if (length(orientation) != 1) "orientation must have length one.",
+    if (abs(orientation) > 360) paste("orientation angle", orientation, "must be between -360 and 360 degrees."),
+    if (mode(path) != "numeric") "path must be a numeric matrix",
+    if (ncol(path) != 2) "path must have two columns"
+  )
+  TRUE
+}
+setValidity("Turtle", okTurtle)
+```
+
+This updates the class definition, to include the checking a turtle is an OK
+turtle.
+
+Finally, we need an interface to creating a objects of class Turtle.
+This is called a constructor. Generally, this is a function that calls `new` and has arguments corresponding to the slots of our object.
+
+```{r}
+Turtle <- function(location = c(0,0), orientation = 0) {
+  new("Turtle", 
+      location = location, 
+      orientation = orientation,
+      path = matrix(location, ncol = 2))
+}
+```
+
+Calling `new` now that the validity is set, will check that the arguments
+provided to the constructor result in a proper turtle.  We haven't included
+an argument for the path, cause our Turtle hasn't travelled anywhere yet... 
+
+Note that it's a convention when using S4 to use CamelCase (I don't make
+the rules!).
+
+So far we can't do anything interesting with turtles, we need to define
+some methods!
+
+
+### Principle 2: in statistics we like functions
+
+Both S3 and S4 use generic functions which is a little different from
+other object-oriented programming languages (it is a variety of [ad-hoc polymorphism](https://en.wikipedia.org/wiki/Ad_hoc_polymorphism) if you like that
+kind of thing). A generic function determines
+how a method is called when an argument is a given class (or combination of classes). 
+In general, a generic function should be created if you plan to reuse it 
+for many distinct classes or if it will be useful to other package developers.
+
+For example, we could create two generic functions that represent 
+a turtle moving forward and a turtle turning.
+
+
+```{r, message=FALSE}
+setGeneric("forward", 
+           function(x, ...) standardGeneric("forward")
+)
+```
+This creates a function called `forward` with an argument `x`, called 
+the signature of the generic and `...` which can be other arguments that
+will determine how a turtle moves. The class of `x` changes which `forward`
+method will be selected.
+
+Similarly, we can implement a generic for reorienting a turtle.
+```{r, message = FALSE}
+setGeneric("turn", function(x, ...) standardGeneric("turn"))
+```
+
+To complete our interface, we will also create generics for accessing
+and replacing each slot of our class.
+
+```{r, message = FALSE}
+setGeneric("location", function(x) standardGeneric("location"))
+setGeneric("location<-", function(x, value) standardGeneric("location<-"))
+setGeneric("orientation", function(x) standardGeneric("orientation"))
+setGeneric("orientation<-", function(x, value) standardGeneric("orientation<-"))
+setGeneric("path", function(x) standardGeneric("path"))
+setGeneric("path<-", function(x, value) standardGeneric("path<-"))
+```
+
+We now have a bunch of generics next we need to create methods for our turtle. 
+Let's start simple with our getter functions. To create a method, we use 
+`setMethod` with
+:
+* the name of our generic
+* an argument called 'signature', that tells us the class the generic will dispatch on
+* a function that tells us what the method does
+
+```{r}
+setMethod("location", signature = "Turtle", function(x) x@location)
+setMethod("orientation", signature = "Turtle", function(x) x@orientation)
+setMethod("path", signature = "Turtle", function(x) x@path )
+```
+
+We can also create our replacement methods, these will update each slot.
+A turtle's orientation and path are always updated relative to where 
+they already are positioned.
+
+```{r}
+setMethod("location<-", signature = "Turtle", function(x, value) {
+  x@location <- value
+  stopifnot(validObject(x))
+  x
+})
+setMethod("orientation<-", signature = "Turtle", function(x, value) {
+  x@orientation <- orientation(x) + value
+  stopifnot(validObject(x))
+  x
+})
+setMethod("path<-", "Turtle", function(x, value) {
+  x@path <- rbind(path(x), matrix(value, ncol = 2))
+  stopifnot(validObject(x))
+  x
+})
+```
+
+Now we can implement methods for forward and turn:
+
+```{r}
+setMethod("forward", signature = "Turtle",
+          function(x, steps) {
+            location <- location(x)
+            angle <- orientation(x) * pi / 180
+            x_dir <- steps * cos(angle)
+            y_dir <- steps * sin(angle)
+            
+            new_location <- c(location[1] + x_dir, 
+                              location[2] + y_dir)
+            
+            location(x) <- new_location
+            path(x) <- new_location
+            
+            x
+          })
+setMethod("turn", "Turtle", function(x, angle) {
+  orientation(x) <- angle
+  x
+})
+```
+
+
+Most of the time, you probably don't need a new generic function but rather
+to reuse an existing one (for Bioconductor packages generic functions are 
+contained in the `BiocGenerics` package) by setting a method for your class.
+For example, maybe we want a prettier printing method for our turtle, for
+S4 classes, the print method is called "show":
+
+```{r}
+setMethod("show", "Turtle",
+          function(object) {
+            utf8::utf8_print(paste("\U1F422",
+                                   paste("Located at:", paste(round(location(object), 1), collapse = ",")),
+                                   paste("Facing:", orientation(object), "degrees"),
+                                   collapse = "\n"))
+          })
+lil_turtle
+```
+
+When designing a new class it's a good idea to target methods for generic
+functions that are in the base API. This ensures portability of your code and
+means that your class behaves in a way that is already familiar to a user.
+
+Now we have implemented enough methods to make our turtle move, we can start
+getting our turtle to move around in 2-d! For example, we could move in
+a triangle:
+
+```{r}
+library(magrittr)
+turtle <- Turtle()
+turtle <- turtle %>% 
+  turn(angle = 60) %>% 
+  forward(steps = 3) %>%
+  turn(angle = -120) %>% 
+  forward(steps = 3) %>% 
+  turn(angle = -120) %>% 
+  forward(steps = 3)
+turtle 
+path_taken <- path(turtle)
+plot(path_taken)
+segments(path_taken[1:3,1], 
+         path_taken[1:3,2], 
+         path_taken[2:4, 1], 
+         path_taken[2:4, 2])
+```
+
+
+### Principle 3: designing is hard, reuse instead!
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">If you&#39;re going to have a big multi-site collaboration, the language you&#39;re going to use isn&#39;t what you need to agree on. They key is stadardizing data structures. - Robert Gentleman <a href="https://twitter.com/hashtag/Bioc2019?src=hash&amp;ref_src=twsrc%5Etfw">#Bioc2019</a> <a href="https://twitter.com/hashtag/RGentlemanSymposium?src=hash&amp;ref_src=twsrc%5Etfw">#RGentlemanSymposium</a></p>&mdash; Gabe Becker (@groundwalkergmb) <a href="https://twitter.com/groundwalkergmb/status/1144325071672107008?ref_src=twsrc%5Etfw">June 27, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+In R there is usually package for the task you would like to perform.
+Similarly, when using S4 somebody has probably done the hard work of designing
+a class related to an analysis or problem at hand. In Bioconductor, the
+community has standardised core data structures related to all aspects of 'omics',
+with two key examples being the `SummarizedExperiment` and `Ranges` classes.
+Instead of inventing your own class
+you can extend (or just use) other package's data structures. If the class
+has been implemented well, you won't have to go through the boring process
+of implementing an interface such as making setters and getters. 
+
+Let's extend our Turtle class, to a Turtle that's holding a pen. A turtle
+holding a pen will include three new slots: colour, thickness, and an on/off switch.
+
+```{r}
+setClass("TurtleWithPen", 
+         slots = c(colour = "character", thickness = "numeric", on = "logical"),
+         contains = "Turtle")
+```
+
+The argument `contains = "Turtle"` tells `setClass` we are inheriting 
+from the `Turtle` class. A `TurtleWithPen` is still a `Turtle` but has
+additional slots corresponding to a Pen. We can write a constructor
+for a Turtle holding a pen:
+
+```{r}
+TurtleWithPen <- function(x, colour = "pink", thickness = 1, on = FALSE) {
+  new("TurtleWithPen", colour = colour, thickness = thickness, on = on, x)
+}
+turtle <- TurtleWithPen(Turtle())
+turtle
+class(turtle)
+```
+
+Our `TurtleWithPen` inherits all the methods associated with Turtle, including
+`show` which is why the displayed object looks the same. All the same moves
+we made with an ordinary turtle can be made by one holding a pen:
+```{r}
+turtle %>% 
+  turn(angle = 60) %>% 
+  forward(steps = 3) %>%
+  turn(angle = -120) %>% 
+  forward(steps = 3) %>% 
+  turn(angle = -120) %>% 
+  forward(steps = 3)
+```
+
+Now we want to modify the `show` method, if the pen is on, 
+then will animate the Turtle's path, otherwise we will show the Turtle
+has normal.
+
+```{r}
+setMethod("show", "TurtleWithPen", 
+          function(object) {
+            if (object@on) {
+              path <- path(object)
+              colnames(path) <- c("x", "y")
+              path_tbl <- data.frame(path, id = seq_len(nrow(path)))
+              plot <- ggplot2::ggplot(data = path_tbl) + 
+                ggplot2::geom_path(ggplot2::aes(x, y), 
+                                   colour = object@colour, 
+                                   size = object@thickness) +
+                ggplot2::theme_void() + 
+                gganimate::transition_reveal(id)
+              gganimate::animate(plot)
+            } else {
+              callNextMethod()
+            }
+          })
+```
+
+Now the show method will animate, if the pen is switched on, otherwise
+we will call the regular Turtle method. 
+
+We can try this out by having our Turtle walk through an equilateral triangle:
+
+```{r}
+pendown <- function(x) {
+  x@on <- TRUE
+  x
+}
+penup <- function(x) {
+  x@on <- FALSE
+  x
+}
+turtle <- turtle %>% 
+  pendown() %>% 
+  turn(angle = 60) %>% 
+  forward(steps = 3) %>%
+  turn(angle = -120) %>% 
+  forward(steps = 3) %>% 
+  turn(angle = -120) %>% 
+  forward(steps = 3)
+turtle %>% 
+  show()
+```
+
+But if we put the pen up, then we get the usual `show` method:
+
+```{r}
+turtle %>% 
+  penup() 
+```
+
+## Wrapping up
+
+The somewhat silly turtle graphics example has been my attempt at 
+demystifying S4 programming:
+
+* S4 classes by themselves are just data, to compute with them you need to write methods. 
+* Methods are just functions that are set on a class and are constructed from generic functions. 
+* Reusing classes and methods enable a user and developer to minimise code duplication via inheritance.
+
+```{r bonus-star}
+star_pupil <- TurtleWithPen(Turtle(c(30,30), -100), 
+                            colour = "green", thickness = 2) 
+draw_star <- function(x) {
+  x <- forward(x, steps = 30)
+  for (i in 1:8) {
+    x <- turn(x, angle = 140)
+    x <- forward(x, steps = 30)
+    x <- turn(x, angle = -100)
+    x <- forward(x, steps = 30)
+  }
+  x <- turn(x, angle = 140)
+  forward(x, steps = 30)
+}
+star_pupil %>% 
+  pendown() %>% 
+  draw_star() %>% 
+  show()
+```
+
+
+### Where to find out more?
+
+This post has barely scratched the surface of what S4 can do. We haven't
+really touched on the ideas of multiple inheritance or multiple dispatch. Hopefully
+though if you're new to S4, the ideas behind it are a little less scary!
+
+There are several resources for learning more about S4:
+
+* These [course](https://bioconductor.org/help/course-materials/2017/Zurich/S4-classes-and-methods.html) notes by Martin Morgan and Hervè Pagès go into detail about
+what you need to use S4 in a package.
+
+* Hadley Wickham's Advanced R book has a section on [S4](http://adv-r.had.co.nz/S4.html) (and [here](https://adv-r.hadley.nz/s4.html)) and other types of object-oriented programming in R. 
+
+* If you want to get into the nitty-gritty technicalities
+of S4 programming, take a look at John Chamber's 
+[Software for Data Analysis](https://www.springer.com/gp/book/9780387759357).
+
+* Looking in the wild. Two examples of non-Bioconductor packages that make use of S4 are
+the [`Matrix`](https://cran.r-project.org/web/packages/Matrix/index.html) and [`rstan`](https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started). 

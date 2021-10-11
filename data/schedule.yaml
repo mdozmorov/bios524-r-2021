@@ -62,6 +62,12 @@ lessons:
     # assignment: "09-problem-set"
     class: "08-class"
 
+  - title: "**S4 classes**"
+    date: "October 11"
+    # reading: "05-reading"
+    # assignment: "09-problem-set"
+    class: "09-class"
+
   - title: "**Interactive web apps with Shiny**"
     # date: "October 22"
     # # reading: "05-reading"
