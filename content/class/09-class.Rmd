@@ -29,5 +29,7 @@ knitr::include_url('../../slides/S4_classes_methods.html#1')
 ```
 
 <a href="../../slides/S4_tutorial.html" target="_blank">S4 tutorial in HTML format</a>
+
 <a href="../../slides/S4_tutorial.Rmd" target="_blank">S4 tutorial in Rmd format</a>
+
 <a href="https://stuartlee.org/2019/07/09/s4-short-guide/" target="_blank">S4: a short guide for the perplexed</a> blog post by Stuart Lee
