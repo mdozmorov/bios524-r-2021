@@ -1,19 +1,19 @@
 ---
-title: "Lecture 10: Interactive web apps with Shiny"
+title: "Interactive web apps with Shiny"
 # linktitle: "1. Introduction to RStudio and Images"
-date: "2020-10-22"
-class_date: "2020-10-22"
+date: "2021-10-13"
+class_date: "2021-10-13"
 output:
   blogdown::html_page:
     toc: false
-# menu:
-#   class:
-#     parent: Class sessions
-#     weight: 11
-# type: docs
-# weight: 1 
-# pdf: 
-# thumb: 
+menu:
+  class:
+    parent: Class sessions
+    weight: 11
+type: docs
+weight: 1
+pdf:
+thumb:
 editor_options: 
   chunk_output_type: console
 ---
@@ -31,3 +31,6 @@ knitr::include_url('../../slides/101_Shiny.html#1')
 ### Sniny tutorial and code
 
 <a href="../../slides/r-shiny.Rmd" target="_blank">r-shiny.Rmd</a>
+
+<a href="../../slides/lecture4-shiny.pdf" target="_blank">Intro to Shiny lecture</a>
+<a href="../../slides/iris-app.R" target="_blank">iris-app.R</a>

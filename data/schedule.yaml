@@ -69,7 +69,7 @@ lessons:
     class: "09-class"
 
   - title: "**Interactive web apps with Shiny**"
-    # date: "October 22"
-    # # reading: "05-reading"
+    date: "October 13"
+    # reading: "05-reading"
     # assignment: "10-problem-set"
-    # class: "10-class"
+    class: "10-class"

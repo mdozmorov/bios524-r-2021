@@ -1,0 +1,150 @@
+---
+title: "Interactive web apps with Shiny"
+# subtitle: "Getting started"
+author: "Mikhail Dozmorov"
+institute: "Virginia Commonwealth University"
+# date: "`r Sys.Date()`"
+date: "10-13-2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["xaringan-themer.css", "xaringan-my.css"]
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+mono_light(
+  base_color = "midnightblue",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "500", "500i"),
+  code_font_google   = google_font("Droid Mono"),
+  link_color = "#8B1A1A", #firebrick4, "deepskyblue1"
+  text_font_size = "28px",
+  code_font_size = "26px"
+)
+```
+
+## What is Shiny?
+
+- Shiny is a framework for developing interactive, web-based tools with R, used for data exploration
+
+- Dynamic code execution, depending on user's input
+
+- It's maintained by RStudio, and there's robust documentation and video tutorials
+
+.small[ https://shiny.rstudio.com/gallery/
+
+https://shiny.rstudio.com/tutorial/
+
+https://shiny.rstudio.com/articles/
+]
+
+---
+## Parts of a Shiny App
+
+At minimum, a Shiny app has two components:
+
+- `ui.R` - User Interface, code to create front-end
+- `server.R` - Server code performing functions in backend
+
+It is possible to create a single file `app.R` containing code for both components
+
+``` r
+library(shiny)
+ui <- fluidPage()
+server <- function(input, output) {}
+shinyApp(ui = ui, server = server)
+```
+
+.small[ https://shiny.rstudio.com/articles/app-formats.html ]
+
+---
+## Creating your first Shiny app
+
+1. Create a new project in RStudio (either in a new directory or existing directory)
+
+2. Select Shiny app and whether you want it to be a single file (preferred), or multiple files
+
+3. Give a name to your app
+
+---
+## Running your first Shiny app
+
+- Save the code to the `app.R` file in the folder "My-first-app"
+
+``` r 
+library(shiny) 
+runApp("My-first-app")
+```
+
+- Open `app.R` in RStudio and click the `Run App` button
+
+---
+## How to start with Shiny
+
+[How to start with Shiny, Part 1](https://github.com/rstudio-education/shiny.rstudio.com-tutorial/blob/master/how-to-start-shiny-part-1.pdf)
+
+[How to start with Shiny, Part 2](https://dsba5122.com/files/shiny-reactivity.pdf)
+
+Slides by Garrett Grolemund
+
+---
+## References
+
+- Official Shiny tutorials, with videos. https://shiny.rstudio.com/tutorial/
+
+- [Building Shiny Apps](https://deanattali.com/blog/building-shiny-apps-tutorial/) tutorial by Dean Attali
+
+- Mastering Shiny by Hadley Wickham https://mastering-shiny.org
+
+- Shiny From Start To Finish. https://github.com/rstudio-conf-2020/shiny-start-finish
+
+- Examples of Shiny front-ends, with code. https://github.com/ericrayanderson/shinymaterial
+
+- R Shiny for beginners: annotated starter code, https://www.r-bloggers.com/r-shiny-for-beginners-annotated-starter-code/
+
+
+
+<!---
+## Intro to Shiny
+
+- [lecture4-shiny.pdf](../../slides/lecture4-shiny.pdf) by Katherine Wilson
+
+- [iris-app.R](../../slides/iris-app.R)
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
